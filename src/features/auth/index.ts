@@ -1,5 +1,5 @@
 import { LANG_KEY } from "@/i18n/consts";
-import { langFactory } from "@/i18n/next-factory";
+import { langFactoryCore } from "@/i18n/core";
 import { analyzeHeaderAcceptLang } from "@/i18n/utilities";
 import { isEmpty } from "@/objects";
 import NextAuth from "next-auth";
@@ -52,9 +52,12 @@ export const {
   callbacks: {
     authorized: async ({ auth, request: { nextUrl, cookies, headers } }) => {
       const res = NextResponse.next();
-      if (!cookies.get(LANG_KEY)) {
+      if (!cookies.get(LANG_KEY)?.value) {
         const lang = analyzeHeaderAcceptLang(headers.get("accept-language"));
-        cookies.set(LANG_KEY, lang);
+        cookies.set({
+          name: LANG_KEY,
+          value: lang,
+        });
         res.cookies.set({
           name: LANG_KEY,
           value: lang,
@@ -67,7 +70,7 @@ export const {
       const url = new URL(signInPageUrl, nextUrl);
       url.searchParams.set(authErrorCallbackUrlQueryName, nextUrl.href);
       if (/.*\/api(\/|$)/.test(nextUrl.pathname)) {
-        const lang = await langFactory(cookies.get(LANG_KEY)?.value.split(",") as Array<Lang>);
+        const lang = langFactoryCore(cookies.get(LANG_KEY)?.value.split(",") as Array<Lang>);
         return NextResponse.json({
           message: {
             type: "e",
