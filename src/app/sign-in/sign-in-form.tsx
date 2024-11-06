@@ -1,7 +1,7 @@
 "use client";
 
 import { getDataItemLabel } from "@/data-items/label";
-import { langFactory } from "@/i18n/factory";
+import { useLang } from "@/i18n/react-hook";
 import { Form } from "@/react/elements/form";
 import { FormButton } from "@/react/elements/form/form-button";
 import { PasswordBox } from "@/react/elements/form/items/password-box";
@@ -20,7 +20,7 @@ type Props = {
 export const SignInForm = (props: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const lang = langFactory();
+  const lang = useLang();
 
   return (
     <div className={css.wrap}>

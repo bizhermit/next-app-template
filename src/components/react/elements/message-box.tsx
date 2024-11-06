@@ -1,9 +1,9 @@
 "use client";
 
+import { clientLangFactory } from "@/i18n/react-hook";
 import { type ReactNode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { preventScroll } from "../../dom/prevent-scroll";
-import { langFactory } from "../../i18n/factory";
 import { Button, type ButtonProps } from "./button";
 
 type MessageBoxChildrenProps = {
@@ -39,8 +39,6 @@ type MessageBoxProps = {
   color?: StyleColor;
   buttons: Array<ButtonProps>;
 };
-
-const lang = langFactory();
 
 export const MessageBox = (props: MessageBoxProps) => {
   const [disabled, setDisabled] = useState(false);
@@ -213,6 +211,7 @@ export const $alert = (props: MessageBoxAlertProps | string) => {
   return $show<void, MessageBoxAlertProps>({
     ...optimizeProps(props),
     component: ({ close, props: { buttonProps, ...p } }) => {
+      const lang = clientLangFactory();
       return {
         ...p,
         buttons: [
@@ -234,6 +233,7 @@ export const $confirm = (props: MessageBoxConfirmProps | string) => {
   return $show<boolean, MessageBoxConfirmProps>({
     ...optimizeProps<MessageBoxConfirmProps>(props),
     component: ({ close, props: { negativeButtonProps, positiveButtonProps, ...p } }) => {
+      const lang = clientLangFactory();
       return {
         ...p,
         buttons: [
@@ -247,7 +247,7 @@ export const $confirm = (props: MessageBoxConfirmProps | string) => {
             },
           },
           {
-            children: lang("common.ok"),
+            children: ("common.ok"),
             ...positiveButtonProps,
             onClick: () => {
               close(true);

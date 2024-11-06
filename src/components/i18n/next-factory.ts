@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { DEFAULT_LANG, LANG_KEY } from "../consts";
+import { DEFAULT_LANG, LANG_KEY } from "./consts";
 import { langFactoryCore } from "./core";
 
 export const langFactory = async (langs?: Array<Lang>) => {

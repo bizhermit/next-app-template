@@ -1,5 +1,5 @@
 import { type HTMLAttributes, useEffect, useRef, useState } from "react";
-import { langFactory } from "../../../../i18n/factory";
+import { useLang } from "../../../../i18n/react-hook";
 import { equals } from "../../../../objects";
 import { convertBlobToFile, convertFileToBase64 } from "../../../../objects/file";
 import { isEmpty } from "../../../../objects/string";
@@ -18,8 +18,6 @@ type ElecSignOptions<D extends DataItem.$any | undefined> = FormItemOptions<D, D
 
 type ElecSignProps<D extends DataItem.$any | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, ElecSignOptions<D>>;
 
-const lang = langFactory();
-
 export const ElecSign = <D extends DataItem.$any | undefined>({
   preventAutoSave,
   maxHistory,
@@ -27,6 +25,7 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
   height,
   ...props
 }: ElecSignProps<D>) => {
+  const lang = useLang();
   const href = useRef<HTMLInputElement>(null!);
   const cref = useRef<HTMLCanvasElement>(null!);
   const focusInput = () => cref.current?.focus();

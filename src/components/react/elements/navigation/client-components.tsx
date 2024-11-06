@@ -1,14 +1,13 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { langFactory } from "../../../i18n/factory";
+import { useLang } from "../../../i18n/react-hook";
 import { MenuLeftRightIcon } from "../icon";
 import { navMinId, navOpenId, navToggleRadioName, navVisId } from "./consts";
 
-const lang = langFactory();
-
-const navVisBtnText = lang("navigation.spreadNav");
 export const NavVisBtn = (props: { children: ReactNode }) => {
+  const lang = useLang();
+  const navVisBtnText = lang("navigation.spreadNav");
   return (
     <button
       className="nav-btn nav-vis"
@@ -24,9 +23,9 @@ export const NavVisBtn = (props: { children: ReactNode }) => {
     </button>
   );
 };
-
-const navMinBtnText = lang("navigation.shrinkNav");
 export const NavMinBtn = (props: { children: ReactNode }) => {
+  const lang = useLang();
+  const navMinBtnText = lang("navigation.shrinkNav");
   return (
     <button
       className="nav-btn nav-min"
@@ -43,8 +42,9 @@ export const NavMinBtn = (props: { children: ReactNode }) => {
   );
 };
 
-const navOpenBtnText = lang("navigation.openNav");
 export const NavOpenBtn = (props: { children: ReactNode }) => {
+  const lang = useLang();
+  const navOpenBtnText = lang("navigation.openNav");
   return (
     <button
       className="nav-btn"
@@ -61,8 +61,9 @@ export const NavOpenBtn = (props: { children: ReactNode }) => {
   );
 };
 
-const navCloseBtnText = lang("navigation.openNav");
 export const NavCloseBtn = (props: { children: ReactNode }) => {
+  const lang = useLang();
+  const navCloseBtnText = lang("navigation.openNav");
   return (
     <button
       className="nav-btn nav-close"
@@ -90,8 +91,9 @@ export const autoNav = () => {
   });
 };
 
-const navSizeAutoBtnText = lang("navigation.autoNav");
 export const NavSizeAutoButton = () => {
+  const lang = useLang();
+  const navSizeAutoBtnText = lang("navigation.autoNav");
   return (
     <button
       className="nav-btn nav-auto"

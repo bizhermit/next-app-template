@@ -3,7 +3,7 @@
 import { type ChangeEvent, type HTMLAttributes, useRef } from "react";
 import { $fileParse } from "../../../../data-items/file/parse";
 import { $fileValidations } from "../../../../data-items/file/validation";
-import { langFactory } from "../../../../i18n/factory";
+import { useLang } from "../../../../i18n/react-hook";
 import { Button } from "../../button";
 import { joinClassNames } from "../../utilities";
 import { useFormItemCore } from "../hooks";
@@ -17,8 +17,6 @@ type FileButtonOptions<D extends DataItem.$file | undefined> = FormItemOptions<D
 
 type FileButtonProps<D extends DataItem.$file | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, FileButtonOptions<D>>;
 
-const lang = langFactory();
-
 export const FileButton = <D extends DataItem.$file | undefined>({
   accept,
   fileSize,
@@ -26,6 +24,7 @@ export const FileButton = <D extends DataItem.$file | undefined>({
   hideFileName,
   ...props
 }: FileButtonProps<D>) => {
+  const lang = useLang();
   const iref = useRef<HTMLInputElement>(null!);
   const bref = useRef<HTMLButtonElement>(null!);
 

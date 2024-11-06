@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { parseBasedOnDataItem } from "../../data-items/parse";
 import { validationBasedOnDataItem } from "../../data-items/validation";
-import { langFactory } from "../../i18n/factory";
+import { langFactory } from "../../i18n/next-factory";
 import { append } from "../../objects/struct";
 
 export class ApiError extends Error {
@@ -43,7 +43,7 @@ export const apiMethodHandler = <
     try {
       const env: DataItem.Env = {
         tzOffset: Number(req.headers.get("tz-offset") || new Date().getTimezoneOffset()),
-        lang: langFactory(),
+        lang: await langFactory(),
       };
 
       const data = await process({

@@ -1,4 +1,4 @@
-import { DEFAULT_LANG } from "../consts";
+import { DEFAULT_LANG } from "./consts";
 
 export const langFactoryCore = (langs: Array<Lang>) => {
   const cache: Partial<LangCache> = (() => {
