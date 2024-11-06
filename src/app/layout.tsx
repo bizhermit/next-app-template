@@ -1,7 +1,7 @@
-import { DEFAULT_LANG, LANG_KEY } from "@/i18n/consts";
 import type { Metadata, Viewport } from "next";
 import { SessionProvider } from "next-auth/react";
 import { cookies } from "next/headers";
+import { DEFAULT_LANG, LANG_KEY } from "../components/i18n/consts";
 import { defaultLayoutTheme, LayoutProvider, LayoutTheme } from "../components/react/hooks/layout";
 import "../components/styles/index.scss";
 
