@@ -22,12 +22,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const c = cookies();
+  const c = await cookies();
   const lang = c.get(LANG_KEY)?.value.split(",")[0] || DEFAULT_LANG;
   const layoutTheme = (c.get("theme")?.value as LayoutTheme) || defaultLayoutTheme;
   return (
