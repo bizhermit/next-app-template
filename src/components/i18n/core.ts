@@ -9,7 +9,7 @@ export const langFactoryCore = (langs: Array<Lang>) => {
   })();
 
   const lang = ((key, arg) => {
-    const [s, k] = key.split(/./) as [LangSection, LangSectionKey<LangSection>];
+    const [s, k] = key.split(/\./) as [LangSection, LangSectionKey<LangSection>];
     for (let i = 0, il = langs.length; i < il; i++) {
       const l = langs[i];
       if (cache[l] == null) cache[l] = {};
