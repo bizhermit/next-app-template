@@ -1,4 +1,4 @@
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 
 type Props = {
   replace?: boolean;

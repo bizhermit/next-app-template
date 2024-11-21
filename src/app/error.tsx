@@ -2,7 +2,7 @@
 
 import { Button } from "@/react/elements/button";
 import { ReloadIcon } from "@/react/elements/icon";
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 import css from "./error.module.scss";
 
 type Props = {

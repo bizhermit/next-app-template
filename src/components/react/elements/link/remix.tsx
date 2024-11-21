@@ -1,8 +1,9 @@
-import $Link, { type LinkProps } from "next/link";
+import { Link as $Link } from "@remix-run/react";
+import { type RemixLinkProps } from "@remix-run/react/dist/components";
 import { type AnchorHTMLAttributes } from "react";
-import { replaceDynamicPathname, type UrlPath } from "../../objects/url";
+import { getDynamicPathname, type UrlPath } from "../../../objects/url";
 
-export type NextLinkOptions = {
+export type RemixLinkOptions = {
   href?: UrlPath;
   params?: { [v: string | number | symbol]: any } | null | undefined;
   query?: { [v: string | number | symbol]: any } | null | undefined;
@@ -11,7 +12,7 @@ export type NextLinkOptions = {
   button?: boolean;
 };
 
-export type NextLinkProps = OverwriteProps<OverwriteAttrs<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">, LinkProps>, NextLinkOptions>;
+export type LinkProps = Omit<OverwriteAttrs<OverwriteAttrs<AnchorHTMLAttributes<HTMLAnchorElement>, RemixLinkProps>, RemixLinkOptions>, "to">;
 
 export const Link = ({
   href,
@@ -22,17 +23,17 @@ export const Link = ({
   noDecoration,
   button,
   ...props
-}: NextLinkProps) => {
-  const pathname = href ? replaceDynamicPathname(href, params) : "";
+}: LinkProps) => {
+  const pathname = href ? getDynamicPathname(href, { ...query, ...params }, { appendQuery: query != null }) : "";
   return (
     <$Link
       {...props}
-      prefetch={prefetch ?? false}
+      prefetch={prefetch || "none"}
       aria-disabled={disabled}
       data-nodecoration={noDecoration}
       inert={disabled}
       role={button ? "button" : undefined}
-      href={disabled ? "" : (query ? { pathname, query } : pathname)}
+      to={disabled ? null! : pathname}
     />
   );
 };

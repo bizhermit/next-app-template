@@ -1,4 +1,4 @@
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 import css from "./error.module.scss";
 
 const NotFound = () => {

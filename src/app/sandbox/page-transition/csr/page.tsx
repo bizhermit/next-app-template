@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 
 const Page = () => {
   return (

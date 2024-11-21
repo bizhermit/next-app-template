@@ -1,3 +1,9 @@
+export const pickCookieValue = (cookie: String, name: string) => {
+  const re = new RegExp(`^${encodeURIComponent(name)}=(.+)`);
+  const v = cookie.split(/;\s?/g).find(c => c.match(re))?.split("=")[1];
+  return v ? decodeURIComponent(v) : v;
+};
+
 export const getCookies = () => {
   const ret: { [v: string]: string } = {};
   if (typeof window === "undefined") {
@@ -18,9 +24,7 @@ export const getCookie = (name: string) => {
     console.warn(`faild to get cookie, not client side. get: [${name}]`);
     return undefined;
   }
-  const re = new RegExp(`^${encodeURIComponent(name)}=(.+)`);
-  const v = document.cookie.split(/;\s?/g).find(c => c.match(re))?.split("=")[1];
-  return v ? decodeURIComponent(v) : v;
+  return pickCookieValue(document.cookie, name);
 };
 
 type CookieOptions = {

@@ -1,4 +1,4 @@
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 import { ReactNode } from "react";
 import { InputsAsClient } from "../../inputs-client";
 import { InputsAsServer } from "../../inputs-server";

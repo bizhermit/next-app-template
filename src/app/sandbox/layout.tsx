@@ -1,5 +1,5 @@
 import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, TextBoxIcon } from "@/react/elements/icon";
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 import { Navigation } from "@/react/elements/navigation";
 import { NavigationMenu, NavMenuLink, NavMenuNest } from "@/react/elements/navigation/menu";
 import { FetchProvider } from "@/react/hooks/fetch";

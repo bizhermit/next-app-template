@@ -23,6 +23,9 @@ const nextConfig = {
     ...(appMode === 'mock' ? ['mock.tsx', 'mock.ts'] : []),
     'tsx', 'ts',
   ],
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api'],
+  }
 };
 
 export default nextConfig;

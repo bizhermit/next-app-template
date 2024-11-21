@@ -2,20 +2,25 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "@remix-run/node",
+      "vite/client"
+    ],
     "incremental": true,
     "baseUrl": "..",
     "plugins": [
@@ -41,9 +46,12 @@
     "**/*.tsx",
     "**/*.mts",
     "**/*.cts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../vite.config.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }

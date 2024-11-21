@@ -14,6 +14,8 @@
 - @remix-run/dev
 - vite
 - vite-tsconfig-paths
+- postcss
+- autoprefixer
 
 # Remix
 

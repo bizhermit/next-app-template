@@ -5,3 +5,5 @@ jest.config.js
 playwright.config.ts
 playwright/*
 vite.config.ts
+postcss.config.js
+vite.config.ts

@@ -1,4 +1,5 @@
 import { vitePlugin as remix } from "@remix-run/dev";
+import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -8,10 +9,21 @@ declare module "@remix-run/node" {
   }
 }
 
+const appDir = "src";
+
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['legacy-js-api'],
+      },
+    },
+  },
   plugins: [
     remix({
-      appDirectory: "src",
+      appDirectory: appDir,
+      ignoredRouteFiles: ["**/*"],
+      routes: async (defineRoutes) => flatRoutes("routes", defineRoutes, { appDir }),
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
@@ -20,6 +32,10 @@ export default defineConfig({
         v3_lazyRouteDiscovery: true,
       },
     }),
-    tsconfigPaths(),
+    tsconfigPaths({
+      projects: [
+        "./src/tsconfig.json",
+      ],
+    }),
   ],
 });

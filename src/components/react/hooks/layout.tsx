@@ -7,6 +7,8 @@ export type LayoutTheme = "auto" | "light" | "dark";
 
 export const defaultLayoutTheme: LayoutTheme = "auto";
 
+export const LAYOUT_THEME_KEY = "theme";
+
 export const WindowSize = {
   xs: 1,
   s: 2,

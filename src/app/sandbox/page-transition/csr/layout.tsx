@@ -1,13 +1,13 @@
 "use client";
 
-import Link from "@/react/elements/link";
+import Link from "@/react/elements/link/next";
 import { ReactNode } from "react";
 import { InputsAsClient } from "../../inputs-client";
 import { InputsAsServer } from "../../inputs-server";
 import css from "../../styles.module.scss";
 import { PageTransitionProvider } from "../provider";
 
-const Layout = (props: { children: ReactNode}) => {
+const Layout = (props: { children: ReactNode }) => {
   // eslint-disable-next-line no-console
   console.log("csr render");
   return (

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { HTMLAttributes, ReactNode, useLayoutEffect, useRef } from "react";
 import { DownIcon } from "../icon";
-import Link from "../link";
+import Link from "../link/next";
 import { joinClassNames } from "../utilities";
 import { closeNav } from "./client-components";
 
