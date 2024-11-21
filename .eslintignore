@@ -1,5 +1,7 @@
 next.config.mjs
+remix.config.js
 scripts/*
 jest.config.js
 playwright.config.ts
 playwright/*
+vite.config.ts

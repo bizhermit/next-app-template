@@ -3,10 +3,16 @@
 - Node.js v22
 - TypeScript v5
 - React v19
-- Next.js v15
-- NextAuth.js v5
 - Prisma v5
 - PostgreSQL v17
+
+## Next.js or Remix
+
+[プロジェクト開始時に選択する](./docs/select-server.md)
+
+- Next.js v15
+- NextAuth.js v5
+- Remix v2
 
 # 開発環境構築
 
