@@ -1,11 +1,29 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig-next.json"
-    },
-    {
-      "path": "./tsconfig-remix.json"
-    }
+  "extends": "./tsconfig-base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": [
+      "@remix-run/node",
+      "vite/client",
+      "@types/jest"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "**/*.cts",
+    "**/.server/**/*.ts",
+    "**/.server/**/*.tsx",
+    "**/.client/**/*.ts",
+    "**/.client/**/*.tsx",
+    "../vite.config.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
   ]
 }

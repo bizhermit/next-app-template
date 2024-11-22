@@ -10,14 +10,15 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
+    "**/*.cts",
+    "**/*.mts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.mts",
-    "**/*.cts",
-    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }
