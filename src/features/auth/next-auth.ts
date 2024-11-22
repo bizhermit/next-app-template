@@ -10,7 +10,6 @@ import { authErrorCallbackUrlQueryName, signIn_email, signIn_password, signInPag
 
 const isDev = /^dev/.test(process.env.NODE_ENV);
 
-
 declare module "next-auth" {
   interface Session {
   }
@@ -24,7 +23,6 @@ declare module "next-auth/jwt" {
   interface JWT {
   }
 }
-
 
 export const {
   auth,
