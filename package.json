@@ -14,7 +14,7 @@
     "export": "npm run clean && npx cross-env NEXT_OUTPUT=\"dist\" npm run build",
     "remix:route": "",
     "remix:dev": "bash scripts/remix-dev.sh",
-    "remix:build": "npm run remix:route && npx remix vite:build",
+    "remix:build": "npx remix vite:build",
     "remix": "bash scripts/remix-start.sh",
     "type-check": "npx tsc -p ./src/tsconfig.json --noEmit",
     "lint": "npx next lint",

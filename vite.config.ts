@@ -11,7 +11,6 @@ declare module "@remix-run/node" {
 }
 
 const appDir = "src";
-
 export default defineConfig({
   css: {
     preprocessorOptions: {
@@ -19,9 +18,6 @@ export default defineConfig({
         silenceDeprecations: ['legacy-js-api'],
       },
     },
-  },
-  build: {
-    outDir: ".webapp"
   },
   plugins: [
     remix({
@@ -35,6 +31,7 @@ export default defineConfig({
         v3_singleFetch: true,
         v3_lazyRouteDiscovery: true,
       },
+      buildDirectory: "./.webapp",
     }),
     tsconfigPaths({
       projects: [

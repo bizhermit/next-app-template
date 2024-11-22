@@ -13,4 +13,4 @@ if [ -z "$FRONTEND_PORT" ]; then
   export FRONTEND_PORT=3000
 fi
 
-npm run clean && npm run remix:build && npx remix-serve ./.webapp/server/index.js --port $FRONTEND_PORT
+npm run clean && npm run remix:build && npx cross-env PORT=\"$FRONTEND_PORT\" npx remix-serve ./.webapp/server/index.js

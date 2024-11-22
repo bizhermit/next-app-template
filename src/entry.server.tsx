@@ -9,8 +9,24 @@ import { PassThrough } from "node:stream";
 import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
+import dotenv from "dotenv";
 import { isbot } from "isbot";
+import fs from "node:fs";
+import path from "node:path";
 import { renderToPipeableStream } from "react-dom/server";
+
+const isDev = (process.env.NODE_ENV || "").startsWith("dev");
+const loadEnv = (name: string) => {
+  const fullName = path.resolve(name);
+  if (!fs.existsSync(fullName)) return false;
+  dotenv.config({ path: fullName, override: true });
+  process.stdout.write(`load env file: [${name}]\n`);
+  return true;
+};
+loadEnv(".env");
+loadEnv(`.env.${isDev ? "development" : "production"}`);
+loadEnv(".env.local");
+loadEnv(`.env.${isDev ? "development" : "production"}.local`);
 
 const ABORT_DELAY = 5_000;
 
