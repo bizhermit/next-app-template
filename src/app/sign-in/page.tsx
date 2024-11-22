@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth } from "~/auth";
+import { auth } from "~/auth/next-auth";
 import { SignInForm } from "./sign-in-form";
 
 const userHomeUrl: PagePath = "/home";

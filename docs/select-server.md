@@ -22,11 +22,14 @@ npm un @remix-run/node @remix-run/react @remix-run/serve isbot @remix-run/dev re
 - vite
 - vite-tsconfig-paths
 
-## 不要なファイル
+## 不要なファイルおよびディレクトリ
 
-- src/app
-- src/pages
-- src/next-auth.d.ts
+- src/routes
+- src/root.tsx
+- src/entry.server.tsx
+- src/entry.client.tsx
+- src/tsconfig-remix.json
+- 
 
 # Remix
 
@@ -47,7 +50,12 @@ npm un next next-auth eslint-config-next --force
 
 - eslint-config-next
 
-## 不要なファイル
+## devDependenciesからdependenciesに変更
+
+- cross-env
+- dotenv
+
+## 不要なファイルおよびディレクトリ
 
 ```bash
 npx rimraf src/app ...
@@ -55,5 +63,6 @@ npx rimraf src/app ...
 
 - src/app
 - src/pages
+- src/middleware.ts
 - src/next-auth.d.ts
 - src/tsconfig-next.json

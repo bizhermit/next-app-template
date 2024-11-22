@@ -11,6 +11,8 @@ declare module "@remix-run/node" {
 }
 
 const appDir = "src";
+process.env.APP_TYPE = "remix";
+
 export default defineConfig({
   css: {
     preprocessorOptions: {

@@ -1,4 +1,4 @@
-import { auth } from "~/auth";
+import { auth } from "~/auth/next-auth";
 
 const Page = async () => {
   const session = await auth();
@@ -7,6 +7,7 @@ const Page = async () => {
     <div>
       <h1>SignedIn</h1>
       <span>{session?.user?.email}</span>
+      <span>{session?.user?.state}</span>
     </div>
   );
 };

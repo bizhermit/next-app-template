@@ -1,12 +1,30 @@
 import { LANG_KEY } from "@/i18n/consts";
 import { langFactoryCore } from "@/i18n/core";
 import { analyzeHeaderAcceptLang, parseLangs } from "@/i18n/utilities";
+import "next-auth";
 import NextAuth from "next-auth";
+import "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import { NextResponse } from "next/server";
 import { authErrorCallbackUrlQueryName, signIn_email, signIn_password, signInPageUrl } from "./consts";
 
 const isDev = /^dev/.test(process.env.NODE_ENV);
+
+
+declare module "next-auth" {
+  interface Session {
+  }
+
+  interface User {
+    state: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+  }
+}
+
 
 export const {
   auth,
