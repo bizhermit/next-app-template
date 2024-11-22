@@ -4,7 +4,7 @@ const outputMode = process.env.NEXT_OUTPUT;
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    tsconfigPath: './src/tsconfig.json',
+    tsconfigPath: './src/tsconfig-next.json',
   },
   env: {
     APP_MODE: appMode,

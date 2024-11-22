@@ -34,7 +34,7 @@ export default defineConfig({
     }),
     tsconfigPaths({
       projects: [
-        "./src/tsconfig.json",
+        "./src/tsconfig-remix.json",
       ],
     }),
   ],

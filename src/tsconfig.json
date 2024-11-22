@@ -15,19 +15,9 @@
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "@remix-run/node",
-      "vite/client"
-    ],
     "incremental": true,
     "baseUrl": "..",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "paths": {
       "@/*": [
         "src/components/*"
@@ -39,19 +29,5 @@
         "src/app/*"
       ]
     }
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mts",
-    "**/*.cts",
-    ".next/types/**/*.ts",
-    "../vite.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  }
 }

@@ -2,6 +2,12 @@
 
 ## 不要な依存
 
+`npm i`を実行する前に[package.json](../package.json)を編集するかアンインストール実施。
+
+```bash
+npm un @remix-run/node @remix-run/react @remix-run/serve isbot @remix-run/dev remix-flat-routes vite vite-tsconfig-paths --force
+```
+
 ### dependencies
 
 - @remix-run/node
@@ -12,12 +18,23 @@
 ### devDependencies
 
 - @remix-run/dev
+- remix-flat-routes
 - vite
 - vite-tsconfig-paths
-- postcss
-- autoprefixer
+
+## 不要なファイル
+
+- src/app
+- src/pages
+- src/next-auth.d.ts
 
 # Remix
+
+`npm i`を実行する前に[package.json](../package.json)を編集するかアンインストール実施。
+
+```bash
+npm un next next-auth eslint-config-next --force
+```
 
 ## 不要な依存
 
@@ -29,3 +46,14 @@
 ## devDependencies
 
 - eslint-config-next
+
+## 不要なファイル
+
+```bash
+npx rimraf src/app ...
+```
+
+- src/app
+- src/pages
+- src/next-auth.d.ts
+- src/tsconfig-next.json
