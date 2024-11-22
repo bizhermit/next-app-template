@@ -1,17 +1,12 @@
 /* eslint-disable @next/next/no-head-element */
 import { LANG_KEY } from "@/i18n/consts";
+import { LangProvider } from "@/i18n/react-hook";
 import { analyzeHeaderAcceptLang, parseLangs } from "@/i18n/utilities";
-import { defaultLayoutTheme, LAYOUT_THEME_KEY } from "@/react/hooks/layout";
+import { defaultLayoutTheme, LAYOUT_THEME_KEY, LayoutProvider } from "@/react/hooks/layout";
 import { useLoaderResponseData } from "@/react/hooks/remix";
 import { pickCookieValue } from "@/utilities/cookie";
 import { type LinksFunction, type LoaderFunction } from "@remix-run/node";
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration
-} from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 import globalStylesheet from "./components/styles/index.scss?url";
 
 export const links: LinksFunction = () => [
@@ -63,7 +58,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <Links />
       </head>
       <body>
-        {children}
+        <LangProvider langs={langs}>
+          <LayoutProvider defaultLayoutTheme={theme}>
+            {children}
+          </LayoutProvider>
+        </LangProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -71,6 +70,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default function App() {
-  return <Outlet />;
-}
+const App = () => <Outlet />;
+
+export default App;
