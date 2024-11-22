@@ -15,7 +15,7 @@ services:
     volumes:
       - '../:/workspace:delegated'
       - 'node-webapp-template_dev_node_modules:/workspace/node_modules'
-      - 'node-webapp-template_dev_next:/workspace/.next'
+      - 'node-webapp-template_dev_webapp:/workspace/.webapp'
       - 'node-webapp-template_dev_playwright:/workspace/.playwright'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
@@ -68,6 +68,6 @@ networks:
     driver: bridge
 volumes:
   node-webapp-template_dev_node_modules:
-  node-webapp-template_dev_next:
+  node-webapp-template_dev_webapp:
   node-webapp-template_dev_playwright:
   node-webapp-template_dev_db:

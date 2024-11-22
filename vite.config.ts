@@ -1,4 +1,5 @@
 import { vitePlugin as remix } from "@remix-run/dev";
+import { } from "@remix-run/node"; // NOTE: declare moduleの拡張モジュール名が無効判定を受けないための処置
 import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -18,6 +19,9 @@ export default defineConfig({
         silenceDeprecations: ['legacy-js-api'],
       },
     },
+  },
+  build: {
+    outDir: ".webapp"
   },
   plugins: [
     remix({

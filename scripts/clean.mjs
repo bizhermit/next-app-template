@@ -16,6 +16,6 @@ const removeDirContents = (dir) => {
   });
 };
 
-removeDirContents(path.join(projectRoot, ".next"));
+removeDirContents(path.join(projectRoot, ".webapp"));
 removeDirContents(path.join(projectRoot, ".playwright"));
 removeDirContents(path.join(projectRoot, "dist/out"));

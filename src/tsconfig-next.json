@@ -1,8 +1,11 @@
 {
   "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "composite": true,
     "jsx": "preserve",
+    "types": [
+      "@remix-run/node",
+      "vite/client"
+    ],
     "plugins": [
       {
         "name": "next"
@@ -10,15 +13,22 @@
     ]
   },
   "include": [
-    "**/*.cts",
-    "**/*.mts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.cts",
+    "**/*.mts",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".webapp/types/**/*.ts",
+    "../vite.config.ts"
   ],
   "exclude": [
     "**/*.spec.ts",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "root.tsx",
+    "routes/*",
+    "**/*.client.*",
+    "**/*.server.*",
+    "**/.client/*",
+    "**/.server/*"
   ]
 }

@@ -13,4 +13,4 @@ if [ -z "$FRONTEND_PORT" ]; then
   export FRONTEND_PORT=3000
 fi
 
-npx remix vite:dev --port $FRONTEND_PORT
+npm run clean && npx remix vite:dev --port $FRONTEND_PORT

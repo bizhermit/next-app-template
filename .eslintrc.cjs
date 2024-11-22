@@ -1,4 +1,21 @@
-{
+const appType = process.env.APP_TYPE || "";
+const tsconfigPath = `./src/tsconfig${appType ? `-${appType}` : ""}.json`;
+const tsConfig = require(tsconfigPath);
+
+const ignorePatterns = (tsConfig?.exclude ?? []).map(p => {
+  if (p.indexOf("../") === 0) return p.slice(3);
+  if (p.indexOf("./") === 0) return `src/${p.slice(2)}`;
+  return `src/${p}`;
+});
+if (ignorePatterns.length > 0) {
+  process.stdout.write("\n--------------------\n")
+  process.stdout.write(`[eslintrc] add ignorePatterns from tsconfig exclude patterns.\n`);
+  ignorePatterns.forEach(p => process.stdout.write(`  - ${p}\n`));
+  process.stdout.write("--------------------\n")
+}
+
+/** @type {import('eslint').Linter.Config} */
+module.exports = {
   "extends": [
     "next/core-web-vitals"
   ],
@@ -7,10 +24,11 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./src/tsconfig.json",
+    "project": tsconfigPath,
     "sourceType": "module"
   },
   "root": true,
+  "ignorePatterns": ignorePatterns,
   "settings": {
     "import/resolver": {
       "alias": {

@@ -24,6 +24,6 @@
     "**/.client/**/*.tsx",
     "../vite.config.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts",
+    ".webapp/types/**/*.ts",
   ]
 }

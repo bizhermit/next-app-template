@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "composite": true,
     "jsx": "react-jsx",
     "types": [
       "@remix-run/node",
@@ -19,6 +18,9 @@
   ],
   "exclude": [
     "**/*.spec.ts",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "app/*",
+    "pages/*",
+    "middleware.ts"
   ]
 }
