@@ -44,10 +44,10 @@ npm run dev
 ## 製品（production）モード
 
 ```bash
-npm run next
+npm run start
 ``` 
 
-## 静的（static）モード
+## 静的（static）モード（Next.jsのみ）
 
 ```bash
 npm run export
