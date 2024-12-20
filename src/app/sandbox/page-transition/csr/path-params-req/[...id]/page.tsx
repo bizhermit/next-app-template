@@ -10,7 +10,7 @@ type Params = {
   id: Array<string>;
 };
 
-const Page = (props: { params: Promise<Params>; }) => {
+const Page: ClientPage<{ params: Params }> = (props) => {
   const params = use(props.params);
   // eslint-disable-next-line no-console
   console.log("page", params);

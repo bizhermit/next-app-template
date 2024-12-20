@@ -4,11 +4,10 @@ import { Navigation } from "@/react/elements/navigation";
 import { NavigationMenu, NavMenuLink, NavMenuNest } from "@/react/elements/navigation/menu";
 import { FetchProvider } from "@/react/hooks/fetch";
 import { cookies } from "next/headers";
-import { ReactNode } from "react";
 import { LnagSwitch } from "./lang-switch";
 import css from "./layout.module.scss";
 
-const Layout = async (props: { children: ReactNode; }) => {
+const Layout: ServerLayout = async (props) => {
   const langs = (await cookies()).get("lang")?.value;
 
   return (

@@ -1,11 +1,10 @@
 "use client";
 
-import { ReactNode } from "react";
 import { InputsAsClient } from "../../../inputs-client";
 import { InputsAsServer } from "../../../inputs-server";
 import css from "../../../styles.module.scss";
 
-const Layout = (props: { children: ReactNode}) => {
+const Layout: ClientLayout = (props) => {
   return (
     <>
       <h3>parent layer</h3>

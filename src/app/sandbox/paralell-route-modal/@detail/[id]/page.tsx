@@ -1,13 +1,11 @@
 import Link from "@/react/elements/link";
 import { sleep } from "@/utilities/sleep";
 
-type Props = {
-  params: Promise<{
-    id: string;
-  }>;
+type Params = {
+  id: string;
 };
 
-const Page = async (props: Props) => {
+const Page: ServerPage<{ params: Params }> = async (props) => {
   await sleep(1500);
   const params = await props.params;
   return (

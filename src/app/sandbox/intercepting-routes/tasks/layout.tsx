@@ -4,14 +4,9 @@ import { isNotEmpty } from "@/objects/string";
 import { Dialog } from "@/react/elements/dialog";
 import useRouter from "@/react/hooks/router";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { ReactNode, Suspense } from "react";
+import { Suspense } from "react";
 
-type Props = {
-  children: ReactNode;
-  detail: ReactNode;
-};
-
-const Layout = (props: Props) => {
+const Layout: ClientLayout<{ parallel: "detail" }> = (props) => {
   const router = useRouter();
   const segment = useSelectedLayoutSegment("detail");
   const showDetail = isNotEmpty(segment);

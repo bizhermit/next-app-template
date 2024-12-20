@@ -1,6 +1,4 @@
-import { ReactNode } from "react";
-
-const Layout = (props: { children: ReactNode; }) => {
+const Layout: ServerLayout = (props) => {
   return (
     <>
       <h2>Page Transitions</h2>

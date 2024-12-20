@@ -1,15 +1,10 @@
 import { HomeIcon } from "@/react/elements/icon";
 import { Navigation } from "@/react/elements/navigation";
 import { NavMenuLink } from "@/react/elements/navigation/menu";
-import { ReactNode } from "react";
 import { SignOutButton } from "./layout-client";
 import css from "./layout.module.scss";
 
-type Props = {
-  children: ReactNode;
-};
-
-const Layout = ({ children }: Props) => {
+const Layout: ServerLayout = ({ children }) => {
   return (
     <Navigation
       header={<Header />}

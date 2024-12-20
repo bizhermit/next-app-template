@@ -4,16 +4,9 @@ import { isNotEmpty } from "@/objects/string";
 import { Dialog } from "@/react/elements/dialog";
 import useRouter from "@/react/hooks/router";
 import { useSelectedLayoutSegment, useSelectedLayoutSegments } from "next/navigation";
-import { ReactNode, Suspense, use } from "react";
+import { Suspense, use } from "react";
 
-type Props = {
-  children: ReactNode;
-  list: ReactNode;
-  detail: ReactNode;
-  params: Promise<{ [v: string]: string | Array<string> }>;
-};
-
-const Layout = (props: Props) => {
+const Layout: ClientLayout<{ parallel: "list" | "detail" }> = (props) => {
   const segment = useSelectedLayoutSegment();
   const segments = useSelectedLayoutSegments();
   const segmentList = useSelectedLayoutSegment("list");

@@ -1,14 +1,6 @@
-import { ReactNode } from "react";
+type ParallelRoutes = "default" | "default_page" | "page_default" | "page_page";
 
-type Props = {
-  children: ReactNode;
-  default: ReactNode;
-  default_page: ReactNode;
-  page_default: ReactNode;
-  page_page: ReactNode;
-};
-
-const Layout = (props: Props) => {
+const Layout: ServerLayout<{ parallel: ParallelRoutes }> = async (props) => {
   // eslint-disable-next-line no-console
   console.log("/parallel-routes layout");
   // eslint-disable-next-line no-console
