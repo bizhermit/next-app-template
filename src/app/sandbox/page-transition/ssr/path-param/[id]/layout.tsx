@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { InputsAsClient } from "../../../../inputs-client";
 import { InputsAsServer } from "../../../../inputs-server";
 import css from "../../../../styles.module.scss";
@@ -8,7 +7,7 @@ type Params = {
   id: string;
 };
 
-const Page = async (props: { params: Promise<Params>; children: ReactNode; }) => {
+const Layout: ServerLayout<{ params: Params }> = async (props) => {
   const params = await props.params;
   // eslint-disable-next-line no-console
   console.log("layout", params);
@@ -30,4 +29,4 @@ const Page = async (props: { params: Promise<Params>; children: ReactNode; }) =>
   );
 };
 
-export default Page;
+export default Layout;

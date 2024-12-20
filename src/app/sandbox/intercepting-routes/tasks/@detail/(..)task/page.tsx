@@ -1,9 +1,6 @@
 import { InterceptingRouteLinks } from "$/sandbox/intercepting-routes/links";
 
-type Props = {
-};
-
-const Page = (_props: Props) => {
+const Page: ServerPage = (_props) => {
   return (
     <>
       <span>@detail: add</span>

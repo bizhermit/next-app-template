@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, use } from "react";
+import { use } from "react";
 import { InputsAsClient } from "../../../../inputs-client";
 import { InputsAsServer } from "../../../../inputs-server";
 import css from "../../../../styles.module.scss";
@@ -10,7 +10,7 @@ type Params = {
   id: Array<string>;
 };
 
-const Page = (props: { params: Promise<Params>; children: ReactNode; }) => {
+const Layout: ClientLayout<{ params: Params }> = (props) => {
   const params = use(props.params);
   // eslint-disable-next-line no-console
   console.log("layout", params);
@@ -32,4 +32,4 @@ const Page = (props: { params: Promise<Params>; children: ReactNode; }) => {
   );
 };
 
-export default Page;
+export default Layout;

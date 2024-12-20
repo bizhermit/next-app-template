@@ -1,6 +1,6 @@
 import Link from "@/react/elements/link";
 
-const Page = () => {
+const Page: ServerPage = () => {
   return (
     <div>
       hoge

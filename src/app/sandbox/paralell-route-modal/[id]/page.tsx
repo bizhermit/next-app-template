@@ -1,10 +1,10 @@
 import Link from "@/react/elements/link";
 
-type Props = {
-  params: Promise<{ id: string; }>;
+type Params = {
+  id: string;
 };
 
-const Page = async (props: Props) => {
+const Page: ServerPage<{ params: Params }> = async (props) => {
   const params = await props.params;
   return (
     <div>

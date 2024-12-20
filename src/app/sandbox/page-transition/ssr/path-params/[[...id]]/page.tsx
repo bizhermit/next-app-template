@@ -7,7 +7,7 @@ type Params = {
   id?: Array<string>;
 };
 
-const Page = async (props: { params: Promise<Params>; }) => {
+const Page: ServerPage<{ params: Params }> = async (props) => {
   const params = await props.params;
   // eslint-disable-next-line no-console
   console.log("page", params);
