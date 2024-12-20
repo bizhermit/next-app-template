@@ -310,7 +310,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
     showDialog(target);
   };
 
-  const renderOrCommit = () => {
+  const commitOrRender = () => {
     if (changeTrigger === "change") {
       renderInputs(fi.valueRef.current);
     } else {
@@ -323,7 +323,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
   };
 
   const blurWrap = (e: FocusEvent<HTMLDivElement>) => {
-    if (blurToOuter(e)) renderOrCommit();
+    if (blurToOuter(e)) commitOrRender();
     props.onBlur?.(e);
   };
 
@@ -440,7 +440,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         showDialog("y");
         break;
       case "Enter":
-        renderOrCommit();
+        commitOrRender();
         closeDialog("y");
         break;
       case "Escape":
@@ -466,7 +466,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         showDialog("m");
         break;
       case "Enter":
-        renderOrCommit();
+        commitOrRender();
         closeDialog("m");
         break;
       case "Escape":
@@ -495,7 +495,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         showDialog("d");
         break;
       case "Enter":
-        renderOrCommit();
+        commitOrRender();
         closeDialog("d");
         break;
       case "Escape":

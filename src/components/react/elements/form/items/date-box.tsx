@@ -185,7 +185,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
     e.currentTarget.select();
   };
 
-  const renderOrCommit = () => {
+  const commitOrRender = () => {
     if (changeTrigger === "change") {
       renderInputs(fi.valueRef.current);
     } else {
@@ -196,7 +196,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
   const blur = (e: FocusEvent<HTMLDivElement>) => {
     if (blurToOuter(e)) {
       closeDialog();
-      renderOrCommit();
+      commitOrRender();
     }
     props.onBlur?.(e);
   };
@@ -285,7 +285,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         showDialog({ focusTarget: "y" });
         break;
       case "Enter":
-        renderOrCommit();
+        commitOrRender();
         closeDialog();
         break;
       case "ArrowUp":
@@ -308,7 +308,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         showDialog({ focusTarget: "m" });
         break;
       case "Enter":
-        renderOrCommit();
+        commitOrRender();
         closeDialog();
         break;
       case "Backspace":
@@ -337,7 +337,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         showDialog({ focusTarget: "d" });
         break;
       case "Enter":
-        renderOrCommit();
+        commitOrRender();
         closeDialog();
         break;
       case "Backspace":
