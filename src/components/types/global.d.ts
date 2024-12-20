@@ -5,4 +5,5 @@ type SwitchProps<T extends { [v: string | number | symbol]: any }, U extends { [
   (T & { [K in keyof U]?: null | undefined }) |
   (U & { [K in keyof T]?: null | undefined })
 );
+type NullEscape<T, U> = T extends null | undefined | unknown | never ? U : T;
 type Readonlyable<T> = T | Readonly<T>;
