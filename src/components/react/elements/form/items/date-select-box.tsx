@@ -34,6 +34,7 @@ type DateSelectBoxOptions<D extends DataItem.$date | DataItem.$month | undefined
     placeholder?: string | [string, string] | [string, string, string];
     splitDataNames?: [string, string] | [string, string, string];
     allowMissing?: boolean;
+    preventEditText?: boolean;
   };
 
 type DateSelectBoxProps<D extends DataItem.$date | DataItem.$month | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, DateSelectBoxOptions<D>>;
@@ -59,6 +60,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
   placeholder,
   splitDataNames,
   allowMissing,
+  preventEditText,
   ...props
 }: DateSelectBoxProps<D>) => {
   const today = withoutTime(new Date());
@@ -664,7 +666,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
             data-name={`${fi.name}_y`}
             placeholder={fi.editable ? placeholder?.[0] : ""}
             disabled={fi.disabled}
-            readOnly={fi.readOnly}
+            readOnly={fi.readOnly || preventEditText}
             tabIndex={fi.tabIndex}
             autoFocus={fi.autoFocus}
             maxLength={4}
@@ -720,7 +722,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
             data-name={`${fi.name}_m`}
             placeholder={fi.editable ? placeholder?.[1] : ""}
             disabled={fi.disabled}
-            readOnly={fi.readOnly}
+            readOnly={fi.readOnly || preventEditText}
             tabIndex={fi.tabIndex}
             maxLength={2}
             autoComplete="off"
@@ -781,7 +783,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
                 data-name={`${fi.name}_d`}
                 placeholder={fi.editable ? placeholder?.[2] : ""}
                 disabled={fi.disabled}
-                readOnly={fi.readOnly}
+                readOnly={fi.readOnly || preventEditText}
                 tabIndex={fi.tabIndex}
                 maxLength={2}
                 autoComplete="off"
