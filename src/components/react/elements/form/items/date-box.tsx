@@ -27,6 +27,8 @@ type DateBoxOptions<D extends DataItem.$date | DataItem.$month | undefined> =
     pair?: DataItem.$date["pair"];
     initFocusDate?: Date | string | number | DateTime;
     placeholder?: string | [string, string] | [string, string, string];
+    preventEditText?: boolean;
+    editTextChangeTrigger?: "blur" | "change";
   };
 
 type DateBoxProps<D extends DataItem.$date | DataItem.$month | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, DateBoxOptions<D>>;
@@ -43,6 +45,8 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
   pair,
   initFocusDate,
   placeholder,
+  preventEditText,
+  editTextChangeTrigger,
   ...props
 }: DateBoxProps<D>) => {
   const yref = useRef<HTMLInputElement>(null!);
@@ -50,6 +54,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
   const dref = useRef<HTMLInputElement>(null!);
   const cache = useRef<{ y: number | undefined; m: number | undefined; d: number | undefined; }>({ y: undefined, m: undefined, d: undefined });
   const dialog = useDialogRef(true);
+  const changeTrigger = editTextChangeTrigger || "blur";
 
   const focusInput = (target?: "y" | "m" | "d") => {
     switch (target) {
@@ -180,10 +185,18 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
     e.currentTarget.select();
   };
 
+  const renderOrCommit = () => {
+    if (changeTrigger === "change") {
+      renderInputs(fi.valueRef.current);
+    } else {
+      commitChange();
+    }
+  };
+
   const blur = (e: FocusEvent<HTMLDivElement>) => {
     if (blurToOuter(e)) {
       closeDialog();
-      renderInputs(fi.valueRef.current);
+      renderOrCommit();
     }
     props.onBlur?.(e);
   };
@@ -206,7 +219,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
     }
     cache.current.y = isEmpty(v) ? undefined : Number(v);
     if (v.length === 4) mref.current?.focus();
-    commitChange();
+    if (changeTrigger === "change") commitChange();
   };
 
   const changeM = (e: ChangeEvent<HTMLInputElement>) => {
@@ -222,7 +235,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
       cache.current.m = Number(v);
       if (v.length === 2 || !(v === "1" || v === "2")) dref.current?.focus();
     }
-    commitChange();
+    if (changeTrigger === "change") commitChange();
   };
 
   const changeD = (e: ChangeEvent<HTMLInputElement>) => {
@@ -233,7 +246,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
       return;
     }
     cache.current.d = isEmpty(v) ? undefined : Number(v);
-    commitChange();
+    if (changeTrigger === "change") commitChange();
   };
 
   const updown = (y = 0, m = 0, d = 0) => {
@@ -272,7 +285,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         showDialog({ focusTarget: "y" });
         break;
       case "Enter":
-        renderInputs(fi.value);
+        renderOrCommit();
         closeDialog();
         break;
       case "ArrowUp":
@@ -295,7 +308,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         showDialog({ focusTarget: "m" });
         break;
       case "Enter":
-        renderInputs(fi.value);
+        renderOrCommit();
         closeDialog();
         break;
       case "Backspace":
@@ -309,6 +322,9 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         updown(0, -1, 0);
         e.preventDefault();
         break;
+      case "Tab":
+        if (!e.shiftKey && type === "month") closeDialog();
+        break;
       default:
         break;
     }
@@ -321,7 +337,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
         showDialog({ focusTarget: "d" });
         break;
       case "Enter":
-        renderInputs(fi.value);
+        renderOrCommit();
         closeDialog();
         break;
       case "Backspace":
@@ -334,6 +350,9 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
       case "ArrowDown":
         updown(0, 0, -1);
         e.preventDefault();
+        break;
+      case "Tab":
+        if (!e.shiftKey) closeDialog();
         break;
       default:
         break;
@@ -366,7 +385,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
           data-name={`${fi.name}_y`}
           placeholder={fi.editable ? placeholder?.[0] : ""}
           disabled={fi.disabled}
-          readOnly={fi.readOnly}
+          readOnly={fi.readOnly || preventEditText}
           tabIndex={fi.tabIndex}
           autoFocus={fi.autoFocus}
           maxLength={4}
@@ -393,7 +412,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
           data-name={`${fi.name}_m`}
           placeholder={fi.editable ? placeholder?.[1] : ""}
           disabled={fi.disabled}
-          readOnly={fi.readOnly}
+          readOnly={fi.readOnly || preventEditText}
           tabIndex={fi.tabIndex}
           maxLength={4}
           autoComplete="off"
@@ -426,7 +445,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
               data-name={`${fi.name}_d`}
               placeholder={fi.editable ? placeholder?.[2] : ""}
               disabled={fi.disabled}
-              readOnly={fi.readOnly}
+              readOnly={fi.readOnly || preventEditText}
               tabIndex={fi.tabIndex}
               maxLength={4}
               autoComplete="off"
