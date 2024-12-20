@@ -35,6 +35,7 @@ type DateSelectBoxOptions<D extends DataItem.$date | DataItem.$month | undefined
     splitDataNames?: [string, string] | [string, string, string];
     allowMissing?: boolean;
     preventEditText?: boolean;
+    editTextChangeTrigger?: "blur" | "change";
   };
 
 type DateSelectBoxProps<D extends DataItem.$date | DataItem.$month | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, DateSelectBoxOptions<D>>;
@@ -61,6 +62,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
   splitDataNames,
   allowMissing,
   preventEditText,
+  editTextChangeTrigger,
   ...props
 }: DateSelectBoxProps<D>) => {
   const today = withoutTime(new Date());
@@ -78,6 +80,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
       default: return yDialog;
     }
   };
+  const changeTrigger = editTextChangeTrigger || "blur";
 
   const focusInput = (target?: Target) => {
     switch (target) {
@@ -307,12 +310,20 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
     showDialog(target);
   };
 
+  const renderOrCommit = () => {
+    if (changeTrigger === "change") {
+      renderInputs(fi.valueRef.current);
+    } else {
+      commitChange();
+    }
+  };
+
   const blur = (e: FocusEvent<HTMLDivElement>, target: Target) => {
     if (blurToOuter(e)) closeDialog(target);
   };
 
   const blurWrap = (e: FocusEvent<HTMLDivElement>) => {
-    if (blurToOuter(e)) renderInputs(fi.valueRef.current);
+    if (blurToOuter(e)) renderOrCommit();
     props.onBlur?.(e);
   };
 
@@ -352,7 +363,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
     }
     cache.current.y = isEmpty(v) ? undefined : Number(v);
     if (v.length === 4) mref.current?.focus();
-    commitChange();
+    if (changeTrigger === "change") commitChange();
   };
 
   const changeM = (e: ChangeEvent<HTMLInputElement>) => {
@@ -368,7 +379,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
       cache.current.m = Number(v);
       if (v.length === 2 || !(v === "1" || v === "2")) dref.current?.focus();
     }
-    commitChange();
+    if (changeTrigger === "change") commitChange();
   };
 
   const changeD = (e: ChangeEvent<HTMLInputElement>) => {
@@ -379,7 +390,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
       return;
     }
     cache.current.d = isEmpty(v) ? undefined : Number(v);
-    commitChange();
+    if (changeTrigger === "change") commitChange();
   };
 
   const updown = (y = 0, m = 0, d = 0) => {
@@ -429,7 +440,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         showDialog("y");
         break;
       case "Enter":
-        renderInputs(fi.value);
+        renderOrCommit();
         closeDialog("y");
         break;
       case "Escape":
@@ -455,7 +466,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         showDialog("m");
         break;
       case "Enter":
-        renderInputs(fi.value);
+        renderOrCommit();
         closeDialog("m");
         break;
       case "Escape":
@@ -484,7 +495,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         showDialog("d");
         break;
       case "Enter":
-        renderInputs(fi.value);
+        renderOrCommit();
         closeDialog("d");
         break;
       case "Escape":
