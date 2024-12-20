@@ -17,6 +17,14 @@ type ServerPage<P extends {
   searchParams: NextPageArgParams<P["searchParams"]>;
 }) => (React.ReactNode | Promise<React.ReactNode>);
 
+type ClientPage<P extends {
+  params?: NextPageParams;
+  searchParams?: NextPageParams;
+} = { params: NextPageParams; searchParams: NextPageParams; }> = (props: {
+  params: NextPageArgParams<P["params"]>;
+  searchParams: NextPageArgParams<P["searchParams"]>;
+}) => React.ReactNode;
+
 type ServerLayout<P extends {
   params?: NextPageParams;
   searchParams?: NextPageParams;
