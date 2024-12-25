@@ -1,10 +1,11 @@
 import { LANG_KEY } from "@/i18n/consts";
 import { LangProvider } from "@/i18n/react-hook";
 import { parseLangs } from "@/i18n/utilities";
+import { LayoutProvider } from "@/react/hooks/layout";
+import { defaultLayoutTheme, LAYOUT_THEME_KEY, LayoutTheme } from "@/react/hooks/layout/consts";
 import type { Metadata, Viewport } from "next";
 import { SessionProvider } from "next-auth/react";
 import { cookies } from "next/headers";
-import { defaultLayoutTheme, LAYOUT_THEME_KEY, LayoutProvider, LayoutTheme } from "../components/react/hooks/layout";
 import "../components/styles/index.scss";
 
 export const metadata: Metadata = {
