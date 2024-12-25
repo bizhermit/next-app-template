@@ -572,6 +572,9 @@ export default function Home() {
                   name: "date-after",
                   position: "after",
                 }}
+                onEdit={(v) => {
+                  console.log("date-box(f) edit", v?.str);
+                }}
               />
             }
             to={
@@ -586,6 +589,10 @@ export default function Home() {
                   name: "date",
                   position: "before",
                 }}
+                onEdit={(v) => {
+                  console.log("date-box(f) edit", v?.str);
+                }}
+                editTextChangeTrigger="change"
               />
             }
           />
@@ -614,7 +621,11 @@ export default function Home() {
               readOnly={readOnly.value}
               splitDataNames={["date-select-y", "date-select-m", "date-select-d"]}
               allowMissing
-            // preventCollectForm
+              // preventCollectForm
+              editTextChangeTrigger="change"
+              onEdit={(v) => {
+                console.log("date-select edit", v?.str);
+              }}
             />
           </FormItemWrap>
           <FormItemWrap>
