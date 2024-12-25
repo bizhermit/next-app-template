@@ -1,4 +1,4 @@
-import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, ListIcon, TextBoxIcon } from "@/react/elements/icon";
+import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, ListIcon, SmileIcon, TextBoxIcon } from "@/react/elements/icon";
 import Link from "@/react/elements/link";
 import { Navigation } from "@/react/elements/navigation";
 import { NavigationMenu, NavMenuLink, NavMenuNest } from "@/react/elements/navigation/menu";
@@ -6,6 +6,7 @@ import { FetchProvider } from "@/react/hooks/fetch";
 import { cookies } from "next/headers";
 import { ReactNode } from "react";
 import { LnagSwitch } from "./lang-switch";
+import { LayoutThemeSwitch } from "./layout-theme-switch";
 import css from "./layout.module.scss";
 
 const Layout = async (props: { children: ReactNode; }) => {
@@ -113,8 +114,15 @@ const Layout = async (props: { children: ReactNode; }) => {
           >
             ListView
           </NavMenuLink>
+          <NavMenuLink
+            url="/sandbox/icon"
+            icon={<SmileIcon />}
+          >
+            Icon
+          </NavMenuLink>
         </NavigationMenu>
         <LnagSwitch />
+        <LayoutThemeSwitch />
       </Navigation>
     </FetchProvider>
   );
