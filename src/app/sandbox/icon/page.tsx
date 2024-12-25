@@ -68,17 +68,18 @@ const Page = () => {
     <div className={css.main}>
       <div className={css.table}>
         {icons.map((Icon, i) => {
+          const name = Icon.name.match(/(.*)Icon/)?.[1] || Icon.name;
           return (
             <div
-              key={Icon.name}
+              key={name}
               className={css.item}
-              title={Icon.name}
+              title={name}
             >
               <div className={css.index}>
                 {i + 1}
               </div>
               <div className={css.label}>
-                {Icon.name}
+                {name}
               </div>
               <div className={css.icon}>
                 <Icon />
