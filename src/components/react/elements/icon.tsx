@@ -244,13 +244,13 @@ export const SaveIcon = (p: IconProps) => (
 
 export const UndoIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M4,3l0,5 5,0M4,8l2,-2a4 4.5 45 1 1 9.3,5l-6,6" fill="none" />
+    <path d="M4,3l0,5 5,0M4,8l2.5,-2.5a5 5 225 0 1 8 6l-6.5,6.5" fill="none" />
   </svg>
 );
 
 export const RedoIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M16,3l0,5 -5,0M16,8l-2,-2a4 4.5 315 1 0 -9.3,5l6,6" fill="none" />
+    <path d="M16,3l0,5 -5,0M16,8l-2.5,-2.5a5 5 315 1 0 -8 6l6.5,6.5" fill="none" />
   </svg>
 );
 
