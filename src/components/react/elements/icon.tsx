@@ -173,6 +173,16 @@ export const ListIcon = (p: IconProps) => (
   </svg>
 );
 
+export const OrderListIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M6,4H18 M6,8H18 M6,12H18 M6,16H18" fill="none" />
+    <circle cx="2.5" cy="4" r=".5" />
+    <circle cx="2.5" cy="8" r=".5" />
+    <circle cx="2.5" cy="12" r=".5" />
+    <circle cx="2.5" cy="16" r=".5" />
+  </svg>
+);
+
 export const SaveIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M2,2H15L18,5 18,18 2,18Z M5,2v4h8v-4z M5,18l0,-7 10,0 0,7" fill="none" />

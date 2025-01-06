@@ -1,4 +1,4 @@
-import { BadgeIcon, ButtonIcon, CalendarIcon, CardIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExLinkIcon, FormIcon, FormItemIcon, HomeIcon, HorizontalDividerIcon, LabelIcon, LeftIcon, LeftRightIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusIcon, NavContainerIcon, PlusIcon, PopupIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, VerticalDividerIcon } from "@/react/elements/icon";
+import { BadgeIcon, ButtonIcon, CalendarIcon, CardIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExLinkIcon, FormIcon, FormItemIcon, HomeIcon, HorizontalDividerIcon, LabelIcon, LeftIcon, LeftRightIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusIcon, NavContainerIcon, OrderListIcon, PlusIcon, PopupIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, VerticalDividerIcon } from "@/react/elements/icon";
 import css from "./page.module.scss";
 
 const icons = [
@@ -25,6 +25,7 @@ const icons = [
   TodayIcon,
   ClockIcon,
   ListIcon,
+  OrderListIcon,
   SaveIcon,
   UndoIcon,
   RedoIcon,
@@ -60,7 +61,6 @@ const icons = [
   TooltipIcon,
   BadgeIcon,
   CardIcon,
-
 ];
 
 const Page = () => {
