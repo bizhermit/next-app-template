@@ -367,7 +367,6 @@ export const MagnifyingGlassMinusIcon = (p: IconProps) => (
     <circle cx="8" cy="8" r="7" fill="none" />
     <line x1="13" x2="18" y1="13" y2="18" />
     <line x1="4.5" x2="12" y1="8" y2="8" />
-    {/* <line y1="4" y2="12" x1="8.2" x2="8.2" /> */}
   </svg>
 );
 
@@ -609,5 +608,14 @@ export const CheckCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M4.5,10 8.5,14.5 16,6" fill="none" />
     <circle cx="10" cy="10" r="9" fill="none" />
+  </svg>
+);
+
+export const ShareIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="17" cy="4" r="2.5" fill="none" />
+    <circle cx="3" cy="10" r="2.5" fill="none" />
+    <circle cx="17" cy="16" r="2.5" fill="none" />
+    <path d="M6,8.5 14,5 M6,11.5 14,15" fill="none" />
   </svg>
 );
