@@ -589,3 +589,16 @@ export const DeleteBackIcon = (p: IconProps) => (
     <path d="M1,10 5,3H19V17H5Z" fill="none" />
   </svg>
 );
+
+export const CheckIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M3,10 9,16 18.5,4" fill="none" />
+  </svg>
+);
+
+export const CheckCircleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M4.5,10 8.5,14.5 16,6" fill="none" />
+    <circle cx="10" cy="10" r="9" fill="none" />
+  </svg>
+);
