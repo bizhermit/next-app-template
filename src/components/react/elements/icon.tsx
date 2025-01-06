@@ -437,3 +437,17 @@ export const FolderAddIcon = (p: IconProps) => (
     <line y1="8.5" y2="14.5" x1="10" x2="10" />
   </svg>
 );
+
+export const FileIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M3,1.5 11.5,1.5 17,7V18.5H3Z M11,1.5V7H17" fill="none" />
+  </svg>
+);
+
+export const FileAddIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M3,1.5 11.5,1.5 17,7V18.5H3Z M11,1.5V7H17" fill="none" />
+    <line x1="7" x2="13" y1="11.5" y2="11.5" />
+    <line y1="8.5" y2="14.5" x1="10" x2="10" />
+  </svg>
+);
