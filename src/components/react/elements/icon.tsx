@@ -22,9 +22,24 @@ export const PlusIcon = (p: IconProps) => (
   </svg>
 );
 
+export const PlusCircleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <line x1="5" x2="15" y1="10" y2="10" />
+    <line y1="5" y2="15" x1="10" x2="10" />
+    <circle cx="10" cy="10" r="9" fill="none" />
+  </svg>
+);
+
 export const MinusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <line x1="2" x2="18" y1="10" y2="10" />
+  </svg>
+);
+
+export const MinusCircleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <line x1="5" x2="15" y1="10" y2="10" />
+    <circle cx="10" cy="10" r="9" fill="none" />
   </svg>
 );
 
@@ -32,6 +47,14 @@ export const CrossIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <line x1="2.5" x2="17" y1="2.5" y2="17" />
     <line x1="2.5" x2="17" y2="2.5" y1="17" />
+  </svg>
+);
+
+export const CrossCircleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <line x1="6" x2="14" y1="6" y2="14" />
+    <line x1="6" x2="14" y2="6" y1="14" />
+    <circle cx="10" cy="10" r="9" fill="none" />
   </svg>
 );
 
