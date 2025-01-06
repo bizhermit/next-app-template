@@ -702,3 +702,15 @@ export const StarHalfFillIcon = (p: IconProps) => (
     <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15" fill="none" />
   </svg>
 );
+
+export const FilterIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M2,1 18,1 12,10 12,19 8,17 8,10Z" fill="none" />
+  </svg>
+);
+
+export const ListFilterIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M2,5H18 M5,10H15 M8,15H12" fill="none" />
+  </svg>
+);
