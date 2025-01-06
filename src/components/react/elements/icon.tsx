@@ -506,3 +506,35 @@ export const QuestionCircleIcon = (p: IconProps) => (
     <circle cx="10" cy="10" r="9" fill="none" />
   </svg>
 );
+
+export const UserIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="10" cy="6" r="4.5" fill="none" />
+    <path d="M 2,19 a 8 8 -180 0 1 16,0" fill="none" />
+  </svg>
+);
+
+export const UserAddIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="10" cy="6" r="4.5" fill="none" />
+    <path d="M 2,19 a 8 8 -180 0 1 11,-7" fill="none" />
+    <line x1="12" x2="18" y1="16" y2="16" />
+    <line y1="13" y2="19" x1="15" x2="15" />
+  </svg>
+);
+
+export const UserMinusIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="10" cy="6" r="4.5" fill="none" />
+    <path d="M 2,19 a 8 8 -180 0 1 11,-7" fill="none" />
+    <line x1="12" x2="18" y1="16.5" y2="16.5" />
+  </svg>
+);
+
+export const UsersIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="7.5" cy="8" r="4" fill="none" />
+    <path d="M 1,19 a 6.5 6.5 -180 0 1 13,0" fill="none" />
+    <path d="M 13,10 a 6.5 6.5 -90 0 1 6,7 M 10,2 a 4 4 -135 1 1 3,7" fill="none" />
+  </svg>
+);
