@@ -525,23 +525,23 @@ export const FileAddIcon = (p: IconProps) => (
 export const ExclamationIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M9.5,3 10.5,3 10.2,12.5 9.8,12.5Z" />
-    <circle cx="10" cy="17" r=".8" fill="none" />
+    <circle cx="10" cy="17" r=".8" />
   </svg>
 );
 
 export const ExclamationCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" />
-    <circle cx="10" cy="14.5" r=".5" fill="none" />
+    <circle cx="10" cy="14.5" r=".5" />
     <circle cx="10" cy="10" r="9" fill="none" />
   </svg>
 );
 
 export const ExclamationTriangleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" />
-    <circle cx="10" cy="14.5" r=".5" fill="none" />
-    <path d="M10,0 19.5,18 0.5,18Z" fill="none" />
+    <path d="M9.5,6.5 10.5,6.5 10.2,12 9.8,12Z" />
+    <circle cx="10" cy="15" r=".5" />
+    <path d="M10,1 19,18 1,18Z" fill="none" />
   </svg>
 );
 
@@ -549,21 +549,21 @@ export const ExclamationDiamondIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" />
     <circle cx="10" cy="14.5" r=".5" fill="none" />
-    <path d="M10,.5 19.5,10 10,19.5 .5,10Z" fill="none" />
+    <path d="M10,1 19,10 10,19 1,10Z" fill="none" />
   </svg>
 );
 
 export const QuestionIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M 6,7 a 4 4 -180 1 1 4,4 M10,12V13" fill="none" />
-    <circle cx="10" cy="17" r=".8" fill="none" />
+    <path d="M 6,7 a 4 4 -180 1 1 4,4 M10,11V13" fill="none" />
+    <circle cx="10" cy="17" r=".8" />
   </svg>
 );
 
 export const QuestionCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M 7,7 a 3.2 3.2 -180 1 1 3,3 M10,10V11" fill="none" />
-    <circle cx="10" cy="14.5" r=".5" fill="none" />
+    <circle cx="10" cy="14.5" r=".5" />
     <circle cx="10" cy="10" r="9" fill="none" />
   </svg>
 );
@@ -643,10 +643,10 @@ export const CheckCircleIcon = (p: IconProps) => (
 
 export const ShareIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="17" cy="4" r="2.5" fill="none" />
-    <circle cx="3" cy="10" r="2.5" fill="none" />
-    <circle cx="17" cy="16" r="2.5" fill="none" />
-    <path d="M6,8.5 14,5 M6,11.5 14,15" fill="none" />
+    <circle cx="16" cy="4" r="2.5" fill="none" />
+    <circle cx="4" cy="10" r="2.5" fill="none" />
+    <circle cx="16" cy="16" r="2.5" fill="none" />
+    <path d="M6.5,8.5 13,5 M6.5,11.5 13,15" fill="none" />
   </svg>
 );
 
@@ -717,50 +717,19 @@ export const ListFilterIcon = (p: IconProps) => (
 
 export const HeartIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path
-      d="
-      M10 4.6
-      L9 3.6
-      C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217
-      L10 17.6 17.6 10
-      C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736
-      Z
-      "
-      fill="none" />
+    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" fill="none" />
   </svg>
 );
 
 export const HeartFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path
-      d="
-      M10 4.6
-      L9 3.6
-      C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217
-      L10 17.6 17.6 10
-      C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736
-      Z
-      "
-    />
+    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" />
   </svg>
 );
 
 export const HeartHalfFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path
-      d="
-      M10 4.6
-      L9 3.6
-      C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217
-      L10 17.6
-      "
-    />
-    <path
-      d="
-      M10 17.6 17.6 10
-      C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736
-      "
-      fill="none"
-    />
+    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6" />
+    <path d="M10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736 L10 4.6" fill="none" />
   </svg>
 );

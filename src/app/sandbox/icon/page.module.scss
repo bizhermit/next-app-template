@@ -79,3 +79,18 @@
   margin: auto;
   box-shadow: 0 0 0px 0px var(--sdw);
 }
+
+.dialog {
+  padding: 2rem;
+}
+
+.big {
+  box-sizing: border-box;
+  --font-size: 20rem;
+  box-shadow: 0 0 0px 0px var(--sdw);
+  transition: box-shadow .2s;
+
+  @include mixins.hover {
+    box-shadow: 0 0 8px var(--sdw);
+  }
+}
