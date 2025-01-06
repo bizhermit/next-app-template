@@ -482,3 +482,18 @@ export const ExclamationDiamondIcon = (p: IconProps) => (
     <path d="M10,.5 19.5,10 10,19.5 .5,10Z" fill="none" />
   </svg>
 );
+
+export const QuestionIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M 6,7 a 4 4 -180 1 1 4,4 M10,12V13" fill="none" />
+    <circle cx="10" cy="17" r=".8" fill="none" />
+  </svg>
+);
+
+export const QuestionCircleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M 7,7 a 3.2 3.2 -180 1 1 3,3 M10,10V11" fill="none" />
+    <circle cx="10" cy="14.5" r=".5" fill="none" />
+    <circle cx="10" cy="10" r="9" fill="none" />
+  </svg>
+);
