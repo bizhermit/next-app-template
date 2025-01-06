@@ -683,3 +683,22 @@ export const MailIcon = (p: IconProps) => (
     <path d="M1,3.5H19V16.5H1Z M1,3.5 10,10 19,3.5" fill="none" />
   </svg>
 );
+
+export const StarIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23Z" fill="none" />
+  </svg>
+);
+
+export const StarFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23Z" />
+  </svg>
+);
+
+export const StarHalfFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23 10,1" />
+    <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15" fill="none" />
+  </svg>
+);
