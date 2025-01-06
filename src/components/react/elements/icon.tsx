@@ -649,3 +649,9 @@ export const ShareIcon = (p: IconProps) => (
     <path d="M6,8.5 14,5 M6,11.5 14,15" fill="none" />
   </svg>
 );
+
+export const BookmarkIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M5,1 15,1 15,19 10,14 5,19Z" fill="none" />
+  </svg>
+);
