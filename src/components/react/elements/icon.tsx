@@ -362,6 +362,15 @@ export const MagnifyingGlassPlusIcon = (p: IconProps) => (
   </svg>
 );
 
+export const MagnifyingGlassMinusIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="8" cy="8" r="7" fill="none" />
+    <line x1="13" x2="18" y1="13" y2="18" />
+    <line x1="4.5" x2="12" y1="8" y2="8" />
+    {/* <line y1="4" y2="12" x1="8.2" x2="8.2" /> */}
+  </svg>
+);
+
 export const TextBoxIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M7,7H2V13H7 M13,7H18V13H13 M10,5L10,15 M9,4H6M11,4H14 M9,16H6M11,16H14" fill="none" />
