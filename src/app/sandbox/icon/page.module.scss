@@ -5,8 +5,16 @@
   flex-flow: column nowrap;
 }
 
-.total {
-  padding: .2rem 1rem;
+.header {
+  position: sticky;
+  top: var(--header-height);
+  padding: .8rem 1rem;
+  background: var(--bg);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 }
 
 .table {

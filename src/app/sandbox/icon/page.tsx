@@ -1,4 +1,10 @@
+"use client";
+
+import { isEmpty } from "@/objects/string";
+import { useFormItemRef } from "@/react/elements/form/item-ref";
+import { TextBox } from "@/react/elements/form/items/text-box";
 import { BadgeIcon, BookmarkIcon, ButtonIcon, CalendarIcon, CardIcon, CheckCircleIcon, CheckIcon, ChocolateMenuIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossCircleIcon, CrossIcon, DeleteBackIcon, DeleteIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExclamationCircleIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddIcon, FileIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, GearIcon, GridIcon, HomeIcon, HorizontalDividerIcon, KebabMenuIcon, LabelIcon, LeftIcon, LeftRightIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MailIcon, MeatballsMenuIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusCircleIcon, MinusIcon, NavContainerIcon, OrderListIcon, PinIcon, PlusCircleIcon, PlusIcon, PopupIcon, PowerIcon, QuestionCircleIcon, QuestionIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, ShareIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StarFillIcon, StarHalfFillIcon, StarIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, TrashCanIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, UserAddIcon, UserIcon, UserMinusIcon, UsersIcon, VerticalDividerIcon } from "@/react/elements/icon";
+import { useMemo } from "react";
 import css from "./page.module.scss";
 
 const icons = [
@@ -102,31 +108,54 @@ const icons = [
   StarHalfFillIcon,
 ];
 
+const parseNameWithoutIcon = (name: string) => {
+  return name.match(/(.*)Icon/)?.[1] || name;
+};
+
 const Page = () => {
+  const filterText = useFormItemRef<string>();
+
+  const nodes = useMemo(() => {
+    const ft = filterText.value?.toLowerCase();
+    const filteredIcons = isEmpty(ft) ? icons : icons.filter((Icon) => {
+      const name = parseNameWithoutIcon(Icon.name).toLowerCase();
+      if (name.indexOf(ft) < 0) return false;
+      return true;
+    });
+    return filteredIcons.map((Icon, i) => {
+      const name = parseNameWithoutIcon(Icon.name);
+      return (
+        <div
+          key={name}
+          className={css.item}
+          title={name}
+        >
+          <div className={css.index}>
+            {i + 1}
+          </div>
+          <div className={css.label}>
+            {name}
+          </div>
+          <div className={css.icon}>
+            <Icon />
+          </div>
+        </div>
+      );
+    });
+  }, [filterText.value]);
+
   return (
     <div className={css.main}>
-      <div className={css.total}>total: {icons.length}</div>
+      <div className={css.header}>
+        <TextBox
+          ref={filterText}
+        />
+        <div className={css.total}>
+          : {icons.length}
+        </div>
+      </div>
       <div className={css.table}>
-        {icons.map((Icon, i) => {
-          const name = Icon.name.match(/(.*)Icon/)?.[1] || Icon.name;
-          return (
-            <div
-              key={name}
-              className={css.item}
-              title={name}
-            >
-              <div className={css.index}>
-                {i + 1}
-              </div>
-              <div className={css.label}>
-                {name}
-              </div>
-              <div className={css.icon}>
-                <Icon />
-              </div>
-            </div>
-          );
-        })}
+        {nodes}
       </div>
     </div>
   );
