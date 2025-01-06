@@ -662,3 +662,12 @@ export const GearIcon = (p: IconProps) => (
     <circle cx="10" cy="10" r="2.5" fill="none" />
   </svg>
 );
+
+export const GridIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <rect width="7" height="7" x="1.5" y="1.5" fill="none" />
+    <rect width="7" height="7" x="11.5" y="1.5" fill="none" />
+    <rect width="7" height="7" x="1.5" y="11.5" fill="none" />
+    <rect width="7" height="7" x="11.5" y="11.5" fill="none" />
+  </svg>
+);
