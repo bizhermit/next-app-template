@@ -567,3 +567,25 @@ export const PowerIcon = (p: IconProps) => (
     <path d="M 13,4 a 7.5 7.5 -65 1 1 -6,0 M10,1.5V9" fill="none" />
   </svg>
 );
+
+export const TrashCanIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M2,4H18V5H2Z M8,4V2H12V4 M3.5,5 4,19 16,19 16.5,5 M8,8V15 M12,8V15" fill="none" />
+  </svg>
+);
+
+export const DeleteIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M2,4H18V5H2Z M8,4V2H12V4 M3.5,5 4,19 16,19 16.5,5" fill="none" />
+    <line x1="7" x2="13" y1="9" y2="15" />
+    <line x1="7" x2="13" y2="9" y1="15" />
+  </svg>
+);
+
+export const DeleteBackIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <line x1="7.5" x2="15.5" y1="6" y2="14" />
+    <line x1="7.5" x2="15.5" y2="6" y1="14" />
+    <path d="M1,10 5,3H19V17H5Z" fill="none" />
+  </svg>
+);
