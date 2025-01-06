@@ -79,11 +79,8 @@ export const LeftIcon = (p: IconProps) => (
 
 export const DoubleLeftIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <defs>
-      <path id="dblLeft" d="M14,2 L5,10 14,18" fill="none" />
-    </defs>
-    <use x="-2.5" href="#dblLeft" />
-    <use x="2.5" href="#dblLeft" />
+    <path x="-2.5" d="M11.5,2 L2.5,10 11.5,18" fill="none" />
+    <path x="2.5" d="M16.5,2 L7.5,10 16.5,18" fill="none" />
   </svg>
 );
 
@@ -95,11 +92,8 @@ export const RightIcon = (p: IconProps) => (
 
 export const DoubleRightIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <defs>
-      <path id="dblRight" d="M6,2 L15,10 6,18" fill="none" />
-    </defs>
-    <use x="-2.5" href="#dblRight" />
-    <use x="2.5" href="#dblRight" />
+    <path d="M3.5,2 L12.5,10 3.5,18" fill="none" />
+    <path d="M8.5,2 L17.5,10 8.5,18" fill="none" />
   </svg>
 );
 
@@ -117,11 +111,8 @@ export const UpFillIcon = (p: IconProps) => (
 
 export const DoubleUpIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <defs>
-      <path id="dblUp" d="M2,14 L10,5 18,14" fill="none" />
-    </defs>
-    <use y="-2.5" href="#dblUp" />
-    <use y="2.5" href="#dblUp" />
+    <path d="M2,11.5 L10,2.5 18,11.5" fill="none" />
+    <path d="M2,16.5 L10,7.5 18,16.5" fill="none" />
   </svg>
 );
 
@@ -139,11 +130,8 @@ export const DownFillIcon = (p: IconProps) => (
 
 export const DoubleDownIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <defs>
-      <path id="dblDown" d="M2,6 L10,15 18,6" fill="none" />
-    </defs>
-    <use y="-2.5" href="#dblDown" />
-    <use y="2.5" href="#dblDown" />
+    <path d="M2,3.5 L10,12.5 18,3.5" fill="none" />
+    <path d="M2,8.5 L10,17.5 18,8.5" fill="none" />
   </svg>
 );
 
@@ -181,13 +169,7 @@ export const ClockIcon = (p: IconProps) => (
 
 export const ListIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <defs>
-      <line id="list" x1="2" x2="18" />
-    </defs>
-    <use y="4" href="#list" />
-    <use y="8" href="#list" />
-    <use y="12" href="#list" />
-    <use y="16" href="#list" />
+    <path d="M2,4H18 M2,8H18 M2,12H18 M2,16H18" fill="none" />
   </svg>
 );
 
