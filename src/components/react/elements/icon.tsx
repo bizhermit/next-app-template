@@ -423,3 +423,17 @@ export const SignOutIcon = (p: IconProps) => (
     <path d="M11,6.5V2H2V18H11V13.5 M18,10H8 M15,6 19,10 15,14" fill="none" />
   </svg>
 );
+
+export const FolderIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M1.5,3.5 7,3.5 9,5.5H18.5V17.5H1.5Z" fill="none" />
+  </svg>
+);
+
+export const FolderAddIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M1.5,3.5 7,3.5 9,5.5H18.5V17.5H1.5Z" fill="none" />
+    <line x1="7" x2="13" y1="11.5" y2="11.5" />
+    <line y1="8.5" y2="14.5" x1="10" x2="10" />
+  </svg>
+);
