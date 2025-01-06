@@ -561,3 +561,9 @@ export const UsersIcon = (p: IconProps) => (
     <path d="M 13,10 a 6.5 6.5 -90 0 1 6,7 M 10,2 a 4 4 -135 1 1 3,7" fill="none" />
   </svg>
 );
+
+export const PowerIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M 13,4 a 7.5 7.5 -65 1 1 -6,0 M10,1.5V9" fill="none" />
+  </svg>
+);
