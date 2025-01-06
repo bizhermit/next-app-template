@@ -671,3 +671,9 @@ export const GridIcon = (p: IconProps) => (
     <rect width="7" height="7" x="11.5" y="11.5" fill="none" />
   </svg>
 );
+
+export const PinIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M5,0 15,0 13,2 13,6 18,12 18,13 2,13 2,12 7,6 7,2Z M10,13V20" fill="none" />
+  </svg>
+);
