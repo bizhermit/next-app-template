@@ -94,6 +94,36 @@ export const MenuLeftRightIcon = (p: IconProps) => (
   </svg>
 );
 
+export const KebabMenuIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="10" cy="3" r="1.5" />
+    <circle cx="10" cy="10" r="1.5" />
+    <circle cx="10" cy="17" r="1.5" />
+  </svg>
+);
+
+export const MeatballsMenuIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cy="10" cx="3" r="1.5" />
+    <circle cy="10" cx="10" r="1.5" />
+    <circle cy="10" cx="17" r="1.5" />
+  </svg>
+);
+
+export const ChocolateMenuIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <rect width="4" height="4" x="1" y="1" fill="none" />
+    <rect width="4" height="4" x="8" y="1" fill="none" />
+    <rect width="4" height="4" x="15" y="1" fill="none" />
+    <rect width="4" height="4" x="1" y="8" fill="none" />
+    <rect width="4" height="4" x="8" y="8" fill="none" />
+    <rect width="4" height="4" x="15" y="8" fill="none" />
+    <rect width="4" height="4" x="1" y="15" fill="none" />
+    <rect width="4" height="4" x="8" y="15" fill="none" />
+    <rect width="4" height="4" x="15" y="15" fill="none" />
+  </svg>
+);
+
 export const LeftIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M14,2 L5,10 14,18" fill="none" />
