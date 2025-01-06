@@ -451,3 +451,34 @@ export const FileAddIcon = (p: IconProps) => (
     <line y1="8.5" y2="14.5" x1="10" x2="10" />
   </svg>
 );
+
+export const ExclamationIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M9.5,3 10.5,3 10.2,12.5 9.8,12.5Z" />
+    <circle cx="10" cy="17" r=".8" fill="none" />
+  </svg>
+);
+
+export const ExclamationCircleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" />
+    <circle cx="10" cy="14.5" r=".5" fill="none" />
+    <circle cx="10" cy="10" r="9" fill="none" />
+  </svg>
+);
+
+export const ExclamationTriangleIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" />
+    <circle cx="10" cy="14.5" r=".5" fill="none" />
+    <path d="M10,0 19.5,18 0.5,18Z" fill="none" />
+  </svg>
+);
+
+export const ExclamationDiamondIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" />
+    <circle cx="10" cy="14.5" r=".5" fill="none" />
+    <path d="M10,.5 19.5,10 10,19.5 .5,10Z" fill="none" />
+  </svg>
+);

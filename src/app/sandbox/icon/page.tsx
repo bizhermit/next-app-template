@@ -1,4 +1,4 @@
-import { BadgeIcon, ButtonIcon, CalendarIcon, CardIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExLinkIcon, FileAddIcon, FileIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, HomeIcon, HorizontalDividerIcon, LabelIcon, LeftIcon, LeftRightIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusIcon, NavContainerIcon, OrderListIcon, PlusIcon, PopupIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, VerticalDividerIcon } from "@/react/elements/icon";
+import { BadgeIcon, ButtonIcon, CalendarIcon, CardIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExclamationCircleIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddIcon, FileIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, HomeIcon, HorizontalDividerIcon, LabelIcon, LeftIcon, LeftRightIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusIcon, NavContainerIcon, OrderListIcon, PlusIcon, PopupIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, VerticalDividerIcon } from "@/react/elements/icon";
 import css from "./page.module.scss";
 
 const icons = [
@@ -67,6 +67,10 @@ const icons = [
   FolderAddIcon,
   FileIcon,
   FileAddIcon,
+  ExclamationIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  ExclamationDiamondIcon,
 ];
 
 const Page = () => {
