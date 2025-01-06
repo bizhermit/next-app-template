@@ -411,3 +411,15 @@ export const CardIcon = (p: IconProps) => (
     <path d="M2,4H18V16H2Z M2,8H18" fill="none" />
   </svg>
 );
+
+export const SignInIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M6,6.5V2H17V18H6V13.5 M2,10H12 M10,6 14,10 10,14" fill="none" />
+  </svg>
+);
+
+export const SignOutIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M11,6.5V2H2V18H11V13.5 M18,10H8 M15,6 19,10 15,14" fill="none" />
+  </svg>
+);
