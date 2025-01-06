@@ -92,6 +92,7 @@ const icons = [
 const Page = () => {
   return (
     <div className={css.main}>
+      <div className={css.total}>total: {icons.length}</div>
       <div className={css.table}>
         {icons.map((Icon, i) => {
           const name = Icon.name.match(/(.*)Icon/)?.[1] || Icon.name;

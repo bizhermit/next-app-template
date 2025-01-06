@@ -5,12 +5,17 @@
   flex-flow: column nowrap;
 }
 
+.total {
+  padding: .2rem 1rem;
+}
+
 .table {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   gap: 1.2rem;
   padding: 2rem;
+  padding-top: .2rem;
 }
 
 .item {
