@@ -677,3 +677,9 @@ export const PinIcon = (p: IconProps) => (
     <path d="M5,0 15,0 13,2 13,6 18,12 18,13 2,13 2,12 7,6 7,2Z M10,13V20" fill="none" />
   </svg>
 );
+
+export const MailIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M1,3.5H19V16.5H1Z M1,3.5 10,10 19,3.5" fill="none" />
+  </svg>
+);
