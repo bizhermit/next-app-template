@@ -1,4 +1,4 @@
-import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, ListIcon, SmileIcon, TextBoxIcon } from "@/react/elements/icon";
+import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, ListIcon, PowerIcon, SmileIcon, TextBoxIcon } from "@/react/elements/icon";
 import Link from "@/react/elements/link";
 import { Navigation } from "@/react/elements/navigation";
 import { NavigationMenu, NavMenuLink, NavMenuNest } from "@/react/elements/navigation/menu";
@@ -31,7 +31,7 @@ const Layout = async (props: { children: ReactNode; }) => {
         <NavigationMenu>
           <NavMenuLink
             url="/"
-            icon={<HomeIcon />}
+            icon={<PowerIcon />}
             selected="match"
           >
             index
