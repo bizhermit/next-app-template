@@ -141,17 +141,16 @@ export const MenuLeftRightIcon = (p: IconProps) => (
 
 export const KebabMenuIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="3" r="1.5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="10" cy="10" r="1.5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="10" cy="17" r="1.5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8.5,4a1.5 1.5 0 0 0 3,0a1.5 1.5 0 0 0 -3,0Z M8.5,10a1.5 1.5 0 0 0 3,0a1.5 1.5 0 0 0 -3,0Z M8.5,16a1.5 1.5 0 0 0 3,0a1.5 1.5 0 0 0 -3,0Z"
+    />
   </svg>
 );
 
 export const MeatballsMenuIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cy="10" cx="3" r="1.5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cy="10" cx="10" r="1.5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cy="10" cx="17" r="1.5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,8.5a1.5 1.5 0 0 0 0,3a1.5 1.5 0 0 0 0,-3ZM10,8.5a1.5 1.5 0 0 0 0,3a1.5 1.5 0 0 0 0,-3ZM16,8.5a1.5 1.5 0 0 0 0,3a1.5 1.5 0 0 0 0,-3Z"
+    />
   </svg>
 );
 
