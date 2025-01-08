@@ -1,4 +1,4 @@
-import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, ListIcon, PowerIcon, SmileIcon, TextBoxIcon } from "@/react/elements/icon";
+import { CalendarIcon, CloudIcon, ExLinkIcon, HomeIcon, ListIcon, MailIcon, PowerIcon, SmileIcon, TextBoxIcon } from "@/react/elements/icon";
 import Link from "@/react/elements/link";
 import { Navigation } from "@/react/elements/navigation";
 import { NavigationMenu, NavMenuLink, NavMenuNest } from "@/react/elements/navigation/menu";
@@ -103,7 +103,7 @@ const Layout: ServerLayout = async (props) => {
           </NavMenuLink>
           <NavMenuLink
             url="/sandbox/mailaddress"
-            icon={<TextBoxIcon />}
+            icon={<MailIcon />}
           >
             MailAddress
           </NavMenuLink>
