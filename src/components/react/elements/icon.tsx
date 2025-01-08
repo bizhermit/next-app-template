@@ -185,65 +185,145 @@ export const ChocolateMenuFillIcon = (p: IconProps) => (
 
 export const LeftIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M14,2 L5,10 14,18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(45,10,10)"
+    />
+  </svg>
+);
+
+export const LeftFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M6,2v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(45,10,10)"
+    />
   </svg>
 );
 
 export const DoubleLeftIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path x="-2.5" d="M11.5,2 L2.5,10 11.5,18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <path x="2.5" d="M16.5,2 L7.5,10 16.5,18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(45,10,10)"
+    />
+  </svg>
+);
+
+export const DoubleLeftFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(45,10,10)"
+    />
   </svg>
 );
 
 export const RightIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6,2 L15,10 6,18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(-135,10,10)"
+    />
+  </svg>
+);
+
+export const RightFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M6,2v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(-135,10,10)"
+    />
   </svg>
 );
 
 export const DoubleRightIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M3.5,2 L12.5,10 3.5,18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M8.5,2 L17.5,10 8.5,18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(-135,10,10)"
+    />
+  </svg>
+);
+
+export const DoubleRightFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(-135,10,10)"
+    />
   </svg>
 );
 
 export const UpIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,14 L10,5 18,14" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(135,10,10)"
+    />
   </svg>
 );
 
 export const UpFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,14 L10,5 18,14 2,14" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6,2v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(135,10,10)"
+    />
   </svg>
 );
 
 export const DoubleUpIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,11.5 L10,2.5 18,11.5" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M2,16.5 L10,7.5 18,16.5" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(135,10,10)"
+    />
+  </svg>
+);
+
+export const DoubleUpFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(135,10,10)"
+    />
   </svg>
 );
 
 export const DownIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,6 L10,15 18,6" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
 export const DownFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,6 L10,15 18,6 2,6" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6,2v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
 export const DoubleDownIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,3.5 L10,12.5 18,3.5" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M2,8.5 L10,17.5 18,8.5" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
+      transform="rotate(-45,10,10)"
+    />
+  </svg>
+);
+
+export const DoubleDownFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M4,4a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z M8,0v12h12a0.5 0.5 0 0 0 0.5,-.75l-11.75,-11.75a0.5 0.5 0 0 0 -0.75,0.5Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
