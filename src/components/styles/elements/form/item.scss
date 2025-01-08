@@ -1,5 +1,8 @@
 @use "../../mixins" as mixins;
 
+$loadingBar1Width: 25%;
+$loadingBar2Width: 15%;
+
 @layer default {
 
   input:is([type="text"], [type="password"]) {
@@ -103,6 +106,70 @@
       bottom: 100%;
       font-size: 1rem;
     } */
+  }
+
+  .ipt-loading {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      box-sizing: border-box;
+      content: "";
+      position: absolute;
+      height: 100%;
+      border-radius: 9999px;
+      animation-timing-function: ease-in-out;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      top: 0;
+      background: var(--c-primary);
+    }
+
+    &::before {
+      width: #{$loadingBar1Width};
+      left: -#{$loadingBar1Width};
+      animation-name: iptLoadingBar1;
+    }
+
+    &::after {
+      width: #{$loadingBar2Width};
+      left: -#{$loadingBar2Width};
+      animation-name: iptLoadingBar2;
+      animation-delay: 1.2s;
+    }
+  }
+
+  @keyframes iptLoadingBar1 {
+    0% {
+      left: -#{$loadingBar1Width};
+    }
+
+    70% {
+      left: #{$loadingBar1Width + 100%};
+    }
+
+    100% {
+      left: #{$loadingBar1Width + 100%};
+    }
+  }
+
+  @keyframes iptLoadingBar2 {
+    0% {
+      left: -#{$loadingBar2Width};
+    }
+
+    70% {
+      left: #{$loadingBar2Width + 100%};
+    }
+
+    100% {
+      left: #{$loadingBar2Width + 100%};
+    }
   }
 
   .ipt-btn {
