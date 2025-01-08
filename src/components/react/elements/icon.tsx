@@ -328,6 +328,12 @@ export const HomeIcon = (p: IconProps) => (
   </svg>
 );
 
+export const HomeFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M10,2 L19,10 16,10 16,18 12,18 12,13 8,13 8,18 4,18 4,10 1,10 10,2" />
+  </svg>
+);
+
 export const ElementIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M6,6 L2,10 6,14" fill="none" />
@@ -401,8 +407,8 @@ export const MagnifyingGlassPlusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <circle cx="8" cy="8" r="7" fill="none" />
     <line x1="13" x2="18" y1="13" y2="18" />
-    <line x1="4.5" x2="12" y1="8" y2="8" />
-    <line y1="4" y2="12" x1="8.2" x2="8.2" />
+    <line x1="4" x2="12" y1="8" y2="8" />
+    <line y1="4" y2="12" x1="8" x2="8" />
   </svg>
 );
 
@@ -410,7 +416,7 @@ export const MagnifyingGlassMinusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <circle cx="8" cy="8" r="7" fill="none" />
     <line x1="13" x2="18" y1="13" y2="18" />
-    <line x1="4.5" x2="12" y1="8" y2="8" />
+    <line x1="4" x2="12" y1="8" y2="8" />
   </svg>
 );
 
@@ -454,6 +460,12 @@ export const LoadingIcon = (p: IconProps) => (
 export const LabelIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M2,5H14L18,10 14,15H2Z" fill="none" />
+  </svg>
+);
+
+export const LabelFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M2,5H14L18,10 14,15H2Z" />
   </svg>
 );
 
@@ -592,6 +604,13 @@ export const UserIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <circle cx="10" cy="6" r="4.5" fill="none" />
     <path d="M 2,19 a 8 8 -180 0 1 16,0" fill="none" />
+  </svg>
+);
+
+export const UserFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <circle cx="10" cy="6" r="4.5" />
+    <path d="M 2,19 a 8 8 -180 0 1 16,0Z" />
   </svg>
 );
 
@@ -763,19 +782,19 @@ export const ListFilterIcon = (p: IconProps) => (
 
 export const HeartIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" fill="none" />
+    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" fill="none" strokeLinejoin="miter" />
   </svg>
 );
 
 export const HeartFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" />
+    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" strokeLinejoin="miter" />
   </svg>
 );
 
 export const HeartHalfFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
+    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" fill="none" strokeLinejoin="miter" />
     <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6" />
-    <path d="M10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736 L10 4.6" fill="none" />
   </svg>
 );

@@ -4,7 +4,7 @@ import { isEmpty } from "@/objects/string";
 import { Dialog, useDialogRef } from "@/react/elements/dialog";
 import { useFormItemRef } from "@/react/elements/form/item-ref";
 import { TextBox } from "@/react/elements/form/items/text-box";
-import { BadgeIcon, BookmarkFillIcon, BookmarkIcon, ButtonIcon, CalendarIcon, CardIcon, CheckCircleFillIcon, CheckCircleIcon, CheckIcon, ChocolateMenuFillIcon, ChocolateMenuIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossCircleIcon, CrossIcon, DeleteBackIcon, DeleteIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExclamationCircleIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddIcon, FileFillIcon, FileIcon, FilterIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, GearFillIcon, GearIcon, GridFillIcon, GridIcon, HeartFillIcon, HeartHalfFillIcon, HeartIcon, HomeIcon, HorizontalDividerIcon, KebabMenuIcon, LabelIcon, LeftIcon, LeftRightIcon, ListFilterIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MailIcon, MeatballsMenuIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusCircleIcon, MinusIcon, NavContainerIcon, OrderListIcon, PinIcon, PlusCircleIcon, PlusIcon, PopupIcon, PowerIcon, QuestionCircleIcon, QuestionIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, ShareIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StarFillIcon, StarHalfFillIcon, StarIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, TrashCanIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, UserAddIcon, UserIcon, UserMinusIcon, UsersIcon, VerticalDividerIcon } from "@/react/elements/icon";
+import { BadgeIcon, BookmarkFillIcon, BookmarkIcon, ButtonIcon, CalendarIcon, CardIcon, CheckCircleFillIcon, CheckCircleIcon, CheckIcon, ChocolateMenuFillIcon, ChocolateMenuIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossCircleIcon, CrossIcon, DeleteBackIcon, DeleteIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExclamationCircleIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddIcon, FileFillIcon, FileIcon, FilterIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, GearFillIcon, GearIcon, GridFillIcon, GridIcon, HeartFillIcon, HeartHalfFillIcon, HeartIcon, HomeFillIcon, HomeIcon, HorizontalDividerIcon, KebabMenuIcon, LabelFillIcon, LabelIcon, LeftIcon, LeftRightIcon, ListFilterIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MailIcon, MeatballsMenuIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusCircleIcon, MinusIcon, NavContainerIcon, OrderListIcon, PinIcon, PlusCircleIcon, PlusIcon, PopupIcon, PowerIcon, QuestionCircleIcon, QuestionIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, ShareIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StarFillIcon, StarHalfFillIcon, StarIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, TrashCanIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, UserAddIcon, UserFillIcon, UserIcon, UserMinusIcon, UsersIcon, VerticalDividerIcon } from "@/react/elements/icon";
 import { useMemo, useState } from "react";
 import css from "./page.module.scss";
 
@@ -53,6 +53,7 @@ const icons = [
   UnloadIcon,
   SyncIcon,
   HomeIcon,
+  HomeFillIcon,
   ElementIcon,
   SmileIcon,
   ButtonIcon,
@@ -71,6 +72,7 @@ const icons = [
   SplitContainerIcon,
   LoadingIcon,
   LabelIcon,
+  LabelFillIcon,
   StepperIcon,
   VerticalDividerIcon,
   HorizontalDividerIcon,
@@ -91,6 +93,7 @@ const icons = [
   QuestionIcon,
   QuestionCircleIcon,
   UserIcon,
+  UserFillIcon,
   UserAddIcon,
   UserMinusIcon,
   UsersIcon,
