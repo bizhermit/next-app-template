@@ -329,13 +329,27 @@ export const DoubleDownFillIcon = (p: IconProps) => (
 
 export const LeftRightIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M7,5 L2,10 7,15 M13,5 L18,10 13,15" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,8a0.75 0.75 0 0 1 1.5,0v6.5h6.5a0.75 0.75 0 0 1 0,1.5h-8Z"
+      transform="rotate(45,10,10)"
+    />
+    <path
+      d="M4,8a0.75 0.75 0 0 1 1.5,0v6.5h6.5a0.75 0.75 0 0 1 0,1.5h-8Z"
+      transform="rotate(-135,10,10)"
+    />
   </svg>
 );
 
 export const UpDownIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M5,7 L10,2 15,7 M5,13 L10,18 15,13" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M4,8a0.75 0.75 0 0 1 1.5,0v6.5h6.5a0.75 0.75 0 0 1 0,1.5h-8Z"
+      transform="rotate(135,10,10)"
+    />
+    <path
+      d="M4,8a0.75 0.75 0 0 1 1.5,0v6.5h6.5a0.75 0.75 0 0 1 0,1.5h-8Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
@@ -461,9 +475,19 @@ export const HomeFillIcon = (p: IconProps) => (
 
 export const ElementIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6,6 L2,10 6,14" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M14,6 L18,10 14,14" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <line x1="12" x2="8" y1="5" y2="15" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    {/* <line x1="12" x2="8" y1="5" y2="15" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" /> */}
+    <path
+      d="M10.75,4.5v11a0.75 0.75 0 0 1 -1.5,0v-11a0.75 0.75 0 0 1 1.5,0Z"
+      transform="rotate(20,10,10)"
+    />
+    <path
+      d="M3.5,9.5a0.75 0.75 0 0 1 1.5,0v5.5h5.5a0.75 0.75 0 0 1 0,1.5h-7Z"
+      transform="rotate(45,10,10)"
+    />
+    <path
+      d="M3.5,9.5a0.75 0.75 0 0 1 1.5,0v5.5h5.5a0.75 0.75 0 0 1 0,1.5h-7Z"
+      transform="rotate(-135,10,10)"
+    />
   </svg>
 );
 
