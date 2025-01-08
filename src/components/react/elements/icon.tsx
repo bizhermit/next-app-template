@@ -475,18 +475,17 @@ export const HomeFillIcon = (p: IconProps) => (
 
 export const ElementIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    {/* <line x1="12" x2="8" y1="5" y2="15" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" /> */}
     <path
-      d="M10.75,4.5v11a0.75 0.75 0 0 1 -1.5,0v-11a0.75 0.75 0 0 1 1.5,0Z"
-      transform="rotate(20,10,10)"
-    />
-    <path
-      d="M3.5,9.5a0.75 0.75 0 0 1 1.5,0v5.5h5.5a0.75 0.75 0 0 1 0,1.5h-7Z"
+      d="M3.25,9.75a0.75 0.75 0 0 1 1.5,0v5.5h5.5a0.75 0.75 0 0 1 0,1.5h-7Z"
       transform="rotate(45,10,10)"
     />
     <path
-      d="M3.5,9.5a0.75 0.75 0 0 1 1.5,0v5.5h5.5a0.75 0.75 0 0 1 0,1.5h-7Z"
+      d="M3.25,9.75a0.75 0.75 0 0 1 1.5,0v5.5h5.5a0.75 0.75 0 0 1 0,1.5h-7Z"
       transform="rotate(-135,10,10)"
+    />
+    <path
+      d="M10.75,4.5v11a0.75 0.75 0 0 1 -1.5,0v-11a0.75 0.75 0 0 1 1.5,0Z"
+      transform="rotate(20,10,10)"
     />
   </svg>
 );
