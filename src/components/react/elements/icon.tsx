@@ -153,29 +153,33 @@ export const MeatballsMenuIcon = (p: IconProps) => (
 
 export const ChocolateMenuIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <rect width="4" height="4" x="1" y="1" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="8" y="1" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="15" y="1" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="1" y="8" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="8" y="8" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="15" y="8" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="1" y="15" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="8" y="15" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="15" y="15" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="
+      M1.75,0.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M8.25,0.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M14.75,0.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M1.75,7.25h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M8.25,7.25h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M14.75,7.25h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M1.75,13.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M8.25,13.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+      M14.75,13.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z m0.75,1.25a0.5 0.5 0 0 0 -0.5,0.5v2a0.5 0.5 0 0 0 0.5 0.5h2a0.5 0.5 0 0 0 0.5,-0.5v-2a0.5 0.5 0 0 0 -0.5,-0.5Z
+    " />
   </svg>
 );
 
 export const ChocolateMenuFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <rect width="4" height="4" x="1" y="1" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="8" y="1" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="15" y="1" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="1" y="8" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="8" y="8" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="15" y="8" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="1" y="15" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="8" y="15" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect width="4" height="4" x="15" y="15" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="
+      M1.75,0.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M8.25,0.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M14.75,0.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M1.75,7.25h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M8.25,7.25h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M14.75,7.25h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M1.75,13.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M8.25,13.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+      M14.75,13.75h3.5a1 1 0 0 1 1,1v3.5a1 1 0 0 1 -1,1h-3.5a1 1 0 0 1 -1,-1v-3.5a1 1 0 0 1 1,-1Z
+    " />
   </svg>
 );
 
