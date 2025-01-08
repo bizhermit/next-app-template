@@ -816,11 +816,14 @@ $loadingBar2Width: 15%;
   }
 
   .ipt-items {
+    position: relative;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: flex-start;
     gap: 1rem;
+    min-width: calc(var(--ipt-size) * 2);
+    min-height: var(--ipt-size);
   }
 
   .ipt-radio {

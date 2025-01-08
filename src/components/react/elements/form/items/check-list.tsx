@@ -150,6 +150,7 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
         data-name={fi.name}
         data-loaded={!loading}
       >
+        {loading && <div className="ipt-loading" />}
         {origin.map((item, i) => {
           const v = item[vdn];
           const s = item[sdn];
