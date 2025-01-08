@@ -5,12 +5,25 @@
   flex-flow: column nowrap;
 }
 
+.header {
+  position: sticky;
+  top: var(--header-height);
+  padding: .8rem 1rem;
+  background: var(--bg);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
 .table {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   gap: 1.2rem;
   padding: 2rem;
+  padding-top: .2rem;
 }
 
 .item {
@@ -65,4 +78,19 @@
   transition: box-shadow .2s;
   margin: auto;
   box-shadow: 0 0 0px 0px var(--sdw);
+}
+
+.dialog {
+  padding: 2rem;
+}
+
+.big {
+  box-sizing: border-box;
+  --font-size: 20rem;
+  box-shadow: 0 0 0px 0px var(--sdw);
+  transition: box-shadow .2s;
+
+  @include mixins.hover {
+    box-shadow: 0 0 8px var(--sdw);
+  }
 }
