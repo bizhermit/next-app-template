@@ -486,7 +486,7 @@ export default function Home() {
               defaultValue={4}
               initFocusValue={10}
               source={async () => {
-                // await sleep(3000);
+                await sleep(3000);
                 const arr = [];
                 for (let i = 0; i < 100; i++) {
                   arr.push({ value: i, label: `item-${i}` });
@@ -518,12 +518,13 @@ export default function Home() {
           </FormItemWrap>
           <FormItemWrap>
             <RadioButtons
+              style={{ minWidth: 200 }}
               labelAsIs="ラジオボタン"
               name="radio"
               required
               nullable="unselectable"
               source={async () => {
-                // await sleep(3000);
+                await sleep(3000);
                 const arr = [];
                 for (let i = 0; i < 3; i++) {
                   arr.push({ value: i, label: `item-${i}` });
@@ -544,7 +545,7 @@ export default function Home() {
               required
               minLength={2}
               source={async () => {
-                // await sleep(3000);
+                await sleep(3000);
                 const arr = [];
                 for (let i = 0; i < 3; i++) {
                   arr.push({ value: i, label: `item-${i}` });

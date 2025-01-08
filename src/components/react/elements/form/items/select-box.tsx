@@ -342,6 +342,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
         data-name={fi.name}
         data-loaded={!loading}
       >
+        {loading && <div className="ipt-loading" />}
         <input
           ref={iref}
           className="ipt-txt"
