@@ -44,10 +44,7 @@ export const PlusCircleIcon = (p: IconProps) => (
 
 export const PlusCircleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)} data-fill="true">
-    <path d="
-      M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
-      M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z
-    " />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z" />
   </svg>
 );
 
@@ -66,25 +63,35 @@ export const MinusCircleIcon = (p: IconProps) => (
 
 export const MinusCircleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="
-      M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
-      M4.25,9.25h11.5a0.75 0.75 0 0 1 0,1.5h-11.5a0.75 0.75 0 0 1 0,-1.5Z
-    " />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z M4.25,9.25h11.5a0.75 0.75 0 0 1 0,1.5h-11.5a0.75 0.75 0 0 1 0,-1.5Z" />
   </svg>
 );
 
 export const CrossIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="2.5" x2="17" y1="2.5" y2="17" />
-    <line x1="2.5" x2="17" y2="2.5" y1="17" />
+    <path
+      d="M9.25,1.25a0.75 0.75 0 0 1 1.5,0v8h8a0.75 0.75 0 0 1 0,1.5h-8v8a0.75 0.75 0 0 1 -1.5,0v-8h-8a0.75 0.75 0 0 1 0,-1.5h8Z"
+      transform="rotate(45,10,10)"
+    />
   </svg>
 );
 
 export const CrossCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="6" x2="14" y1="6" y2="14" />
-    <line x1="6" x2="14" y2="6" y1="14" />
-    <circle cx="10" cy="10" r="9" fill="none" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path
+      d="M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z"
+      transform="rotate(45,10,10)"
+    />
+  </svg>
+);
+
+export const CrossCircleFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z"
+      transform="rotate(45,10,10)"
+    />
   </svg>
 );
 
