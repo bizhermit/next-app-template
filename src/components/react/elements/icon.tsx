@@ -31,38 +31,45 @@ export const HogeIcon = (p: IconProps) => (
 
 export const PlusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M9,2a1 1 0 0 1 2,0v7h7a1 1 0 0 1 0,2h-7v7a1 1 0 0 1 -2,0v-7h-7a1 1 0 0 1 0,-2h7Z" />
+    <path d="M9.25,2.25a0.75 0.75 0 0 1 1.5,0v7h7a0.75 0.75 0 0 1 0,1.5h-7v7a0.75 0.75 0 0 1 -1.5,0v-7h-7a0.75 0.75 0 0 1 0,-1.5h7Z" />
   </svg>
 );
 
 export const PlusCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M0,10a10 10 0 0 0 20,0a10 10 0 0 0 -20,0l1.5,0a8 8 0 0 1 17,0a8 8 0 0 1 -17,0Z" />
-    <path d="M9,4a1 1 0 0 1 2,0v5h5a1 1 0 0 1 0,2h-5v5a1 1 0 0 1 -2,0v-5h-5a1 1 0 0 1 0,-2h5Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z" />
   </svg>
 );
 
 export const PlusCircleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)} data-fill="true">
     <path d="
-      M0,10a10 10 0 0 0 20,0a10 10 0 0 0 -20,0Z
-      M9,4a1 1 0 0 1 2,0v5h5a1 1 0 0 1 0,2h-5v5a1 1 0 0 1 -2,0v-5h-5a1 1 0 0 1 0,-2h5Z
+      M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
+      M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z
     " />
   </svg>
 );
 
 export const MinusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,9h16a1 1 0 0 1 0,2h-16a1 1 0 0 1 0,-2Z" />
+    <path d="M2.25,9.25h15.5a0.75 0.75 0 0 1 0,1.5h-15.5a0.75 0.75 0 0 1 0,-1.5Z" />
   </svg>
 );
 
 export const MinusCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    {/* <line x1="5" x2="15" y1="10" y2="10" />
-    <circle cx="10" cy="10" r="9" fill="none" /> */}
-    <path d="M0,10a10 10 0 0 0 20,0a10 10 0 0 0 -20,0l1.5,0a8 8 0 0 1 17,0a8 8 0 0 1 -17,0Z" />
-    <path d="M5,9h10a1 1 0 0 1 0,2h-10a1 1 0 0 1 0,-2Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M4.25,9.25h11.5a0.75 0.75 0 0 1 0,1.5h-11.5a0.75 0.75 0 0 1 0,-1.5Z" />
+  </svg>
+);
+
+export const MinusCircleFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="
+      M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
+      M4.25,9.25h11.5a0.75 0.75 0 0 1 0,1.5h-11.5a0.75 0.75 0 0 1 0,-1.5Z
+    " />
   </svg>
 );
 

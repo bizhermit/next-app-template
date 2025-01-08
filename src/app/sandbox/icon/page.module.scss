@@ -32,8 +32,8 @@
   max-width: 15rem;
   font-size: 1.2rem;
   display: grid;
-  grid-template-columns: min-content 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 1fr 1fr min-content;
   overflow: hidden;
   padding: 0.8rem;
   gap: 0.4rem;
