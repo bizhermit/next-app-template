@@ -641,6 +641,12 @@ export const CheckCircleIcon = (p: IconProps) => (
   </svg>
 );
 
+export const CheckCircleFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M1,10A9 9 0 0 0 19,10A9 9 0 0 0 1,10Z M3.5,11 7.5,15.5Q8.5,16.5,9.5,15.5L17,7a1 1 0 0 0 -2,-2 L8.5,12.3 5.5,9a1 1 0 0 0 -2,2Z" fillRule="evenodd" strokeLinejoin="miter" />
+  </svg>
+);
+
 export const ShareIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <circle cx="16" cy="4" r="2.5" fill="none" />
