@@ -1,16 +1,20 @@
 "use client";
 
+import { useLang } from "@/i18n/react-hook";
 import { isEmpty } from "@/objects/string";
+import { Button } from "@/react/elements/button";
 import { Dialog, useDialogRef } from "@/react/elements/dialog";
 import { useFormItemRef } from "@/react/elements/form/item-ref";
 import { TextBox } from "@/react/elements/form/items/text-box";
-import { BadgeIcon, BookmarkFillIcon, BookmarkIcon, ButtonIcon, CalendarIcon, CardIcon, CheckCircleFillIcon, CheckCircleIcon, CheckIcon, ChocolateMenuFillIcon, ChocolateMenuIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossCircleIcon, CrossIcon, DeleteBackIcon, DeleteIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExclamationCircleFillIcon, ExclamationCircleIcon, ExclamationDiamondFillIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleFillIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddIcon, FileFillIcon, FileIcon, FilterIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, GearFillIcon, GearIcon, GridFillIcon, GridIcon, HeartFillIcon, HeartHalfFillIcon, HeartIcon, HomeFillIcon, HomeIcon, HorizontalDividerIcon, KebabMenuIcon, LabelFillIcon, LabelIcon, LeftIcon, LeftRightIcon, ListFilterIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MailIcon, MeatballsMenuIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusCircleIcon, MinusIcon, NavContainerIcon, OrderListIcon, PinIcon, PlusCircleIcon, PlusIcon, PopupIcon, PowerIcon, QuestionCircleIcon, QuestionIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, ShareIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StarFillIcon, StarHalfFillIcon, StarIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, TrashCanIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, UserAddIcon, UserFillIcon, UserIcon, UserMinusIcon, UsersIcon, VerticalDividerIcon } from "@/react/elements/icon";
+import { BadgeIcon, BookmarkFillIcon, BookmarkIcon, ButtonIcon, CalendarIcon, CardIcon, CheckCircleFillIcon, CheckCircleIcon, CheckIcon, ChocolateMenuFillIcon, ChocolateMenuIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockIcon, CloudDownloadIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossCircleIcon, CrossIcon, DeleteBackIcon, DeleteIcon, DoubleDownIcon, DoubleLeftIcon, DoubleRightIcon, DoubleUpIcon, DownFillIcon, DownIcon, ElementIcon, ExclamationCircleFillIcon, ExclamationCircleIcon, ExclamationDiamondFillIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleFillIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddIcon, FileFillIcon, FileIcon, FilterIcon, FolderAddIcon, FolderIcon, FormIcon, FormItemIcon, GearFillIcon, GearIcon, GridFillIcon, GridIcon, HeartFillIcon, HeartHalfFillIcon, HeartIcon, HogeIcon, HomeFillIcon, HomeIcon, HorizontalDividerIcon, KebabMenuIcon, LabelFillIcon, LabelIcon, LeftIcon, LeftRightIcon, ListFilterIcon, ListIcon, LoadingIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MailIcon, MeatballsMenuIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusCircleIcon, MinusIcon, NavContainerIcon, OrderListIcon, PinIcon, PlusCircleFillIcon, PlusCircleIcon, PlusIcon, PopupIcon, PowerIcon, QuestionCircleIcon, QuestionIcon, RedoIcon, ReloadIcon, RightIcon, SaveIcon, ShareIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileIcon, SplitContainerIcon, StarFillIcon, StarHalfFillIcon, StarIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayIcon, TooltipIcon, TrashCanIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, UserAddIcon, UserFillIcon, UserIcon, UserMinusIcon, UsersIcon, VerticalDividerIcon } from "@/react/elements/icon";
 import { useMemo, useState } from "react";
 import css from "./page.module.scss";
 
 const icons = [
+  HogeIcon,
   PlusIcon,
   PlusCircleIcon,
+  PlusCircleFillIcon,
   MinusIcon,
   MinusCircleIcon,
   CrossIcon,
@@ -131,6 +135,8 @@ const parseNameWithoutIcon = (name: string) => {
 };
 
 const Page = () => {
+  const lang = useLang();
+
   const filterText = useFormItemRef<string>();
   const [SelectedIcon, setSelectedIcon] = useState<React.JSX.Element | null>(null);
   const dialog = useDialogRef();
@@ -152,7 +158,9 @@ const Page = () => {
           onClick={() => {
             setSelectedIcon(
               <div className={css.dialog}>
-                <Icon className={css.big} />
+                <div className={css.wrap}>
+                  <Icon className={css.big} />
+                </div>
                 <div className={css.label}>
                   {name}
                 </div>
@@ -169,6 +177,21 @@ const Page = () => {
           </div>
           <div className={css.icon}>
             <Icon />
+          </div>
+          <div className={css.buttons}>
+            <div className={css.buttonrow}>
+              <Button>
+                <Icon />
+              </Button>
+              <Button round>
+                <Icon />
+              </Button>
+            </div>
+            <Button>
+              <Icon />
+              <span>{lang("sandbox.buttonText")}</span>
+              <Icon />
+            </Button>
           </div>
         </div>
       );

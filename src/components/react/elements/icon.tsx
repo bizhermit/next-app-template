@@ -15,31 +15,54 @@ const attrs = (p: IconProps) => {
   };
 };
 
+export const HogeIcon = (p: IconProps) => (
+  <svg {...attrs(p)} viewBox="-10 -10 120 120">
+
+    <mask id="myMask">
+      <rect x="0" y="0" width="100" height="100" fill="white" />
+      <path
+        d="M10,35 A20,20,0,0,1,50,35 A20,20,0,0,1,90,35 Q90,65,50,95 Q10,65,10,35 Z"
+        fill="black" />
+    </mask>
+    <polygon points="-10,110 110,110 110,-10" fill="orange" />
+    <circle cx="50" cy="50" r="50" fill="purple" mask="url(#myMask)" />
+  </svg>
+);
+
 export const PlusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="2" x2="18" y1="10" y2="10" />
-    <line y1="2" y2="18" x1="10" x2="10" />
+    <path d="M9,2a1 1 0 0 1 2,0v7h7a1 1 0 0 1 0,2h-7v7a1 1 0 0 1 -2,0v-7h-7a1 1 0 0 1 0,-2h7Z" />
   </svg>
 );
 
 export const PlusCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="5" x2="15" y1="10" y2="10" />
-    <line y1="5" y2="15" x1="10" x2="10" />
-    <circle cx="10" cy="10" r="9" fill="none" />
+    <path d="M0,10a10 10 0 0 0 20,0a10 10 0 0 0 -20,0l1.5,0a8 8 0 0 1 17,0a8 8 0 0 1 -17,0Z" />
+    <path d="M9,4a1 1 0 0 1 2,0v5h5a1 1 0 0 1 0,2h-5v5a1 1 0 0 1 -2,0v-5h-5a1 1 0 0 1 0,-2h5Z" />
+  </svg>
+);
+
+export const PlusCircleFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)} data-fill="true">
+    <path d="
+      M0,10a10 10 0 0 0 20,0a10 10 0 0 0 -20,0Z
+      M9,4a1 1 0 0 1 2,0v5h5a1 1 0 0 1 0,2h-5v5a1 1 0 0 1 -2,0v-5h-5a1 1 0 0 1 0,-2h5Z
+    " />
   </svg>
 );
 
 export const MinusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="2" x2="18" y1="10" y2="10" />
+    <path d="M2,9h16a1 1 0 0 1 0,2h-16a1 1 0 0 1 0,-2Z" />
   </svg>
 );
 
 export const MinusCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="5" x2="15" y1="10" y2="10" />
-    <circle cx="10" cy="10" r="9" fill="none" />
+    {/* <line x1="5" x2="15" y1="10" y2="10" />
+    <circle cx="10" cy="10" r="9" fill="none" /> */}
+    <path d="M0,10a10 10 0 0 0 20,0a10 10 0 0 0 -20,0l1.5,0a8 8 0 0 1 17,0a8 8 0 0 1 -17,0Z" />
+    <path d="M5,9h10a1 1 0 0 1 0,2h-10a1 1 0 0 1 0,-2Z" />
   </svg>
 );
 

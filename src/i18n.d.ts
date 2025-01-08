@@ -1,8 +1,9 @@
 interface I18N_Langs {
   sandbox: {
-    sample_textLabel: LangValue,
-    sample_numberLabel: LangValue,
-    sample_boolLabel: LangValue,
+    sample_textLabel: LangValue;
+    sample_numberLabel: LangValue;
+    sample_boolLabel: LangValue;
+    buttonText: LangValue;
   };
   common: {
     halloWorld: LangValue;

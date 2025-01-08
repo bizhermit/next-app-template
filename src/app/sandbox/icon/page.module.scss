@@ -32,7 +32,7 @@
   max-width: 15rem;
   font-size: 1.2rem;
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: min-content 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   overflow: hidden;
   padding: 0.8rem;
@@ -80,17 +80,72 @@
   box-shadow: 0 0 0px 0px var(--sdw);
 }
 
+.buttons {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  width: 100%;
+
+  .buttonrow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width: 100%;
+    gap: .2rem;
+  }
+}
+
+$bigSize: 30rem;
+
 .dialog {
   padding: 2rem;
+
+  .wrap {
+    position: relative;
+    height: #{$bigSize};
+    width: #{$bigSize};
+    display: grid;
+    place-items: center;
+
+    &::before,
+    &::after {
+      box-sizing: border-box;
+      position: absolute;
+      content: "";
+      border: 1px dotted var(--fg);
+    }
+
+    &::before {
+      top: 0;
+      left: calc(50% - 1px);
+      height: 100%;
+      width: 2px;
+    }
+
+    &::after {
+      top: calc(50% - 1px);
+      left: 0;
+      width: 100%;
+      height: 2px;
+    }
+
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 0px var(--sdw);
+    transition: box-shadow .2s,
+    background-color .2s;
+    background: inherit;
+
+    @include mixins.hover {
+      box-shadow: 0 0 8px var(--sdw);
+      background: var(--ipt-bg-err);
+    }
+  }
 }
 
 .big {
-  box-sizing: border-box;
-  --font-size: 20rem;
-  box-shadow: 0 0 0px 0px var(--sdw);
-  transition: box-shadow .2s;
-
-  @include mixins.hover {
-    box-shadow: 0 0 8px var(--sdw);
-  }
+  --font-size: #{$bigSize};
 }
