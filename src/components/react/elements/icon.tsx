@@ -406,8 +406,14 @@ export const TodayFillIcon = (p: IconProps) => (
 
 export const ClockIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="10" r="9" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M10,4 L10,11 15,11" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M10.75,3v6.25h4.25a0.75 0.75 0 0 1 0,1.5h-5a0.75 0.75 0 0 1 -0.75,-0.75v-7a0.75 0.75 0 0 1 1.5,0Z" />
+  </svg>
+);
+
+export const ClockFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0Z M10.75,3v6.25h4.25a0.75 0.75 0 0 1 0,1.5h-5a0.75 0.75 0 0 1 -0.75,-0.75v-7a0.75 0.75 0 0 1 1.5,0Z" />
   </svg>
 );
 
