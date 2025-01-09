@@ -355,7 +355,14 @@ export const UpDownIcon = (p: IconProps) => (
 
 export const CalendarIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,4H18V18H2Z M5,2V5Z M15,2V5Z M2,7H18Z" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M2,4H18V18H2Z M5,2V5Z M15,2V5Z M2,7H18Z" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={0.2} />
+    <path
+      d="
+        M2,3.25h2.25v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h8.5v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h2.25a0.75 0.75 0 0 1 0.75,0.75v14a0.75 0.75 0 0 1 -0.75 0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-14a0.75 0.75 0 0 1 0.75,-0.75Z
+        M2.75,4.75v12.5h14.5v-12.5h-1.5v0.25a0.75 0.75 0 0 1 -1.5,0v-0.25h-8.5v0.25a0.75 0.75 0 0 1 -1.5,0v-0.25Z
+        M2.75,6.25h14.5v1.5h-14.5
+      "
+    />
   </svg>
 );
 
