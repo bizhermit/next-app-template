@@ -355,12 +355,24 @@ export const UpDownIcon = (p: IconProps) => (
 
 export const CalendarIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,4H18V18H2Z M5,2V5Z M15,2V5Z M2,7H18Z" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={0.2} />
     <path
       d="
         M2,3.25h2.25v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h8.5v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h2.25a0.75 0.75 0 0 1 0.75,0.75v14a0.75 0.75 0 0 1 -0.75 0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-14a0.75 0.75 0 0 1 0.75,-0.75Z
         M2.75,4.75v12.5h14.5v-12.5h-1.5v0.25a0.75 0.75 0 0 1 -1.5,0v-0.25h-8.5v0.25a0.75 0.75 0 0 1 -1.5,0v-0.25Z
-        M2.75,6.25h14.5v1.5h-14.5
+        M2.75,6.25h14.5v1.5h-14.5Z
+      "
+    />
+  </svg>
+);
+
+export const CalendarFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M2,4H18V18H2Z M5,2V5Z M15,2V5Z M2,7H18Z" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={0.2} />
+    <path
+      d="
+        M2,3.25h2.25v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h8.5v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h2.25a0.75 0.75 0 0 1 0.75,0.75v14a0.75 0.75 0 0 1 -0.75 0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-14a0.75 0.75 0 0 1 0.75,-0.75Z
+        M4.25,4.75v0.25a0.75 0.75 0 0 0 1.5,0v-0.25h8.5v0.25a0.75 0.75 0 0 0 1.5,0v-0.25
+        M3.5,6.25v1.5h13a0.75 0.75 0 0 0 0,-1.5h-13a0.75 0.75 0 0 0 0,1.5v-1.5Z
       "
     />
   </svg>
@@ -368,8 +380,27 @@ export const CalendarIcon = (p: IconProps) => (
 
 export const TodayIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,4H18V18H2Z M5,2V5Z M15,2V5Z M2,7H18Z" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <rect x="11" y="11" width="2" height="2" strokeLinejoin="miter" strokeWidth="0.15rem" strokeLinecap="round" />
+    <path
+      d="
+        M2,3.25h2.25v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h8.5v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h2.25a0.75 0.75 0 0 1 0.75,0.75v14a0.75 0.75 0 0 1 -0.75 0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-14a0.75 0.75 0 0 1 0.75,-0.75Z
+        M2.75,4.75v12.5h14.5v-12.5h-1.5v0.25a0.75 0.75 0 0 1 -1.5,0v-0.25h-8.5v0.25a0.75 0.75 0 0 1 -1.5,0v-0.25Z
+        M2.75,6.25h14.5v1.5h-14.5Z
+        M10.25,11v2a0.75 0.75 0 0 0 0.75,0.75h2a0.75 0.75 0 0 0 0.75,-0.75v-2a0.75 0.75 0 0 0 -0.75,-0.75h-2a0.75 0.75 0 0 0 -0.75,0.75Z
+      "
+    />
+  </svg>
+);
+
+export const TodayFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+        M2,3.25h2.25v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h8.5v-1.25a0.75 0.75 0 0 1 1.5,0v1.25h2.25a0.75 0.75 0 0 1 0.75,0.75v14a0.75 0.75 0 0 1 -0.75 0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-14a0.75 0.75 0 0 1 0.75,-0.75Z
+        M4.25,4.75v0.25a0.75 0.75 0 0 0 1.5,0v-0.25h8.5v0.25a0.75 0.75 0 0 0 1.5,0v-0.25
+        M3.5,6.25v1.5h13a0.75 0.75 0 0 0 0,-1.5h-13a0.75 0.75 0 0 0 0,1.5v-1.5Z
+        M10.25,11v2a0.75 0.75 0 0 0 0.75,0.75h2a0.75 0.75 0 0 0 0.75,-0.75v-2a0.75 0.75 0 0 0 -0.75,-0.75h-2a0.75 0.75 0 0 0 -0.75,0.75Z
+      "
+    />
   </svg>
 );
 
