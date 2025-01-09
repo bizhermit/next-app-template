@@ -502,13 +502,16 @@ export const SaveFillIcon = (p: IconProps) => (
 
 export const UndoIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M4,3l0,5 5,0M4,8l2.5,-2.5a5 5 225 0 1 8 6l-6.5,6.5" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6.75,4.25l-2,2v-3.25a0.75 0.75 0 0 0 -1.5,0v5.75h5.75a0.75 0.75 0 0 0 0,-1.5h-3.25l2,-2a3 3 0 0 1 6,6l-2,2l-5,5a0.75 0.75 0 0 0 1.07,1.07l7.07,-7.07A2 2 0 0 0 6.75,4.25Z" />
   </svg>
 );
 
 export const RedoIcon = (p: IconProps) => (
-  <svg {...attrs(p)}>
-    <path d="M16,3l0,5 -5,0M16,8l-2.5,-2.5a5 5 315 1 0 -8 6l6.5,6.5" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+  <svg {...attrs(p)} style={{ overflow: "visible" }}>
+    <path
+      d="M6.75,4.25l-2,2v-3.25a0.75 0.75 0 0 0 -1.5,0v5.75h5.75a0.75 0.75 0 0 0 0,-1.5h-3.25l2,-2a3 3 0 0 1 6,6l-2,2l-5,5a0.75 0.75 0 0 0 1.07,1.07l7.07,-7.07A2 2 0 0 0 6.75,4.25Z"
+      transform="scale(-1 1) translate(-20 0)"
+    />
   </svg>
 );
 
