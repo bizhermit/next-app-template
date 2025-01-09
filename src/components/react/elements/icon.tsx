@@ -529,7 +529,27 @@ export const RedoIcon = (p: IconProps) => (
 
 export const CloudIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6.5,16a4.1 4.1 0 1 1 0 -8a3.9 3.9 -180 0 1 8,0v1a3 3.5 -90 0 1 0,7.1z" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="
+      M6.5,16.75
+      c-7.5,0 -7.5,-9.75 -0.5,-9.5
+      c0,-5.5 9.5,-5.5 9.5,1
+      c5.25,1 5.25,8.5 0,8.5Z
+      m0,-1.5h9.25
+      c3.5,0 3,-6 -1.5,-5.75
+      h-0.25v-1
+      c0,-5.25 -6.75,-5.25 -6.5,-0.5
+      v0.75h-0.5
+      c-6.5,-0.75 -6,6.5 -1,6.5
+      Z
+     "
+    />
+  </svg>
+);
+
+export const CloudFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M6.5,16.75c-7.5,0 -7.5,-9.75 -0.5,-9.5c0,-5.5 9.5,-5.5 9.5,1c5.25,1 5.25,8.5 0,8.5Z" />
   </svg>
 );
 
