@@ -476,7 +476,27 @@ export const GridFillIcon = (p: IconProps) => (
 
 export const SaveIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,2H15L18,5 18,18 2,18Z M5,2v4h8v-4z M5,18l0,-7 10,0 0,7" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="
+        M2,1.25h13l3.75,3.75v13a0.75 0.75 0 0 1 -0.75,0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-16a0.75 0.75 0 0 1 0.75,-0.75Z
+        m0.75,1.5v14.5h1.5v-6.25a0.75 0.75 0 0 1 0.75,-0.75h10a0.75 0.75 0 0 1 0.75,0.75v6.25
+        h-1.5v-5.5h-8.5v5.5h11.5
+        v-12l-2.5,-2.5h-1v3.25a0.75 0.75 0 0 1 -0.75,0.75h-8a0.75 0.75 0 0 1 -0.75,-0.75v-3.25
+        h1.5v2.5h6.5v-2.5Z
+      "
+    />
+  </svg>
+);
+
+export const SaveFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+        M2,1.25h13l3.75,3.75v13a0.75 0.75 0 0 1 -0.75,0.75h-16a0.75 0.75 0 0 1 -0.75,-0.75v-16a0.75 0.75 0 0 1 0.75,-0.75Z
+        M5.75,2.75v2.5h6.5v-2.5Z
+        M5.75,11.75v5.5h8.5v-5.5Z
+      "
+    />
   </svg>
 );
 
