@@ -422,9 +422,9 @@ export const ListIcon = (p: IconProps) => (
     <path
       d="
       M2,3.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
-      m0,4h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
-      m0,4h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
-      m0,4h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      M2,7.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      M2,11.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      M2,15.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
       "
     />
   </svg>
@@ -432,11 +432,6 @@ export const ListIcon = (p: IconProps) => (
 
 export const OrderListIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6,4H18 M6,8H18 M6,12H18 M6,16H18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
-    <circle cx="2.5" cy="4" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
-    <circle cx="2.5" cy="8" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
-    <circle cx="2.5" cy="12" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
-    <circle cx="2.5" cy="16" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
     <path
       d="
       M1.25,4a1.25 1.25 0 0 1 2.5,0a1.25 1.25 0 0 1 -2.5,0Z
@@ -448,6 +443,23 @@ export const OrderListIcon = (p: IconProps) => (
       M1.25,16a1.25 1.25 0 0 1 2.5,0a1.25 1.25 0 0 1 -2.5,0Z
       m4.75,-0.75h12a0.75 0.75 0 0 1 0,1.5h-12a0.75 0.75 0 0 1 0,-1.5Z
       "
+    />
+  </svg>
+);
+
+export const ClearAllIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+      M2,3.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      M2,7.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      M2,11.25h9a0.75 0.75 0 0 1 0,1.5h-9a0.75 0.75 0 0 1 0,-1.5Z
+      M2,15.25h9a0.75 0.75 0 0 1 0,1.5h-9a0.75 0.75 0 0 1 0,-1.5Z
+      "
+    />
+    <path
+      d="M15.25,11.25a0.75 0.75 0 0 1 1.5,0v2h2a0.75 0.75 0 0 1 0,1.5h-2v2a0.75 0.75 0 0 1 -1.5,0v-2h-2a0.75 0.75 0 0 1 0,-1.5h2Z"
+      transform="rotate(45 16 14)"
     />
   </svg>
 );
@@ -512,12 +524,6 @@ export const RedoIcon = (p: IconProps) => (
       d="M6.75,4.25l-2,2v-3.25a0.75 0.75 0 0 0 -1.5,0v5.75h5.75a0.75 0.75 0 0 0 0,-1.5h-3.25l2,-2a3 3 0 0 1 6,6l-2,2l-5,5a0.75 0.75 0 0 0 1.07,1.07l7.07,-7.07A2 2 0 0 0 6.75,4.25Z"
       transform="scale(-1 1) translate(-20 0)"
     />
-  </svg>
-);
-
-export const ClearAllIcon = (p: IconProps) => (
-  <svg {...attrs(p)}>
-    <path d="M2,4h16Z M2,8h16Z M2,12h9z M2,16h9z M14,12l4,4Z M14,16l4,-4" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
