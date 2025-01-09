@@ -37,7 +37,7 @@ export const PlusIcon = (p: IconProps) => (
 
 export const PlusCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0m1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
     <path d="M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z" />
   </svg>
 );
@@ -56,7 +56,7 @@ export const MinusIcon = (p: IconProps) => (
 
 export const MinusCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0m1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
     <path d="M4.25,9.25h11.5a0.75 0.75 0 0 1 0,1.5h-11.5a0.75 0.75 0 0 1 0,-1.5Z" />
   </svg>
 );
@@ -78,7 +78,7 @@ export const CrossIcon = (p: IconProps) => (
 
 export const CrossCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0m1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
     <path
       d="M9.25,4.25a0.75 0.75 0 0 1 1.5,0v5h5a0.75 0.75 0 0 1 0,1.5h-5v5a0.75 0.75 0 0 1 -1.5,0v-5h-5a0.75 0.75 0 0 1 0,-1.5h5Z"
       transform="rotate(45,10,10)"
@@ -406,14 +406,14 @@ export const TodayFillIcon = (p: IconProps) => (
 
 export const ClockIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0m1.25,0a7.75 7.75 0 0 1 17,0a7.75 7.75 0 0 1 -17,0Z" />
     <path d="M10.75,3v6.25h4.25a0.75 0.75 0 0 1 0,1.5h-5a0.75 0.75 0 0 1 -0.75,-0.75v-7a0.75 0.75 0 0 1 1.5,0Z" />
   </svg>
 );
 
 export const ClockFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0l1.25,0Z M10.75,3v6.25h4.25a0.75 0.75 0 0 1 0,1.5h-5a0.75 0.75 0 0 1 -0.75,-0.75v-7a0.75 0.75 0 0 1 1.5,0Z" />
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0m1.25,0Z M10.75,3v6.25h4.25a0.75 0.75 0 0 1 0,1.5h-5a0.75 0.75 0 0 1 -0.75,-0.75v-7a0.75 0.75 0 0 1 1.5,0Z" />
   </svg>
 );
 
@@ -532,15 +532,15 @@ export const CloudIcon = (p: IconProps) => (
     <path
       d="
       M6.5,16.75
-      c-7.5,0 -7.5,-9.75 -0.5,-9.5
+      c-7.75,0 -7.5,-9.5 -0.5,-9.5
       c0,-5.5 9.5,-5.5 9.5,1
-      c5.25,1 5.25,8.5 0,8.5Z
-      m0,-1.5h9.25
-      c3.5,0 3,-6 -1.5,-5.75
-      h-0.25v-1
-      c0,-5.25 -6.75,-5.25 -6.5,-0.5
-      v0.75h-0.5
-      c-6.5,-0.75 -6,6.5 -1,6.5
+      c5.25,1 5.25,8.5 0,8.5
+      m0,-1.5
+      c3.25,0 3.5,-5.5 -1,-5.5
+      h-0.5v-1.25
+      c0.25,-5 -6.75,-5 -6.75,-0.5
+      v0.75h-0.75
+      c-5.5,0 -5.5,5.75 -0.75,6.5
       Z
      "
     />
@@ -549,31 +549,76 @@ export const CloudIcon = (p: IconProps) => (
 
 export const CloudFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6.5,16.75c-7.5,0 -7.5,-9.75 -0.5,-9.5c0,-5.5 9.5,-5.5 9.5,1c5.25,1 5.25,8.5 0,8.5Z" />
+    <path d="M6.5,16.75c-7.75,0 -7.5,-9.5 -0.5,-9.5c0,-5.5 9.5,-5.5 9.5,1c5.25,1 5.25,8.5 0,8.5Z" />
   </svg>
 );
 
 export const CloudDownloadIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6.5,16a4.1 4.1 0 1 1 0 -8a3.9 3.9 -180 0 1 8,0v1a3 3.5 -90 0 1 0,7.1M10 8v8M7 13l3,3 3,-3" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="
+      M6.5,16.75
+      c-7.75,0 -7.5,-9.5 -0.5,-9.5
+      c0,-5.5 9.5,-5.5 9.5,1
+      c5.25,1 5.25,8.5 0,8.5
+      h-1.5
+      a0.75 0.75 0 0 1 0,-1.5
+      h1.5
+      c3.25,0 3.5,-5.5 -1,-5.5
+      h-0.5v-1.25
+      c0.25,-5 -6.75,-5 -6.75,-0.5
+      v0.75h-0.75
+      c-5.5,0 -5.5,5.75 -0.75,6.5
+      h0.5
+      a0.75 0.75 0 0 1 0,1.5Z
+     "
+    />
+    <path d="M10.75,8a0.75 0.75 0 0 0 -1.5,0v7a0.75 0.75 0 0 0 1.5,0Z" />
+    <path
+      d="M5,10a0.75 0.75 0 0 1 1.5,0v3.5h3.5a0.75 0.75 0 0 1 0,1.5h-5Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
 export const CloudUploadIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6.5,16a4.1 4.1 0 1 1 0 -8a3.9 3.9 -180 0 1 8,0v1a3 3.5 -90 0 1 0,7.1M10 11v6M7 12.5l3,-3 3,3" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="
+      M6.5,16.75
+      c-7.75,0 -7.5,-9.5 -0.5,-9.5
+      c0,-5.5 9.5,-5.5 9.5,1
+      c5.25,1 5.25,8.5 0,8.5
+      h-1.5
+      a0.75 0.75 0 0 1 0,-1.5
+      h1.5
+      c3.25,0 3.5,-5.5 -1,-5.5
+      h-0.5v-1.25
+      c0.25,-5 -6.75,-5 -6.75,-0.5
+      v0.75h-0.75
+      c-5.5,0 -5.5,5.75 -0.75,6.5
+      h0.5
+      a0.75 0.75 0 0 1 0,1.5Z
+     "
+    />
+    <path d="M10.75,10.5a0.75 0.75 0 0 0 -1.5,0v7a0.75 0.75 0 0 0 1.5,0Z" />
+    <path
+      d="M9,6a0.75 0.75 0 0 1 1.5,0v3.5h3.5a0.75 0.75 0 0 1 0,1.5h-5Z"
+      transform="rotate(135,10,10)"
+    />
   </svg>
 );
 
 export const CircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="10" r="8" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M1.25,10a8.75 8.75 0 0 0 17.5,0a8.75 8.75 0 0 0 -17.5,0m1.5,0a7.25 7.25 0 0 1 14.5,0a7.25 7.25 0 0 1 -14.5,0Z" />
   </svg>
 );
 
 export const CircleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="10" r="8" fill="fill" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="10" cy="10" r="8" fill="fill" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
+    <path d="M1.25,10a8.75 8.75 0 0 0 17.5,0a8.75 8.75 0 0 0 -17.5,0Z" />
   </svg>
 );
 
