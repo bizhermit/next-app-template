@@ -419,17 +419,36 @@ export const ClockFillIcon = (p: IconProps) => (
 
 export const ListIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,4H18 M2,8H18 M2,12H18 M2,16H18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="
+      M2,3.25h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      m0,4h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      m0,4h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      m0,4h16a0.75 0.75 0 0 1 0,1.5h-16a0.75 0.75 0 0 1 0,-1.5Z
+      "
+    />
   </svg>
 );
 
 export const OrderListIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6,4H18 M6,8H18 M6,12H18 M6,16H18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="2.5" cy="4" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="2.5" cy="8" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="2.5" cy="12" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="2.5" cy="16" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6,4H18 M6,8H18 M6,12H18 M6,16H18" fill="none" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
+    <circle cx="2.5" cy="4" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
+    <circle cx="2.5" cy="8" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
+    <circle cx="2.5" cy="12" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
+    <circle cx="2.5" cy="16" r=".5" strokeWidth="0.15rem" strokeLinecap="round" strokeLinejoin="round" opacity={.5} />
+    <path
+      d="
+      M1.25,4a1.25 1.25 0 0 1 2.5,0a1.25 1.25 0 0 1 -2.5,0Z
+      m4.75,-0.75h12a0.75 0.75 0 0 1 0,1.5h-12a0.75 0.75 0 0 1 0,-1.5Z
+      M1.25,8a1.25 1.25 0 0 1 2.5,0a1.25 1.25 0 0 1 -2.5,0Z
+      m4.75,-0.75h12a0.75 0.75 0 0 1 0,1.5h-12a0.75 0.75 0 0 1 0,-1.5Z
+      M1.25,12a1.25 1.25 0 0 1 2.5,0a1.25 1.25 0 0 1 -2.5,0Z
+      m4.75,-0.75h12a0.75 0.75 0 0 1 0,1.5h-12a0.75 0.75 0 0 1 0,-1.5Z
+      M1.25,16a1.25 1.25 0 0 1 2.5,0a1.25 1.25 0 0 1 -2.5,0Z
+      m4.75,-0.75h12a0.75 0.75 0 0 1 0,1.5h-12a0.75 0.75 0 0 1 0,-1.5Z
+      "
+    />
   </svg>
 );
 
