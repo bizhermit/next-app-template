@@ -1007,50 +1007,79 @@ export const FileDeleteFillIcon = (p: IconProps) => (
 
 export const ExclamationIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M9.5,3 10.5,3 10.2,12.5 9.8,12.5Z" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="17" r=".8" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M10,2.25h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,10a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-10a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,15.5a1.5 1.5 0 0 1 0,3a1.5 1.5 0 0 1 0,-3
+      " />
   </svg>
 );
 
 export const ExclamationCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="14.5" r=".5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="10" r="9" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <circle cx="10" cy="10" r="9.125" strokeWidth="1.25" fill="none" />
+    <path
+      d="
+        M10,4.75h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,6.5a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-6.5a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,13.5a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      " />
   </svg>
 );
 
 export const ExclamationCircleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1,10a4.5 4.5 0 0 0 18,0a4.5 4.5 0 0 0 -18,0Z M8.5,3.5 11.5,3.5 11.2,13 8.8,13Z M8.5,15a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z" strokeWidth=".5" strokeLinejoin="round" />
+    <path
+      d="
+        M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
+        M10,4.75h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,6.5a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-6.5a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,13.5a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      " />
   </svg>
 );
 
 export const ExclamationTriangleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M9.5,6.5 10.5,6.5 10.2,12 9.8,12Z" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="15" r=".5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M10,1 19,18 1,18Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M10.5,1q-0.5,-0.5 -1,0l-9,15.93q-0.16,0.67 0.5,0.87h18q0.67,-0.16 0.5,-0.87Z
+        m-0.5,2l7.5,13.5h-15Z
+        M10,6.5h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,5.5a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-5.5a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,13.75a1.1 1.1 0 0 1 0,2.2a1.1 1.1 0 0 1 0,-2.2Z
+      " />
   </svg>
 );
 
 export const ExclamationTriangleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,1 1,18 19,18Z M8.5,5 11.5,5 11.2,14 8.8,14Z M8.5,16a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z" strokeWidth=".5" strokeLinejoin="round" />
+    <path
+      d="
+        M10.5,1q-0.5,-0.5 -1,0l-9,15.93q-0.16,0.67 0.5,0.87h18q0.67,-0.16 0.5,-0.87Z
+        M10,5.5h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,6.5a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-6.5a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,14a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      " />
   </svg>
 );
 
 export const ExclamationDiamondIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M9.5,5.5 10.5,5.5 10.2,11.5 9.8,11.5Z" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="14.5" r=".5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M10,1 19,10 10,19 1,10Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M10.5,0.5q-0.5,-0.5 -1,0l-9,9q-0.5,0.5 0,1l9,9q0.5,0.5 1,0l9,-9q0.5,-0.5 0,-1Z
+        m-0.5,1.5l8,8 -8,8 -8,-8 8,-8Z
+        M10,4.75h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,6.5a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-6.5a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,13.5a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      " />
   </svg>
 );
 
 export const ExclamationDiamondFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,1 1,10 10,19 19,10Z M8.5,4 11.5,4 11.2,13 8.8,13Z M8.5,15a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z" strokeWidth=".5" strokeLinejoin="round" />
+    <path
+      d="
+        M10.5,1q-0.5,-0.5 -1,0l-8.5,8.5q-0.5,0.5 0,1l8.5,8.5q0.5,0.5 1,0l8.5,-8.5q0.5,-0.5 0,-1Z
+        M10,4.75h0.75a0.5 0.5 0 0 1 0.5,0.5l-0.25,6.5a0.5 0.5 0 0 1 -0.5,0.5h-1a0.5 0.5 0 0 1 -0.5,-0.5l-0.25,-6.5a0.5 0.5 0 0 1 0.5,-0.5Z
+        M10,13.5a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      " />
   </svg>
 );
 
