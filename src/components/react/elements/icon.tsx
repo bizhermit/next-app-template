@@ -597,7 +597,6 @@ export const ElementIcon = (p: IconProps) => (
     <path
       d="M6,5.5l-4.5,4.5 4.5,4.5 M14,5.5l4.5,4.5 -4.5,4.5 M12,5l-4,10"
       strokeWidth="1.5"
-
       fill="none"
     />
   </svg>
@@ -605,24 +604,41 @@ export const ElementIcon = (p: IconProps) => (
 
 export const SmileIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="10" r="8.5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="6.5" cy="8" r=".8" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="13.5" cy="8" r=".8" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M14.2,13a5 5 30 0 1 -8,0" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <circle cx="10" cy="10" r="9.125" strokeWidth="1.25" fill="none" />
+    <path d="M5,8a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z M12,8a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z M6.75,12.5a4.25 4.25 0 0 0 6.75,0a0.75 0.75 0 0 1 1.07,1.1a5.75 5.75 0 0 1 -8.95,0a0.75 0.75 0 0 1 1.07,-1.17Z" />
+  </svg>
+);
+
+export const SmileFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z M5,8a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z M12,8a1.5 1.5 0 0 1 3,0a1.5 1.5 0 0 1 -3,0Z M6.75,12.5a4.25 4.25 0 0 0 6.75,0a0.75 0.75 0 0 1 1.07,1.1a5.75 5.75 0 0 1 -8.95,0a0.75 0.75 0 0 1 1.07,-1.17Z" />
   </svg>
 );
 
 export const ButtonIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,5H18V13H2Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M12,10L17,15 13.8,15 15,18.2 14.5,18.4 13.5,15 11,17Z" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M9,13h-7v-8h16v8h-1" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+    <path
+      d="M8,12l-4,9 3.25,-1v3a0.75 0.25 0 0 0 1.5,0v-3l3,1Z"
+      transform="rotate(-18)"
+    />
+  </svg>
+);
+
+export const LinkIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M6,7.5v-2a4 4 0 0 1 8,0v2m0,5v2a4 4 0 0 1 -8,0v-2 M10,7v6"
+      strokeWidth="1.5"
+      fill="none"
+    />
   </svg>
 );
 
 export const ExLinkIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M8,3H3V17H17V12 M12,2H18V8" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="18" x2="8" y1="2" y2="12" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M8,3h-5v14h14v-5" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+    <path d="M12,2h6v6m0,-6l-10,10" strokeWidth="1.5" fill="none" />
   </svg>
 );
 
