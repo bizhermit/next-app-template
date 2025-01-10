@@ -1085,16 +1085,36 @@ export const ExclamationDiamondFillIcon = (p: IconProps) => (
 
 export const QuestionIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M 6,7 a 4 4 -180 1 1 4,4 M10,11V13" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="17" r=".8" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M6.75,7a0.75 0.75 0 0 1 -1.5,0a4.75 4.75 0 1 1 5.5,4.75v1.5a0.75 0.75 0 0 1 -1.5,0v-2.25a0.75 0.75 0 0 1 0.75,-0.75a3.25 3.25 0 1 0 -3.25,-3.2Z
+        M10,15.5a1.5 1.5 0 0 1 0,3a1.5 1.5 0 0 1 0,-3Z
+      "
+    />
   </svg>
 );
 
 export const QuestionCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M 7,7 a 3.2 3.2 -180 1 1 3,3 M10,10V11" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="14.5" r=".5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="10" r="9" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <circle cx="10" cy="10" r="9.125" strokeWidth="1.25" fill="none" />
+    <path
+      d="
+        M7.75,7.75a0.75 0.75 0 0 1 -1.5,0a4 4 0 1 1 4.5,3.75v0.5a0.75 0.75 0 0 1 -1.5,0v-1.25a0.75 0.75 0 0 1 0.75,-0.75a2.5 2.5 0 1 0 -2.25,-2.2Z
+        M10,14a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      "
+    />
+  </svg>
+);
+
+export const QuestionCircleFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+        M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
+        M7.75,7.75a0.75 0.75 0 0 1 -1.5,0a4 4 0 1 1 4.5,3.75v0.5a0.75 0.75 0 0 1 -1.5,0v-1.25a0.75 0.75 0 0 1 0.75,-0.75a2.5 2.5 0 1 0 -2.25,-2.2Z
+        M10,14a1.25 1.25 0 0 1 0,2.5a1.25 1.25 0 0 1 0,-2.5Z
+      "
+    />
   </svg>
 );
 
