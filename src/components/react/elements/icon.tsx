@@ -959,13 +959,22 @@ export const FolderRemoveFillIcon = (p: IconProps) => (
 
 export const FileIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M3,1.5 11.5,1.5 17,7V18.5H3Z M11,1.5V7H17" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M2.25,1.25v17.25a0.75 0.75 0 0 0 0.75,0.75h14a0.75 0.75 0 0 0 0.75,-0.75v-12l-5.75,-5.75h-9a0.75 0.75 0 0 0 -0.75,0.75Z
+        m1.5,1h6.5v5a0.75 0.75 0 0 0 0.75,0.75h5.25v9.75h-12.5Z
+        M15.5,6.5h-3.75v-3.75Z
+      " />
   </svg>
 );
 
 export const FileFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M3,1.5 11.5,1.5 17,7V18.5H3Z M11,1.5V7H17" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M2.25,1.25v17.25a0.75 0.75 0 0 0 0.75,0.75h14a0.75 0.75 0 0 0 0.75,-0.75v-12l-5.75,-5.75h-9a0.75 0.75 0 0 0 -0.75,0.75Z
+        M15.5,6.5h-3.75v-3.75Z
+      " />
   </svg>
 );
 
