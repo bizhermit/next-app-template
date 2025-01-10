@@ -139,6 +139,7 @@ $bigSize: 30rem;
     transition: box-shadow .2s,
     background-color .2s;
     background: inherit;
+    overflow: hidden;
 
     @include mixins.hover {
       box-shadow: 0 0 8px var(--sdw);
