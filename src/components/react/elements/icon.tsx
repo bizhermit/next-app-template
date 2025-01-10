@@ -877,13 +877,33 @@ export const CardIcon = (p: IconProps) => (
 
 export const SignInIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6,6.5V2H17V18H6V13.5 M2,10H12 M10,6 14,10 10,14" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M6,6.5v-4.5h11v16h-11v-4.5"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10,6l4,4 -4,4m4,-4h-12"
+      fill="none"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
 export const SignOutIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M11,6.5V2H2V18H11V13.5 M18,10H8 M15,6 19,10 15,14" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M11,6.5v-4.5h-9v16h9v-4.5"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M15,6l4,4 -4,4m4,-4h-11"
+      fill="none"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
