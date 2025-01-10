@@ -1237,9 +1237,24 @@ export const DeleteFillIcon = (p: IconProps) => (
 
 export const DeleteBackIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="7.5" x2="15.5" y1="6" y2="14" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="7.5" x2="15.5" y2="6" y1="14" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M1,10 5,3H19V17H5Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M0.25,10l4.5,8h14.25a0.75 0.75 0 0 0 0.75,-0.75v-14.25a0.75 0.75 0 0 0 -0.75,-0.75h-14.25Z
+        m1.75,0l3.75,-6.25h12.5v12.75h-12.5Z
+        M8,5.5l3.5,3.5 3.5,-3.5a0.75 0.75 0 0 1 1.07,1.07l-3.5,3.5 3.5,3.5a0.75 0.75 0 0 1 -1.07,1.07l-3.5,-3.5 -3.5,3.5a0.75 0.75 0 0 1 -1.07,-1.07l3.5,-3.5 -3.5,-3.5a0.75 0.75 0 0 1 1.07,-1.07Z
+      "
+    />
+  </svg>
+);
+
+export const DeleteBackFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+        M0.25,10l4.5,8h14.25a0.75 0.75 0 0 0 0.75,-0.75v-14.25a0.75 0.75 0 0 0 -0.75,-0.75h-14.25Z
+        M8,5.5l3.5,3.5 3.5,-3.5a0.75 0.75 0 0 1 1.07,1.07l-3.5,3.5 3.5,3.5a0.75 0.75 0 0 1 -1.07,1.07l-3.5,-3.5 -3.5,3.5a0.75 0.75 0 0 1 -1.07,-1.07l3.5,-3.5 -3.5,-3.5a0.75 0.75 0 0 1 1.07,-1.07Z
+      "
+    />
   </svg>
 );
 
