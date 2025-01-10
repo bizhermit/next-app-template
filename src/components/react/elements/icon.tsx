@@ -644,32 +644,71 @@ export const ExLinkIcon = (p: IconProps) => (
 
 export const ContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,3H18V17H2Z M5,5H15V8H5Z M5,10H12V12H5Z M5,14H15V15H5Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M2,3H18V17H2Z M5,5H15V8H5Z M5,10H12V12H5Z M5,14H15V15H5Z"
+      fill="none"
+      strokeWidth="1.25"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const NavContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,3H18V17H2Z M2,7H18 M8,7V17" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M2,3H18V17H2Z M2,7H18 M8,7V17"
+      fill="none"
+      strokeWidth="1.25"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const PopupIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1,2H19V18H1Z" opacity=".6" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M3.5,4.5H16.5V15.5H3.5Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M1,2H19V18H1Z"
+      opacity=".6"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M3.5,4.5H16.5V15.5H3.5Z"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const FormIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,3H3V17H17V10 M16,2L8,10 8,12 10,12 18,4Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,3h-7v14h14v-7"
+      strokeWidth="1.25"
+      fill="none"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10,-1h-1.5a0.75 0.75 0 0 0 -0.75,0.75v12l2.25,2.25 2.25,-2.25v-12a0.75 0.75 0 0 0 -0.75,-0.75Z m0,1.5h1v11l-1,1 -1,-1v-11"
+      transform="rotate(45,10,10)"
+    />
   </svg>
 );
 
 export const FormItemIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M6,8H2V16H18V10 M16,2L8,10 8,12 10,12 18,4Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M6,8h-4v8h16v-6"
+      strokeWidth="1.25"
+      fill="none"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10,-1h-1.5a0.75 0.75 0 0 0 -0.75,0.75v12l2.25,2.25 2.25,-2.25v-12a0.75 0.75 0 0 0 -0.75,-0.75Z m0,1.5h1v11l-1,1 -1,-1v-11"
+      transform="rotate(45,10,10)"
+    />
   </svg>
 );
 
