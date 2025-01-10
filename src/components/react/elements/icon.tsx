@@ -714,25 +714,47 @@ export const FormItemIcon = (p: IconProps) => (
 
 export const MagnifyingGlassIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="8" cy="8" r="7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="13" x2="18" y1="13" y2="18" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M0.25,8a7.75,7.75 0 0 0 15.5,0a7.75 7.75 0 0 0 -15.5,0Zm1.5,0a6 6 0 0 1 12.5,0a6 6 0 0 1 -12.5,0Z M12.5,13.57l5,5a0.75 0.75 0 0 0 1.07,-1.07l-5,-5Z" />
   </svg>
 );
 
 export const MagnifyingGlassPlusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="8" cy="8" r="7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="13" x2="18" y1="13" y2="18" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="4" x2="12" y1="8" y2="8" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line y1="4" y2="12" x1="8" x2="8" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="
+      M0.25,8a7.75,7.75 0 0 0 15.5,0a7.75 7.75 0 0 0 -15.5,0Zm1.5,0a6 6 0 0 1 12.5,0a6 6 0 0 1 -12.5,0Z
+      M7.25,4a0.75 0.75 0 0 1 1.5,0v3.25h3.25a0.75 0.75 0 0 1 0,1.5h-3.25v3.25a0.75 0.75 0 0 1 -1.5,0v-3.25h-3.25a0.75 0.75 0 0 1 0,-1.5h3.25Z
+      M12.5,13.57l5,5a0.75 0.75 0 0 0 1.07,-1.07l-5,-5Z"
+    />
+  </svg>
+);
+
+export const MagnifyingGlassPlusFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="
+      M0.25,8a7.75,7.75 0 0 0 15.5,0a7.75 7.75 0 0 0 -15.5,0Z
+      M7.25,4a0.75 0.75 0 0 1 1.5,0v3.25h3.25a0.75 0.75 0 0 1 0,1.5h-3.25v3.25a0.75 0.75 0 0 1 -1.5,0v-3.25h-3.25a0.75 0.75 0 0 1 0,-1.5h3.25Z
+      M12.5,13.57l5,5a0.75 0.75 0 0 0 1.07,-1.07l-5,-5Z"
+    />
   </svg>
 );
 
 export const MagnifyingGlassMinusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="8" cy="8" r="7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="13" x2="18" y1="13" y2="18" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="4" x2="12" y1="8" y2="8" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="
+      M0.25,8a7.75,7.75 0 0 0 15.5,0a7.75 7.75 0 0 0 -15.5,0Zm1.5,0a6 6 0 0 1 12.5,0a6 6 0 0 1 -12.5,0Z
+      M4,7.25h8a0.75 0.75 0 0 1 0,1.5h-8a0.75 0.75 0 0 1 0,-1.5Z
+      M12.5,13.57l5,5a0.75 0.75 0 0 0 1.07,-1.07l-5,-5Z"
+    />
+  </svg>
+);
+
+export const MagnifyingGlassMinusFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="
+      M0.25,8a7.75,7.75 0 0 0 15.5,0a7.75 7.75 0 0 0 -15.5,0Z
+      M4,7.25h8a0.75 0.75 0 0 1 0,1.5h-8a0.75 0.75 0 0 1 0,-1.5Z
+      M12.5,13.57l5,5a0.75 0.75 0 0 0 1.07,-1.07l-5,-5Z"
+    />
   </svg>
 );
 
