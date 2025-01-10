@@ -645,7 +645,7 @@ export const ExLinkIcon = (p: IconProps) => (
 export const ContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
-      d="M2,3H18V17H2Z M5,5H15V8H5Z M5,10H12V12H5Z M5,14H15V15H5Z"
+      d="M2,3h16v14h-16Z M5,5h10v2h-10Z M5,9h7v2h-7Z M5,13h10v2h-10Z"
       fill="none"
       strokeWidth="1.25"
       strokeLinejoin="round"
@@ -656,7 +656,7 @@ export const ContainerIcon = (p: IconProps) => (
 export const NavContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
-      d="M2,3H18V17H2Z M2,7H18 M8,7V17"
+      d="M2,3h16v14h-16Z M2,7h16 M8,7v10"
       fill="none"
       strokeWidth="1.25"
       strokeLinejoin="round"
@@ -667,16 +667,16 @@ export const NavContainerIcon = (p: IconProps) => (
 export const PopupIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
-      d="M1,2H19V18H1Z"
+      d="M1,2h18v16h-18Z"
       opacity=".6"
       fill="none"
-      strokeWidth="1.5"
+      strokeWidth="1.25"
       strokeLinejoin="round"
     />
     <path
-      d="M3.5,4.5H16.5V15.5H3.5Z"
+      d="M3.5,4.5h13v11h-13Z"
       fill="none"
-      strokeWidth="1.5"
+      strokeWidth="1.25"
       strokeLinejoin="round"
     />
   </svg>
