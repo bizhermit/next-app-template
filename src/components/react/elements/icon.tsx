@@ -1120,40 +1120,68 @@ export const QuestionCircleFillIcon = (p: IconProps) => (
 
 export const UserIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="6" r="4.5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M 2,19 a 8 8 -180 0 1 16,0" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,1.5a4.5 4.5 0 0 0 0,9a4.5 4.5 0 0 0 0,-9Z M2,19a8 8 0 0 1 16,0"
+      strokeWidth="1.5"
+      fill="none"
+    />
   </svg>
 );
 
 export const UserFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="6" r="4.5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M 2,19 a 8 8 -180 0 1 16,0Z" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,1.5a4.5 4.5 0 0 0 0,9a4.5 4.5 0 0 0 0,-9Z M2,19a8 8 0 0 1 16,0Z"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const UserAddIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="6" r="4.5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M 2,19 a 8 8 -180 0 1 11,-7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="12" x2="18" y1="16" y2="16" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line y1="13" y2="19" x1="15" x2="15" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,1.5a4.5 4.5 0 0 0 0,9a4.5 4.5 0 0 0 0,-9Z M2,19a8 8 0 0 1 11,-7 M12,16h6 M15,13v6"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+      fill="none"
+    />
   </svg>
 );
 
 export const UserMinusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="10" cy="6" r="4.5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M 2,19 a 8 8 -180 0 1 11,-7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="12" x2="18" y1="16.5" y2="16.5" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,1.5a4.5 4.5 0 0 0 0,9a4.5 4.5 0 0 0 0,-9Z M2,19a8 8 0 0 1 11,-7 M12,16h6"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+      fill="none"
+    />
   </svg>
 );
 
 export const UsersIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <circle cx="7.5" cy="8" r="4" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M 1,19 a 6.5 6.5 -180 0 1 13,0" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M 13,10 a 6.5 6.5 -90 0 1 6,7 M 10,2 a 4 4 -135 1 1 3,7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M7.5,4a4 4 0 0 0 0,8a4 4 0 0 0 0,-8Z M1,19a6.5 6.5 0 0 1 13,0 M10,2.5a4 4 0 1 1 3.5,7a2 0.75 0 0 0 0,0.5a6.5 6.5 0 0 1 5.5,7"
+      strokeWidth="1.5"
+      fill="none"
+    />
+  </svg>
+);
+
+export const UsersFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M7.5,4a4 4 0 0 0 0,8a4 4 0 0 0 0,-8Z M1,19a6.5 6.5 0 0 1 13,0Z"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10,2.5a4 4 0 1 1 3.5,7a2 0.75 0 0 0 0,0.5a6.5 6.5 0 0 1 5.5,7"
+      strokeWidth="1.5"
+      fill="none"
+    />
   </svg>
 );
 
