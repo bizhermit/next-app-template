@@ -804,65 +804,74 @@ export const SplitContainerIcon = (p: IconProps) => (
 
 export const LoadingIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="10" x2="10" y1="1" y2="5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="1" x2="5" y1="10" y2="10" opacity="0.9" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="3.3" x2="6.4" y1="3.3" y2="6.4" opacity="0.8" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="3.3" x2="6.4" y1="16.7" y2="13.6" opacity="0.7" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="10" x2="10" y1="19" y2="15" opacity="0.6" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="16.7" x2="13.6" y1="16.7" y2="13.6" opacity="0.5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="19" x2="15" y1="10" y2="10" opacity="0.4" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="16.7" x2="13.6" y1="3.3" y2="6.4" opacity="0.3" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <line x1="10" x2="10" y1="1" y2="5" strokeWidth="1.5" />
+    <line x1="1" x2="5" y1="10" y2="10" opacity="0.9" strokeWidth="1.5" />
+    <line x1="3.3" x2="6.4" y1="3.3" y2="6.4" opacity="0.8" strokeWidth="1.5" />
+    <line x1="3.3" x2="6.4" y1="16.7" y2="13.6" opacity="0.7" strokeWidth="1.5" />
+    <line x1="10" x2="10" y1="19" y2="15" opacity="0.6" strokeWidth="1.5" />
+    <line x1="16.7" x2="13.6" y1="16.7" y2="13.6" opacity="0.5" strokeWidth="1.5" />
+    <line x1="19" x2="15" y1="10" y2="10" opacity="0.4" strokeWidth="1.5" />
+    <line x1="16.7" x2="13.6" y1="3.3" y2="6.4" opacity="0.3" strokeWidth="1.5" />
   </svg>
 );
 
 export const LabelIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,5H14L18,10 14,15H2Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M1.75,4.25a0.5 0.5 0 0 0 -0.5,0.5v10.5a0.5 0.5 0 0 0 0.5,0.5h12.75l4.5,-5.75 -4.5,-5.75Z m1,1.5h11l3.4,4.25 -3.4,4.25h-11Z" />
   </svg>
 );
 
 export const LabelFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,5H14L18,10 14,15H2Z" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M1.75,4.25a0.5 0.5 0 0 0 -0.5,0.5v10.5a0.5 0.5 0 0 0 0.5,0.5h12.75l4.5,-5.75 -4.5,-5.75Z" />
   </svg>
 );
 
 export const StepperIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1,7H7.5L9.5,10 7.5,13H1L3,10Z" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M10.5,7H17L19,10 17,13H10.5L13,10Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="
+        M0.5,6.5h7.5l2.5,3.5 -2.5,3.5h-7.5l2.25,-3.5Z
+        M9.5,6.5h7.5l2.5,3.5 -2.5,3.5h-7.5l2.25,-3.5Z m2.5,1.25l1.75,2.25 -1.75,2.25h4l1.75,-2.25 -1.75,-2.25Z
+      "
+    />
   </svg>
 );
 
 export const VerticalDividerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="10" x2="10" y1="3" y2="17" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <line x1="10" x2="10" y1="3" y2="17" strokeWidth="1.5" />
   </svg>
 );
 
 export const HorizontalDividerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <line x1="3" x2="17" y1="10" y2="10" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <line x1="3" x2="17" y1="10" y2="10" strokeWidth="1.5" />
   </svg>
 );
 
 export const TooltipIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,3H18V17H2Z" opacity=".6" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M4,7H16V12L12,12L10,14L8,12H4Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M2,3h16v14h-16Z" opacity=".6" fill="none" strokeWidth="1.25" strokeLinejoin="round" />
+    <path d="M4,7h12v5h-4l-2,2 -2,-2h-4Z" fill="none" strokeWidth="1.5" strokeLinejoin="round" />
   </svg>
 );
 
 export const BadgeIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,2H2V18H18V10" opacity=".6" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="14" cy="6" r="5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M10,2h-8v16h16v-8" opacity=".6" fill="none" strokeWidth="1.25" strokeLinejoin="round" />
+    <circle cx="14" cy="6" r="5" fill="none" strokeWidth="1.5" />
   </svg>
 );
 
 export const CardIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,4H18V16H2Z M2,8H18" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M2,4h16v12h-16Z M2,8h16"
+      fill="none"
+      strokeWidth="1.25"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
