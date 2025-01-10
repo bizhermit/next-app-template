@@ -1187,7 +1187,7 @@ export const UsersFillIcon = (p: IconProps) => (
 
 export const PowerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M 13,4 a 7.5 7.5 -65 1 1 -6,0 M10,1.5V9" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M13,4a7.5 7.5 0 1 1 -6,0 M10,1.5v7.5" fill="none" strokeWidth="1.5" />
   </svg>
 );
 
@@ -1260,20 +1260,32 @@ export const DeleteBackFillIcon = (p: IconProps) => (
 
 export const CheckIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M3,10 9,16 18.5,4" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M4,6.25a0.75 0.75 0 0 1 1.5,0v6h12.5a0.75 0.75 0 0 1 0,1.5h-13.25a0.75 0.75 0 0 1 -0.75,-0.75Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
 export const CheckCircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M4.5,10 8.5,14.5 16,6" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <circle cx="10" cy="10" r="9" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <circle cx="10" cy="10" r="9.125" strokeWidth="1.25" fill="none" />
+    <path
+      d="M4.75,6.75a0.75 0.75 0 0 1 1.5,0v4.5h10a0.75 0.75 0 0 1 0,1.5h-10.75a0.75 0.75 0 0 1 -0.75,-0.75Z"
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
 export const CheckCircleFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1,10A9 9 0 0 0 19,10A9 9 0 0 0 1,10Z M3.5,11 7.5,15.5Q8.5,16.5,9.5,15.5L17,7a1 1 0 0 0 -2,-2 L8.5,12.3 5.5,9a1 1 0 0 0 -2,2Z" fillRule="evenodd" strokeLinejoin="miter" strokeWidth="0.15rem" />
+    <path
+      d="
+        M0.25,10a9.75 9.75 0 0 0 19.5,0a9.75 9.75 0 0 0 -19.5,0Z
+        M4.75,6.75a0.75 0.75 0 0 1 1.5,0v4.5h10a0.75 0.75 0 0 1 0,1.5h-10.75a0.75 0.75 0 0 1 -0.75,-0.75Z
+      "
+      transform="rotate(-45,10,10)"
+    />
   </svg>
 );
 
