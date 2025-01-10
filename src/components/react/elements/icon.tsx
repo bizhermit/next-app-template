@@ -760,25 +760,45 @@ export const MagnifyingGlassMinusFillIcon = (p: IconProps) => (
 
 export const TextBoxIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M7,7H2V13H7 M13,7H18V13H13 M10,5L10,15 M9,4H6M11,4H14 M9,16H6M11,16H14" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M7,7h-5v6h5 M13,7h5v6h-5 M10,5v10 M10,5l-1,-1h-3 M10,5l1,-1h3  M10,15l-1,1h-3 M10,15l1,1h3"
+      strokeWidth="1.5"
+      fill="none"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const TabContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,3H18V17H2Z M2,7H18 M10,3V7" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M2,3h16v14h-16Z M2,7h16 M10,3v4"
+      fill="none"
+      strokeWidth="1.25"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const SlideContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M4,4H16V16H4Z M1,4V16 M19,4V16" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M4,4h12v12h-12Z M1,4v12 M19,4v12"
+      fill="none"
+      strokeWidth="1.25"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const SplitContainerIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M2,3H18V17H2Z M10,3V17" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M2,3h16v14h-16Z M10,3v14"
+      fill="none"
+      strokeWidth="1.25"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
