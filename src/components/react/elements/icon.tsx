@@ -909,15 +909,51 @@ export const SignOutIcon = (p: IconProps) => (
 
 export const FolderIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1.5,3.5 7,3.5 9,5.5H18.5V17.5H1.5Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M0.75,3.25v14.25a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-12a0.75 0.75 0 0 0 -0.75,-0.75h-9l-2,-2h-6a0.75 0.75 0 0 0 -0.75,0.75Z m1.5,1h4.5l2,2h9v10.5h-15.5Z" />
+  </svg>
+);
+
+export const FolderFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M0.75,3.25v14.25a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-12a0.75 0.75 0 0 0 -0.75,-0.75h-9l-2,-2h-6a0.75 0.75 0 0 0 -0.75,0.75Z" />
   </svg>
 );
 
 export const FolderAddIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1.5,3.5 7,3.5 9,5.5H18.5V17.5H1.5Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line x1="7" x2="13" y1="11.5" y2="11.5" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <line y1="8.5" y2="14.5" x1="10" x2="10" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="
+      M0.75,3.25v14.25a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-12a0.75 0.75 0 0 0 -0.75,-0.75h-9l-2,-2h-6a0.75 0.75 0 0 0 -0.75,0.75Z m1.5,1h4.5l2,2h9v10.5h-15.5Z
+      M9.25,8.5a0.75 0.75 0 0 1 1.5,0v2.25h2.25a0.75 0.75 0 0 1 0,1.5h-2.25v2.25a0.75 0.75 0 0 1 -1.5,0v-2.25h-2.25a0.75 0.75 0 0 1 0,-1.5h2.25Z
+    "
+    />
+  </svg>
+);
+
+export const FolderAddFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="
+      M0.75,3.25v14.25a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-12a0.75 0.75 0 0 0 -0.75,-0.75h-9l-2,-2h-6a0.75 0.75 0 0 0 -0.75,0.75Z
+      M9.25,8.5a0.75 0.75 0 0 1 1.5,0v2.25h2.25a0.75 0.75 0 0 1 0,1.5h-2.25v2.25a0.75 0.75 0 0 1 -1.5,0v-2.25h-2.25a0.75 0.75 0 0 1 0,-1.5h2.25Z
+    "
+    />
+  </svg>
+);
+
+export const FolderRemoveIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="
+      M0.75,3.25v14.25a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-12a0.75 0.75 0 0 0 -0.75,-0.75h-9l-2,-2h-6a0.75 0.75 0 0 0 -0.75,0.75Z m1.5,1h4.5l2,2h9v10.5h-15.5Z
+      M7,10.75h6a0.75 0.75 0 0 1 0,1.5h-6a0.75 0.75 0 0 1 0,-1.5Z
+    " />
+  </svg>
+);
+
+export const FolderRemoveFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="
+      M0.75,3.25v14.25a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-12a0.75 0.75 0 0 0 -0.75,-0.75h-9l-2,-2h-6a0.75 0.75 0 0 0 -0.75,0.75Z
+      M7,10.75h6a0.75 0.75 0 0 1 0,1.5h-6a0.75 0.75 0 0 1 0,-1.5Z
+    " />
   </svg>
 );
 
