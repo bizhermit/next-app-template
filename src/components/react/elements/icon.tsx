@@ -537,6 +537,28 @@ export const CloudUploadIcon = (p: IconProps) => (
   </svg>
 );
 
+export const DownloadIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+      M1,12v5a0.75 0.75 0 0 0 0.75,0.75h17a0.75 0.75 0 0 0 0.75,-0.75v-5a0.75 0.75 0 0 0 -1.5,0v4h-15.5v-4a0.75 0.75 0 0 0 -1.5,0Z
+      M10,14l5,-5a0.75 0.75 0 0 0 -1.07,-1.07l-3.16,3.16v-9a0.75 0.75 0 0 0 -1.5,0v9l-3.16,-3.16a0.75 0.75 0 0 0 -1.07,1.07Z
+      "
+    />
+  </svg>
+);
+
+export const UploadIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+      M2,12v5a0.75 0.75 0 0 0 0.75,0.75h14.5a0.75 0.75 0 0 0 0.75,-0.75v-5a0.75 0.75 0 0 0 -1.5,0v4h-13v-4a0.75 0.75 0 0 0 -1.5,0Z
+      M10,1.5l-5,5a0.75 0.75 0 0 0 1.07,1.07l3.16,-3.16v9a0.75 0.75 0 0 0 1.5,0v-9l3.16,3.16a0.75 0.75 0 0 0 1.07,-1.07Z
+      "
+    />
+  </svg>
+);
+
 export const CircleIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <circle cx="10" cy="10" r="8" strokeWidth="1.5" fill="none" />
