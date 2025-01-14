@@ -5,6 +5,7 @@ import { isEmpty } from "@/objects/string";
 import { Button } from "@/react/elements/button";
 import { Dialog, useDialogRef } from "@/react/elements/dialog";
 import { useFormItemRef } from "@/react/elements/form/item-ref";
+import { RadioButtons } from "@/react/elements/form/items/radio-buttons";
 import { TextBox } from "@/react/elements/form/items/text-box";
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BadgeIcon, BookmarkFillIcon, BookmarkIcon, ButtonIcon, CalendarFillIcon, CalendarIcon, CameraFillIcon, CameraIcon, CardIcon, CheckCircleFillIcon, CheckCircleIcon, CheckIcon, ChocolateMenuFillIcon, ChocolateMenuIcon, CircleFillIcon, CircleIcon, ClearAllIcon, ClockFillIcon, ClockIcon, CloudDownloadIcon, CloudFillIcon, CloudIcon, CloudUploadIcon, ContainerIcon, CrossCircleFillIcon, CrossCircleIcon, CrossIcon, DeleteBackFillIcon, DeleteBackIcon, DeleteFillIcon, DeleteIcon, DoubleDownFillIcon, DoubleDownIcon, DoubleLeftFillIcon, DoubleLeftIcon, DoubleRightFillIcon, DoubleRightIcon, DoubleUpFillIcon, DoubleUpIcon, DownFillIcon, DownIcon, DownloadIcon, ElementIcon, ExclamationCircleFillIcon, ExclamationCircleIcon, ExclamationDiamondFillIcon, ExclamationDiamondIcon, ExclamationIcon, ExclamationTriangleFillIcon, ExclamationTriangleIcon, ExLinkIcon, FileAddFillIcon, FileAddIcon, FileDeleteFillIcon, FileDeleteIcon, FileFillIcon, FileIcon, FilterFillIcon, FilterIcon, FolderAddFillIcon, FolderAddIcon, FolderDeleteFillIcon, FolderDeleteIcon, FolderFillIcon, FolderIcon, FormIcon, FormItemIcon, GearFillIcon, GearIcon, GridFillIcon, GridIcon, HeartFillIcon, HeartHalfFillIcon, HeartIcon, HomeFillIcon, HomeIcon, HorizontalDividerIcon, KebabMenuIcon, LabelFillIcon, LabelIcon, LeftFillIcon, LeftIcon, LeftRightIcon, LinkIcon, ListFilterIcon, ListIcon, LoadingIcon, LocationFillIcon, LocationIcon, MagnifyingGlassIcon, MagnifyingGlassMinusFillIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusFillIcon, MagnifyingGlassPlusIcon, MailFillIcon, MailIcon, MeatballsMenuIcon, MenuIcon, MenuLeftIcon, MenuLeftRightIcon, MenuRightIcon, MinusCircleFillIcon, MinusCircleIcon, MinusIcon, NavContainerIcon, OrderListIcon, PinFillIcon, PinIcon, PlusCircleFillIcon, PlusCircleIcon, PlusIcon, PopupIcon, PowerIcon, QuestionCircleFillIcon, QuestionCircleIcon, QuestionIcon, RedoIcon, ReloadIcon, RightFillIcon, RightIcon, SaveFillIcon, SaveIcon, ShareFillIcon, ShareIcon, SignInIcon, SignOutIcon, SlideContainerIcon, SmileFillIcon, SmileIcon, SplitContainerIcon, StarFillIcon, StarHalfFillIcon, StarIcon, StepperIcon, SyncIcon, TabContainerIcon, TextBoxIcon, TodayFillIcon, TodayIcon, TooltipIcon, TrashCanFillIcon, TrashCanIcon, UndoIcon, UnloadIcon, UpDownIcon, UpFillIcon, UpIcon, UploadIcon, UserAddIcon, UserFillIcon, UserIcon, UserMinusIcon, UsersFillIcon, UsersIcon, VerticalDividerIcon } from "@/react/elements/icon";
 import { useMemo, useState } from "react";
@@ -180,6 +181,7 @@ const Page = () => {
   const lang = useLang();
 
   const filterText = useFormItemRef<string>();
+  const color = useFormItemRef<string, { value: string; label: string; }>();
   const [SelectedIcon, setSelectedIcon] = useState<React.JSX.Element | null>(null);
   const dialog = useDialogRef();
 
@@ -249,11 +251,37 @@ const Page = () => {
         <div className={css.total}>
           : {nodes.length}
         </div>
+        <RadioButtons
+          ref={color}
+          defaultValue="default"
+          source={() => {
+            return [
+              "default",
+              "primary",
+              "secondary",
+              "danger",
+              "subdued",
+            ].map(item => {
+              return { value: item, label: item };
+            });
+          }}
+        />
       </div>
-      <div className={css.table}>
+      <div
+        className={css.table}
+        style={{
+          color: `var(--c-${color.value?.value}, inherit)`,
+        }}
+      >
         {nodes}
       </div>
-      <Dialog ref={dialog}>
+      <Dialog
+        ref={dialog}
+        data-color={color.value?.value}
+        style={{
+          color: `var(--c-${color.value?.value}, inherit)`,
+        }}
+      >
         {SelectedIcon && SelectedIcon}
       </Dialog>
     </div>
