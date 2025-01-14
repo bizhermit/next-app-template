@@ -413,6 +413,17 @@ export const OrderListIcon = (p: IconProps) => (
   </svg>
 );
 
+export const ListFilterIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M2,5h16 M5,10h10 M8,15h4"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const ClearAllIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
@@ -1349,62 +1360,126 @@ export const GearFillIcon = (p: IconProps) => (
 
 export const PinIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M5,1 15,1 13,2 13,6 18,12 18,13 2,13 2,12 7,6 7,2Z M10,13V20" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M5,1 h10l-2,1v4l5,6v1h-16v-1l5,-6v-4Z M10,13v7Z"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  </svg>
+);
+
+export const PinFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M5,1 h10l-2,1v4l5,6v1h-16v-1l5,-6v-4Z M10,13v7Z"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const MailIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M1,3.5H19V16.5H1Z M1,3.5 10,10 19,3.5" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path d="M1,2.75a0.75 0.75 0 0 0 -0.75,0.75v13a0.75 0.75 0 0 0 0.75,0.75h18a0.75 0.75 0 0 0 0.75,-0.75v-13a0.75 0.75 0 0 0 -0.75,-0.75Z m0.75,1.5h16.5v11.5h-16.5Z m1.75,0l6.5,4.75 6.5,-4.75h1.75v1l-8.25,6 -8.25,-6v-1" />
+  </svg>
+);
+
+export const MailFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path d="M1,2.75a0.75 0.75 0 0 0 -0.75,0.75v13a0.75 0.75 0 0 0 0.75,0.75h18a0.75 0.75 0 0 0 0.75,-0.75v-13a0.75 0.75 0 0 0 -0.75,-0.75Z m2.5,1.5l6.5,4.75 6.5,-4.75h1.75v1l-8.25,6 -8.25,-6v-1" />
   </svg>
 );
 
 export const StarIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23Z"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const StarFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23Z" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23Z"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const StarHalfFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23 10,1" strokeWidth="0.15rem" strokeLinejoin="round" />
-    <path d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-  </svg>
-);
-
-export const FilterIcon = (p: IconProps) => (
-  <svg {...attrs(p)}>
-    <path d="M2,1 18,1 12,10 12,19 8,17 8,10Z" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
-  </svg>
-);
-
-export const ListFilterIcon = (p: IconProps) => (
-  <svg {...attrs(p)}>
-    <path d="M2,5H18 M5,10H15 M8,15H12" fill="none" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10,15 4.44,18.64 6,12.03 1,7.64 7.64,7.23 10,1"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10,1 12.36,7.23 19,7.64 14,12.03 15.56,18.64 10,15"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export const HeartIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" fill="none" strokeLinejoin="miter" strokeWidth="0.15rem" />
+    <path
+      d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z"
+      fill="none"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
 export const HeartFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" strokeLinejoin="miter" strokeWidth="0.15rem" />
+    <path
+      d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
 export const HeartHalfFillIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
-    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z" fill="none" strokeLinejoin="miter" strokeWidth="0.15rem" />
-    <path d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6" strokeWidth="0.15rem" strokeLinejoin="round" />
+    <path
+      d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6 17.6 10 C19.191 8.428 19.191 5.526 17.401 3.736 15.611 1.947 12.709 1.947 10.919 3.736Z"
+      fill="none"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M10 4.6 L9 3.6 C7.314 1.947 4.412 1.947 2.622 3.736 0.832 5.526 0.832 8.428 2.622 10.217 L10 17.6"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
   </svg>
 );
+
+export const FilterIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M2,1 18,1 12,10 12,19 8,17 8,10Z"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const FilterFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M2,1 18,1 12,10 12,19 8,17 8,10Z"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
