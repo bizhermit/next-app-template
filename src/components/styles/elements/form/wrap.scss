@@ -9,7 +9,8 @@
   }
 
   .ipt-wrap {
-    display: flex;
+    vertical-align: top;
+    display: inline-flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
