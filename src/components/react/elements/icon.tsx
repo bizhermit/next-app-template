@@ -15,20 +15,6 @@ const attrs = (p: IconProps) => {
   };
 };
 
-export const HogeIcon = (p: IconProps) => (
-  <svg {...attrs(p)} viewBox="-10 -10 120 120">
-
-    <mask id="myMask">
-      <rect x="0" y="0" width="100" height="100" fill="white" />
-      <path
-        d="M10,35 A20,20,0,0,1,50,35 A20,20,0,0,1,90,35 Q90,65,50,95 Q10,65,10,35 Z"
-        fill="black" />
-    </mask>
-    <polygon points="-10,110 110,110 110,-10" fill="orange" />
-    <circle cx="50" cy="50" r="50" fill="purple" mask="url(#myMask)" />
-  </svg>
-);
-
 export const PlusIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path d="M9.25,2.25a0.75 0.75 0 0 1 1.5,0v7h7a0.75 0.75 0 0 1 0,1.5h-7v7a0.75 0.75 0 0 1 -1.5,0v-7h-7a0.75 0.75 0 0 1 0,-1.5h7Z" />
@@ -197,8 +183,9 @@ export const DoubleLeftFillIcon = (p: IconProps) => (
 export const RightIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
-      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
-      transform="rotate(-135,10,10)"
+      d="M6.5,2l8,8 -8,8"
+      strokeWidth="1.5"
+      fill="none"
     />
   </svg>
 );
@@ -233,8 +220,9 @@ export const DoubleRightFillIcon = (p: IconProps) => (
 export const UpIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
-      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
-      transform="rotate(135,10,10)"
+      d="M2,13.5l8,-8 8,8"
+      strokeWidth="1.5"
+      fill="none"
     />
   </svg>
 );
@@ -269,8 +257,9 @@ export const DoubleUpFillIcon = (p: IconProps) => (
 export const DownIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <path
-      d="M6,2a0.75 0.75 0 0 1 1.5,0v10.5h10.5a0.75 0.75 0 0 1 0,1.5h-12Z"
-      transform="rotate(-45,10,10)"
+      d="M2,6.5l8,8 8,-8"
+      strokeWidth="1.5"
+      fill="none"
     />
   </svg>
 );
@@ -324,6 +313,46 @@ export const UpDownIcon = (p: IconProps) => (
     <path
       d="M4,8a0.75 0.75 0 0 1 1.5,0v6.5h6.5a0.75 0.75 0 0 1 0,1.5h-8Z"
       transform="rotate(-45,10,10)"
+    />
+  </svg>
+);
+
+export const ArrowLeftIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M7.5,5l-5,5 5,5 m-5,-5h15"
+      strokeWidth="1.5"
+      fill="none"
+    />
+  </svg>
+);
+
+export const ArrowRightIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M12.5,5l5,5 -5,5 m5,-5h-15"
+      strokeWidth="1.5"
+      fill="none"
+    />
+  </svg>
+);
+
+export const ArrowUpIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M5,7.5l5,-5 5,5 m-5,-5v15"
+      strokeWidth="1.5"
+      fill="none"
+    />
+  </svg>
+);
+
+export const ArrowDownIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="M5,12.5l5,5 5,-5 m-5,5v-15"
+      strokeWidth="1.5"
+      fill="none"
     />
   </svg>
 );
