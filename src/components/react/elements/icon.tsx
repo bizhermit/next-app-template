@@ -1505,3 +1505,25 @@ export const FilterFillIcon = (p: IconProps) => (
   </svg>
 );
 
+export const LocationIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+        M16,9a6.25 6.25 0 1 0 -12,0c1,3 6,10, 6,10c0,0 5,-7 6,-10Z
+        m-1.5,0c-1,2.25 -4.5,7.5 -4.5,7.5c0,0 -3.5,-4.75 -4.5,-7.5a4.8 4.8 0 1 1 9,0Z
+        M10,4.75a2.5 2.5 0 0 1 0,5a2.5 2.5 0 0 1 0,-5
+        "
+    />
+  </svg>
+);
+
+export const LocationFillIcon = (p: IconProps) => (
+  <svg {...attrs(p)}>
+    <path
+      d="
+        M16,9a6.25 6.25 0 1 0 -12,0c1,3 6,10, 6,10c0,0 5,-7 6,-10Z
+        M10,4.75a2.5 2.5 0 0 1 0,5a2.5 2.5 0 0 1 0,-5
+        "
+    />
+  </svg>
+);
