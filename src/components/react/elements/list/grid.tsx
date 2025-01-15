@@ -117,7 +117,7 @@ export const ListGrid = <D extends ListData>({
 
   useEffect(() => {
     const observer = new ResizeObserver(() => {
-      calcScrollBarWidth();
+      if (bref.current) calcScrollBarWidth();
     });
     observer.observe(ref.current);
     calcScrollBarWidth();
