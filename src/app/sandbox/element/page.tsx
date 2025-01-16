@@ -117,7 +117,10 @@ export default function Home() {
       <span>tab: {tabCont.key}</span>
       <div className={css.row}>
         <button disabled>button</button>
-        <button>ボタン</button>
+        <button onClick={() => {
+          // alert("hogehogehoge");
+          confirm("hogehoge\nhopge");
+        }}>ボタン</button>
         <Button
           onClick={() => {
             const data: { [v: string]: any } = {};
@@ -164,6 +167,16 @@ export default function Home() {
           target="_blank"
           disabled
           button
+        >
+          リンク(next link)
+        </Link>
+        <Link
+          href="https://bizhermit.com"
+          target="_blank"
+          button={{
+            outline: true,
+            color: "secondary",
+          }}
         >
           リンク(next link)
         </Link>
