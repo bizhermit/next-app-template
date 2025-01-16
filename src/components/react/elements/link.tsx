@@ -8,7 +8,12 @@ export type NextLinkOptions = {
   query?: { [v: string | number | symbol]: any } | null | undefined;
   disabled?: boolean;
   noDecoration?: boolean;
-  button?: boolean;
+  button?: boolean | {
+    round?: boolean;
+    outline?: boolean;
+    color?: StyleColor;
+  };
+  outline?: boolean;
 };
 
 export type NextLinkProps = OverwriteProps<OverwriteAttrs<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">, LinkProps>, NextLinkOptions>;
@@ -24,6 +29,7 @@ export const Link = ({
   ...props
 }: NextLinkProps) => {
   const pathname = href ? replaceDynamicPathname(href, params) : "";
+  const btn = !button ? undefined : typeof button === "boolean" ? {} : button;
   return (
     <$Link
       {...props}
@@ -31,7 +37,10 @@ export const Link = ({
       aria-disabled={disabled}
       data-nodecoration={noDecoration}
       inert={disabled}
-      role={button ? "button" : undefined}
+      role={btn ? "button" : undefined}
+      data-round={btn?.round}
+      data-outline={btn?.outline}
+      data-color={btn?.color}
       href={disabled ? "" : (query ? { pathname, query } : pathname)}
     />
   );
