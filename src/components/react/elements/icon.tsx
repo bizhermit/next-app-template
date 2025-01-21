@@ -867,8 +867,8 @@ export const SplitContainerIcon = (p: IconProps) => (
 export const LoadingIcon = (p: IconProps) => (
   <svg {...attrs(p)}>
     <line x1="10" x2="10" y1="1" y2="5" strokeWidth="1.5" />
-    <line x1="1" x2="5" y1="10" y2="10" opacity="0.9" strokeWidth="1.5" />
-    <line x1="3.3" x2="6.4" y1="3.3" y2="6.4" opacity="0.8" strokeWidth="1.5" />
+    <line x1="3.3" x2="6.4" y1="3.3" y2="6.4" opacity="0.9" strokeWidth="1.5" />
+    <line x1="1" x2="5" y1="10" y2="10" opacity="0.8" strokeWidth="1.5" />
     <line x1="3.3" x2="6.4" y1="16.7" y2="13.6" opacity="0.7" strokeWidth="1.5" />
     <line x1="10" x2="10" y1="19" y2="15" opacity="0.6" strokeWidth="1.5" />
     <line x1="16.7" x2="13.6" y1="16.7" y2="13.6" opacity="0.5" strokeWidth="1.5" />
