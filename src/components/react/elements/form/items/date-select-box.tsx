@@ -377,7 +377,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
       cache.current.m = undefined;
     } else {
       cache.current.m = Number(v);
-      if (v.length === 2 || !(v === "1" || v === "2")) dref.current?.focus();
+      if (v.length === 2 || v !== "1") dref.current?.focus();
     }
     if (changeTrigger === "change") commitChange();
   };
