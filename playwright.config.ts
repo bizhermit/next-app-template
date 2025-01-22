@@ -55,7 +55,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         viewport: viewports.pc,
-        locale: "ja"
+        locale: "ja",
       },
     },
     {
@@ -63,7 +63,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         viewport: viewports.pc,
-        locale: "en-US"
+        locale: "en-US",
       },
     },
     {
@@ -71,7 +71,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         viewport: viewports.pc,
-        locale: "en"
+        locale: "en",
       },
     },
     {
