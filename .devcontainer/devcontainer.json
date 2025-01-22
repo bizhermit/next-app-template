@@ -36,7 +36,8 @@
       "settings": {
         "liveServer.settings.root": "/dist/out",
         "files.associations": {
-          ".env.*": "properties"
+          ".env.*": "properties",
+          "fonts.conf": "xml"
         },
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
