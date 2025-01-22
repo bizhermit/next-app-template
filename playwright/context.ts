@@ -29,7 +29,7 @@ type ContextOptions = {
   }
 };
 
-const screenShotBasePath = ".playwright";
+const screenShotBasePath = "./.playwright";
 let count = 0;
 
 export const getPlaywrightPageContext = ({ page, ...args }: PlaywrightContextArgs, testInfo: TestInfo, ctxOpts?: ContextOptions) => {
