@@ -29,12 +29,13 @@ type ContextOptions = {
   }
 };
 
+const screenShotBasePath = ".playwright";
 let count = 0;
 
 export const getPlaywrightPageContext = ({ page, ...args }: PlaywrightContextArgs, testInfo: TestInfo, ctxOpts?: ContextOptions) => {
   const screenShotDir = ctxOpts?.screenShot?.dir ?
-    `${testInfo.outputDir}/${ctxOpts.screenShot.dir}` :
-    `${testInfo.snapshotDir}/${testInfo.project.name || args.browserName || "default"}`;
+    `${screenShotBasePath}/${ctxOpts.screenShot.dir}` :
+    `${screenShotBasePath}/${testInfo.project.name || args.browserName || "default"}`;
 
   const sleep = (time: number) => page.waitForTimeout(time);
   const skipWait = () => new Promise<void>(r => r);

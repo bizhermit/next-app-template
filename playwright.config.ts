@@ -18,12 +18,6 @@ loadEnv(`.env.${isDev ? "development" : "production"}.local`);
 
 const webServerUrl = `http://localhost:${process.env.FRONTEND_PORT || "3000"}`;
 
-const now = new Date();
-const pad = (v: number | string) => `00${v}`.slice(-2);
-const taskId = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDay())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
-
-const outputDir = path.join(".playwright");
-
 const viewports = {
   pc: {
     width: 1270,
@@ -46,8 +40,6 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: "html",
-  outputDir,
-  snapshotDir: path.join(outputDir, taskId),
   use: {
     baseURL: webServerUrl,
     trace: "on-first-retry",
