@@ -126,7 +126,7 @@ export const Dialog = ({
     const anchor = showOpts?.anchor;
     if (anchor == null) return;
 
-    const winW = document.body.offsetWidth;
+    const winW = window.innerWidth;
     const winH = window.innerHeight;
     const wMax = dref.current.offsetWidth;
     const hMax = dref.current.offsetHeight;
