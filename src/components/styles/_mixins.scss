@@ -1,3 +1,5 @@
+$colors: primary, secondary, danger, subdued;
+
 @mixin sp {
   @media screen and (max-width: 480px) {
     @content;
