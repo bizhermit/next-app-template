@@ -37,7 +37,10 @@
 
   .pagination-link {
     padding: 0 .2rem;
-    cursor: pointer;
+
+    &[data-disabled="false"] {
+      cursor: pointer;
+    }
   }
 
 }
