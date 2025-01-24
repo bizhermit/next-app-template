@@ -3,7 +3,7 @@ import { type AnchorHTMLAttributes } from "react";
 import { replaceDynamicPathname, type UrlPath } from "../../objects/url";
 
 export type NextLinkOptions = {
-  href?: UrlPath;
+  href?: Exclude<UrlPath, ApiPath>;
   params?: { [v: string | number | symbol]: any } | null | undefined;
   query?: { [v: string | number | symbol]: any } | null | undefined;
   disabled?: boolean;
