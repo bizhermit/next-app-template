@@ -1,3 +1,4 @@
+import { isEmpty } from "../../objects/string";
 import { getDataItemLabel } from "../label";
 
 export const $strParse = <V extends string>({ value, dataItem, fullName, env }: DataItem.ParseProps<DataItem.$object>, skipRefSource?: boolean): DataItem.ParseResult<V> => {
@@ -15,7 +16,7 @@ export const $strParse = <V extends string>({ value, dataItem, fullName, env }: 
   const v = (value == null || typeof value === "string") ? value : String(value);
   if (!skipRefSource) {
     const source = (dataItem as DataItem.$str)["source"];
-    if (source && !source.find(s => s.value === v)) {
+    if (!isEmpty(v) && source && !source.find(s => s.value === v)) {
       return [v, {
         type: "e",
         code: "source",

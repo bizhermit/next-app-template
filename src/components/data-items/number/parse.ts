@@ -29,7 +29,7 @@ export const $numParse = <V extends number>({ value, dataItem, fullName, env }: 
 
     if (!skipRefSource) {
       const source = (dataItem as DataItem.$num)["source"];
-      if (source && !source.find(s => s.value === v)) {
+      if (v != null && source && !source.find(s => s.value === v)) {
         return [v, {
           type: "e",
           code: "source",
