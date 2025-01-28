@@ -17,6 +17,7 @@ interface I18N_Langs {
     typeOfDateTime: string;
     typeOfTime: string;
     typeOfFile: string;
+    typeOfImage: string;
     ok: string;
     close: string;
     cancel: string;

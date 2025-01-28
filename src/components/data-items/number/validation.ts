@@ -1,6 +1,6 @@
 import { getFloatPosition } from "../../objects/number";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $numValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$num>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$num>> => {
   const validations: Array<DataItem.Validation<DataItem.$num>> = [];

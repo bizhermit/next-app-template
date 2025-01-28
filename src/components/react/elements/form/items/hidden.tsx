@@ -1,8 +1,8 @@
-import { dynamicRequired } from "@/data-items/utilities";
 import { type HTMLAttributes, useEffect } from "react";
 import { $arrayValidations } from "../../../../data-items/array/validation";
 import { $boolValidations } from "../../../../data-items/bool/validation";
 import { $dateValidations } from "../../../../data-items/date/validation";
+import { dynamicRequired } from "../../../../data-items/dynamic-required";
 import { $fileValidations } from "../../../../data-items/file/validation";
 import { $numValidations } from "../../../../data-items/number/validation";
 import { $strValidations } from "../../../../data-items/string/validation";
@@ -14,11 +14,13 @@ import { useFormItemCore } from "../item-core";
 
 type HiddenOptions<V extends any, D extends DataItem.$object | undefined> = FormItemOptions<D, V> & {
   value?: V | null | undefined;
+  requiredMessage?: (params: DataItem.MessageBaseParams<V>) => string;
 };
 
 type HiddenProps<V extends any, D extends DataItem.$object | undefined> = OverwriteAttrs<HTMLAttributes<HTMLInputElement>, HiddenOptions<V, D>>;
 
 export const Hidden = <V extends any, D extends DataItem.$object | undefined>({
+  requiredMessage,
   ...props
 }: HiddenProps<V, D>) => {
   const fi = useFormItemCore<DataItem.$object, D, V, V>(props, {
@@ -112,7 +114,13 @@ export const Hidden = <V extends any, D extends DataItem.$object | undefined>({
                     type: "e",
                     code: "required",
                     fullName: p.fullName,
-                    msg: env.lang("validation.required", { s: label, mode: "set" }),
+                    msg: requiredMessage ?
+                      requiredMessage({
+                        lang: env.lang,
+                        subject: label || "",
+                        value: p.value
+                      }) :
+                      env.lang("validation.required", { s: label, mode: "set" }),
                   };
                 }));
               }

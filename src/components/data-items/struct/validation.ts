@@ -1,6 +1,6 @@
 import { getObjectType } from "../../objects";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $structValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$struct<Array<DataItem.$object>>>): Array<DataItem.Validation<DataItem.$struct<Array<DataItem.$object>>>> => {
   const validations: Array<DataItem.Validation<DataItem.$struct<Array<DataItem.$object>>>> = [];

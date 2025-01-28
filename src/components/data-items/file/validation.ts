@@ -1,6 +1,6 @@
 import { getAccept, getSizeText } from "../../objects/file";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$file>): Array<DataItem.Validation<DataItem.$file>> => {
   const validations: Array<DataItem.Validation<DataItem.$file>> = [];

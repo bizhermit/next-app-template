@@ -1,6 +1,6 @@
 import { formatTime, getTimeUnit, parseMilliseconds, parseTimeAsUnit } from "../../objects/time";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$time>): Array<DataItem.Validation<DataItem.$time>> => {
   const validations: Array<DataItem.Validation<DataItem.$time>> = [];

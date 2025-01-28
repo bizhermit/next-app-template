@@ -15,6 +15,7 @@ const Langs = {
   typeOfDateTime: "dateTime type",
   typeOfTime: "time type",
   typeOfFile: "file type",
+  typeOfImage: "image type",
   ok: "OK",
   close: "Close",
   cancel: "Cancel",

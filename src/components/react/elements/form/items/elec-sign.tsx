@@ -1,7 +1,7 @@
 "use client";
 
 import { type HTMLAttributes, useEffect, useRef, useState } from "react";
-import { dynamicRequired } from "../../../../data-items/utilities";
+import { dynamicRequired } from "../../../../data-items/dynamic-required";
 import { useLang } from "../../../../i18n/react-hook";
 import { equals } from "../../../../objects";
 import { convertBlobToFile, convertFileToBase64 } from "../../../../objects/file";
@@ -19,6 +19,8 @@ type ElecSignOptions<D extends DataItem.$any | undefined> = FormItemOptions<D, D
   maxHistory?: number;
   width?: number;
   height?: number;
+  requiredMessage?: (params: DataItem.MessageBaseParams<D extends DataItem.$any ? DataItem.ValueType<D> : string>) => string;
+  parseFailedMessage?: (params: DataItem.MessageBaseParams<D extends DataItem.$any ? DataItem.ValueType<D> : string>) => string;
 };
 
 type ElecSignProps<D extends DataItem.$any | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, ElecSignOptions<D>>;
@@ -28,6 +30,8 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
   maxHistory,
   width,
   height,
+  requiredMessage,
+  parseFailedMessage,
   ...props
 }: ElecSignProps<D>) => {
   const lang = useLang();
@@ -49,8 +53,8 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
     getDataItem: () => {
       return { type: "any" };
     },
-    parse: () => {
-      return ({ value, fullName }) => {
+    parse: ({ label }) => {
+      return ({ value, fullName, env }) => {
         if (value == null || typeof value === "string") return [value];
         if (value instanceof Blob) {
           return [convertFileToBase64(convertBlobToFile(value, "elec-sign"))];
@@ -58,7 +62,21 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
         if (value instanceof File) {
           return [convertFileToBase64(value)];
         }
-        return [undefined, { type: "e", code: "parse", fullName, msg: `データの変換に失敗しました。` }];
+        return [undefined, {
+          type: "e",
+          code: "parse",
+          fullName,
+          msg: parseFailedMessage ?
+            parseFailedMessage({
+              lang: env.lang,
+              subject: label || "",
+              value,
+            }) :
+            env.lang("validation.parseFailed", {
+              s: label,
+              type: env.lang("common.typeOfImage"),
+            }),
+        }];
       };
     },
     equals: (v1, v2) => {
@@ -82,7 +100,7 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
         };
       }
     },
-    validation: ({ dataItem, iterator, env }) => {
+    validation: ({ dataItem, iterator, env, label }) => {
       const funcs: Array<DataItem.Validation<any, any>> = [];
       if (dataItem.required) {
         funcs.push(dynamicRequired(dataItem.required, (p) => {
@@ -91,9 +109,15 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
               type: "e",
               code: "required",
               fullName: p.fullName,
-              msg: env.lang("validation.writeSign", {
-                s: p.dataItem.label || env.lang("form.sign"),
-              }),
+              msg: requiredMessage ?
+                requiredMessage({
+                  lang: env.lang,
+                  subject: label || "",
+                  value: p.value,
+                }) :
+                env.lang("validation.writeSign", {
+                  s: p.dataItem.label || env.lang("form.sign"),
+                }),
             };
           }
           return undefined;
