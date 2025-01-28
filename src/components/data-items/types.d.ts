@@ -306,6 +306,21 @@ declare namespace DataItem {
     hourStep?: number;
     minuteStep?: number;
     secondStep?: number;
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<number>) => string;
+        range?: (params: MessageBaseParams<number> & { min: number; max: number; }) => string;
+        min?: (params: MessageBaseParams<number> & { min: number; }) => string;
+        max?: (params: MessageBaseParams<number> & { max: number; }) => string;
+        pairBefore?: (params: MessageBaseParams<number> & { pairTime: number; }) => string;
+        pairAfter?: (params: MessageBaseParams<number> & { pairTime: number; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $datetime = $ & {
