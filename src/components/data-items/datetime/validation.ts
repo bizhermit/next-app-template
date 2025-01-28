@@ -4,6 +4,11 @@ import { getDataItemLabel } from "../label";
 export const $datetimeValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$datetime>): Array<DataItem.Validation<DataItem.$datetime>> => {
   const validations: Array<DataItem.Validation<DataItem.$datetime, DateTime>> = [];
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = dataItem.message?.validation;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (dataItem.required) {
     validations.push((p) => {
@@ -13,7 +18,12 @@ export const $datetimeValidations = ({ dataItem, env }: DataItem.ValidationGener
         type: "e",
         code: "required",
         fullName: p.fullName,
-        msg: env.lang("validation.required", { s }),
+        msg: msgs?.required ?
+          msgs.required({
+            ...msgParams,
+            value: p.value,
+          }) :
+          env.lang("validation.required", { s }),
       };
     });
   }

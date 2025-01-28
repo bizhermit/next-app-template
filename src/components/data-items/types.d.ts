@@ -314,6 +314,16 @@ declare namespace DataItem {
     date: $date;
     time: $time;
     tz?: import("../objects/datetime").TimeZone | number;
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<import("../objects/datetime").DateTime>) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $file = $ & {
