@@ -368,6 +368,19 @@ declare namespace DataItem {
     minLength?: number;
     maxLength?: number;
     source?: Source<ValueType<T>>;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Array<$array<T>>>) => string;
+        length?: (params: MessageBaseParams<Array<$array<T>>> & { length: number; currentLength: number; }) => string;
+        range?: (params: MessageBaseParams<Array<$array<T>>> & { minLength: number; maxLength: number; currentLength: number; }) => string;
+        minLength?: (params: MessageBaseParams<Array<$array<T>>> & { minLength: number; currentLength: number; }) => string;
+        maxLength?: (params: MessageBaseParams<Array<$array<T>>> & { maxLength: number; currentLength: number; }) => string;
+        contain?: (params: MessageBaseParams<Array<$array<T>>> & { source: Source<ValueType<T>> }) => string;
+      };
+      parse?: {
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $struct<T extends Array<$object>> = $ & {
