@@ -93,14 +93,12 @@ declare namespace DataItem {
     validations?: Array<Validation<$any<V>>>;
   };
 
-  type $str<V extends string = string> = $ & {
-    type: "str";
-    source?: Source<V>;
-    validations?: Array<Validation<$str<V>>>;
-    length?: number;
-    minLength?: number;
-    maxLength?: number;
-    charType?:
+  type MessageBaseParams = {
+    lang: LangAccessor;
+    subject: string;
+  };
+
+  type CharType =
     | "int"
     | "h-num"
     | "f-num"
@@ -120,8 +118,32 @@ declare namespace DataItem {
     | "tel"
     | "url"
     ;
+
+  type $str<V extends string = string> = $ & {
+    type: "str";
+    source?: Source<V>;
+    validations?: Array<Validation<$str<V>>>;
+    length?: number;
+    minLength?: number;
+    maxLength?: number;
+    charType?: CharType;
     inputMode?: React.HTMLAttributes<React.HTMLInputElement>["inputMode"];
     inputType?: Extract<React.HTMLInputTypeAttribute, "text" | "email" | "url" | "tel">;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams & { mode: "input" | "select" | "set"; }) => string;
+        length?: (params: MessageBaseParams & { length: number; currentLength: number; }) => string;
+        range?: (params: MessageBaseParams & { minLength: number; maxLength: number; currentLength: number; }) => string;
+        minLength?: (params: MessageBaseParams & { minLength: number; currentLength: number; }) => string;
+        maxLength?: (params: MessageBaseParams & { maxLength: number; currentLength: number; }) => string;
+        charType?: (params: MessageBaseParams & { charType: CharType; }) => string;
+        source?: (params: MessageBaseParams & { source: Source<V>; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams) => string;
+        contain?: (params: MessageBaseParams & { source: Source<V>; }) => string;
+      };
+    };
   };
 
   type $num<V extends number = number> = $ & {

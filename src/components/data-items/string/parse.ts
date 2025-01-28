@@ -3,13 +3,20 @@ import { getDataItemLabel } from "../label";
 
 export const $strParse = <V extends string>({ value, dataItem, fullName, env }: DataItem.ParseProps<DataItem.$object>, skipRefSource?: boolean): DataItem.ParseResult<V> => {
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = (dataItem as DataItem.$str<V>).message?.parse;
+  const msgParams: DataItem.MessageBaseParams = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (Array.isArray(value) && value.length > 1) {
     return [undefined, {
       type: "e",
       code: "multiple",
       fullName,
-      msg: env.lang("validation.single"),
+      msg: msgs?.single ?
+        msgs.single(msgParams) :
+        env.lang("validation.single", { s }),
     }];
   }
 
@@ -21,7 +28,12 @@ export const $strParse = <V extends string>({ value, dataItem, fullName, env }: 
         type: "e",
         code: "source",
         fullName,
-        msg: env.lang("validation.contain", { s }),
+        msg: msgs?.contain ?
+          msgs?.contain({
+            ...msgParams,
+            source: source as DataItem.Source<any>,
+          }) :
+          env.lang("validation.contain", { s }),
       }];
     }
   }

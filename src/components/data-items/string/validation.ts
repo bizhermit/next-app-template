@@ -4,6 +4,11 @@ import { getDataItemLabel } from "../label";
 export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$str>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$str>> => {
   const validations: Array<DataItem.Validation<DataItem.$str>> = [];
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = dataItem.message?.validation;
+  const msgParams: DataItem.MessageBaseParams = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (dataItem.required) {
     validations.push((p) => {
@@ -13,78 +18,98 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
         type: "e",
         code: "required",
         fullName: p.fullName,
-        msg: env.lang("validation.required", {
+        msg: msgs?.required ? msgs.required({
+          ...msgParams,
+          mode: p.dataItem.source ? "select" : "input",
+        }) : env.lang("validation.required", {
           s,
-          mode: dataItem.source ? "select" : "input",
+          mode: p.dataItem.source ? "select" : "input",
         }),
       };
     });
   }
 
   if (dataItem.length != null) {
-    validations.push(({ value, fullName }) => {
+    validations.push(({ dataItem: { length }, value, fullName }) => {
       if (isEmpty(value)) return undefined;
       const cur = strLength(value);
-      if (cur === dataItem.length) return undefined;
+      if (cur === length) return undefined;
       return {
         type: "e",
         code: "length",
         fullName,
-        msg: env.lang("validation.length", {
+        msg: msgs?.length ? msgs.length({
+          ...msgParams,
+          length: length!,
+          currentLength: cur,
+        }) : env.lang("validation.length", {
           s,
-          len: dataItem.length,
+          len: length,
           cur,
         }),
       };
     });
   } else {
     if (dataItem.minLength != null && dataItem.maxLength != null) {
-      validations.push(({ value, fullName }) => {
+      validations.push(({ dataItem: { minLength, maxLength }, value, fullName }) => {
         if (isEmpty(value)) return undefined;
         const cur = strLength(value);
-        if (dataItem.minLength! <= cur && cur <= dataItem.maxLength!) return undefined;
+        if (minLength! <= cur && cur <= maxLength!) return undefined;
         return {
           type: "e",
           code: "range",
           fullName,
-          msg: env.lang("validation.rangeLength", {
+          msg: msgs?.range ? msgs.range({
+            ...msgParams,
+            minLength: minLength!,
+            maxLength: maxLength!,
+            currentLength: cur,
+          }) : env.lang("validation.rangeLength", {
             s,
-            minLen: dataItem.minLength,
-            maxLen: dataItem.maxLength,
+            minLen: minLength,
+            maxLen: maxLength,
             cur,
           }),
         };
       });
     } else {
       if (dataItem.minLength != null) {
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem: { minLength }, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           const cur = strLength(value);
-          if (dataItem.minLength! <= cur) return undefined;
+          if (minLength! <= cur) return undefined;
           return {
             type: "e",
             code: "minLength",
             fullName,
-            msg: env.lang("validation.minLength", {
+            msg: msgs?.minLength ? msgs.minLength({
+              ...msgParams,
+              minLength: minLength!,
+              currentLength: cur,
+            }) : env.lang("validation.minLength", {
               s,
-              minLen: dataItem.minLength,
+              minLen: minLength,
               cur,
             }),
           };
         });
       }
       if (dataItem.maxLength != null) {
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem: { maxLength }, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           const cur = strLength(value);
-          if (cur <= dataItem.maxLength!) return undefined;
+          if (cur <= maxLength!) return undefined;
           return {
             type: "e",
             code: "maxLength",
             fullName,
-            msg: env.lang("validation.maxLength", {
+            msg: msgs?.maxLength ? msgs.maxLength({
+              ...msgParams,
+              maxLength: maxLength!,
+              currentLength: cur,
+            }) : env.lang("validation.maxLength", {
               s,
-              maxLen: dataItem.maxLength,
+              maxLen: maxLength,
               cur,
             }),
           };
@@ -96,218 +121,272 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
   if (dataItem.charType) {
     switch (dataItem.charType) {
       case "int":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isInteger(value)) return undefined;
           return {
             type: "e",
             code: "int",
             fullName,
-            msg: env.lang("validation.int", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "h-num":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHWNumeric(value)) return undefined;
           return {
             type: "e",
             code: "h-num",
             fullName,
-            msg: env.lang("validation.halfNum", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "f-num":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isFWNumeric(value)) return undefined;
           return {
             type: "e",
             code: "f-num",
             fullName,
-            msg: env.lang("validation.fullNum", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "num":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isNumeric(value)) return undefined;
           return {
             type: "e",
             code: "num",
             fullName,
-            msg: env.lang("validation.num", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "h-alpha":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHWAlphabet(value)) return undefined;
           return {
             type: "e",
             code: "h-alpha",
             fullName,
-            msg: env.lang("validation.halfAlpha", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "f-alpha":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isFWAlphabet(value)) return undefined;
           return {
             type: "e",
             code: "f-alpha",
             fullName,
-            msg: env.lang("validation.fullAlpha", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "alpha":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isAlphabet(value)) return undefined;
           return {
             type: "e",
             code: "alpha",
             fullName,
-            msg: env.lang("validation.alpha", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "h-alpha-num":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHWAlphanumeric(value)) return undefined;
           return {
             type: "e",
             code: "h-alpha-num",
             fullName,
-            msg: env.lang("validation.halfAlphaNum", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "h-alpha-num-syn":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHWAlphanumericAndSymbols(value)) return undefined;
           return {
             type: "e",
             code: "h-alpha-num-syn",
             fullName,
-            msg: env.lang("validation.halfApphaNumSyn", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "h-katakana":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHWKatakana(value)) return undefined;
           return {
             type: "e",
             code: "h-katakana",
             fullName,
-            msg: env.lang("validation.halfKatakana", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "f-katakana":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isFWKatakana(value)) return undefined;
           return {
             type: "e",
             code: "f-katakana",
             fullName,
-            msg: env.lang("validation.fullKatakana", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "katakana":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isKatakana(value)) return undefined;
           return {
             type: "e",
             code: "katakana",
             fullName,
-            msg: env.lang("validation.katakana", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "hiragana":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHiragana(value)) return undefined;
           return {
             type: "e",
             code: "hiragana",
             fullName,
-            msg: env.lang("validation.hiragana", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "half":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isHalfWidth(value)) return undefined;
           return {
             type: "e",
             code: "half",
             fullName,
-            msg: env.lang("validation.halfWidth", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "full":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isFullWidth(value)) return undefined;
           return {
             type: "e",
             code: "full",
             fullName,
-            msg: env.lang("validation.fullWidth", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "email":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isMailAddress(value)) return undefined;
           return {
             type: "e",
             code: "email",
             fullName,
-            msg: env.lang("validation.email", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "tel":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isPhoneNumber(value)) return undefined;
           return {
             type: "e",
             code: "tel",
             fullName,
-            msg: env.lang("validation.tel", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
       case "url":
-        validations.push(({ value, fullName }) => {
+        validations.push(({ dataItem, value, fullName }) => {
           if (isEmpty(value)) return undefined;
           if (isUrl(value)) return undefined;
           return {
             type: "e",
             code: "url",
             fullName,
-            msg: env.lang("validation.url", { s }),
+            msg: msgs?.charType ? msgs.charType({
+              ...msgParams,
+              charType: dataItem.charType!,
+            }) : env.lang("validation.int", { s }),
           };
         });
         break;
@@ -317,14 +396,17 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
   }
 
   if (!skipSourceCheck && dataItem.source) {
-    validations.push(({ value, fullName }) => {
+    validations.push(({ dataItem: { source }, value, fullName }) => {
       if (isEmpty(value)) return undefined;
-      if (dataItem.source!.find(s => s.value === value)) return undefined;
+      if (source!.find(s => s.value === value)) return undefined;
       return {
         type: "e",
         code: "source",
         fullName,
-        msg: env.lang("validation.contain", { s }),
+        msg: msgs?.source ? msgs.source({
+          ...msgParams,
+          source: source!,
+        }) : env.lang("validation.contain", { s }),
       };
     });
   }
