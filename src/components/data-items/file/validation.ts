@@ -4,6 +4,12 @@ import { getDataItemLabel } from "../label";
 export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$file>): Array<DataItem.Validation<DataItem.$file>> => {
   const validations: Array<DataItem.Validation<DataItem.$file>> = [];
   const s = getDataItemLabel({ dataItem, env }, "ファイル");
+  const msgs = dataItem.message?.validation;
+  const parseMsgs = dataItem.message?.parse;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   validations.push(({ value, fullName }) => {
     if (value == null || value instanceof File) return undefined;
@@ -11,11 +17,16 @@ export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGenerator
       type: "e",
       code: "type",
       fullName,
-      msg: env.lang("validation.typeOf", {
-        s,
-        type: env.lang("common.typeOfFile"),
-        mode: "set",
-      }),
+      msg: parseMsgs?.typeof ?
+        parseMsgs.typeof({
+          ...msgParams,
+          value,
+        }) :
+        env.lang("validation.typeOf", {
+          s,
+          type: env.lang("common.typeOfFile"),
+          mode: "set",
+        }),
     };
   });
 
@@ -27,7 +38,12 @@ export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGenerator
         type: "e",
         code: "required",
         fullName: p.fullName,
-        msg: env.lang("validation.required", { s, mode: "set" }),
+        msg: msgs?.required ?
+          msgs.required({
+            ...msgParams,
+            value: p.value,
+          }) :
+          env.lang("validation.required", { s, mode: "set" }),
       };
     });
   }
@@ -54,21 +70,34 @@ export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGenerator
         type: "e",
         code: "accept",
         fullName,
-        msg: env.lang("validation.fileAccept", { s }),
+        msg: msgs?.accept ?
+          msgs.accept({
+            ...msgParams,
+            value,
+            accept,
+          }) :
+          env.lang("validation.fileAccept", { s }),
       };
     });
   }
 
   if (dataItem.fileSize != null) {
     const sizeText = getSizeText(dataItem.fileSize);
-    validations.push(({ value, fullName }) => {
+    validations.push(({ dataItem: { fileSize }, value, fullName }) => {
       if (value == null) return undefined;
       if (value.size >= dataItem.fileSize!) return undefined;
       return {
         type: "e",
         code: "size",
         fullName,
-        msg: env.lang("validation.fileSize", { s, size: sizeText }),
+        msg: msgs?.size ?
+          msgs.size({
+            ...msgParams,
+            value,
+            size: fileSize!,
+            sizeText,
+          }) :
+          env.lang("validation.fileSize", { s, size: sizeText }),
       };
     });
   }

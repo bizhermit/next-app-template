@@ -347,6 +347,17 @@ declare namespace DataItem {
     accept?: string;
     fileSize?: number;
     fileName?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<File>) => string;
+        accept?: (params: MessageBaseParams<File> & { accept: string; }) => string;
+        size?: (params: MessageBaseParams<File> & { size: number; sizeText: string; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    }
   };
 
   type $array<T extends $atoms | $array<any> | Array<$object>> = $ & {
