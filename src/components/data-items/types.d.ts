@@ -180,6 +180,16 @@ declare namespace DataItem {
     source?: Source<True | False>;
     validations?: Array<Validation<$bool<True, False>>>;
     requiredIsTrue?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<V> & { trueValue: True; falseValue: False; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $boolNum<True extends number = 1, False extends number = 0> = $ & {
@@ -189,6 +199,16 @@ declare namespace DataItem {
     source?: Source<True | False>;
     validations?: Array<Validation<$boolNum<True, False>>>;
     requiredIsTrue?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<V> & { trueValue: True; falseValue: False; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $boolStr<True extends string = "1", False extends string = "0"> = $ & {
@@ -198,6 +218,16 @@ declare namespace DataItem {
     source?: Source<True | False>;
     validations?: Array<Validation<$boolStr<True, False>>>;
     requiredIsTrue?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<V> & { trueValue: True; falseValue: False; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $boolAny<True extends any = any, False extends any = any> =
@@ -217,6 +247,18 @@ declare namespace DataItem {
       same?: boolean;
     };
     splitDataNames?: [string, string, string];
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        range?: (params: MessageBaseParams<V> & { min: number; max: number; }) => string;
+        min?: (params: MessageBaseParams<V> & { min: number; }) => string;
+        max?: (params: MessageBaseParams<V> & { max: number; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    }
   };
 
   type $month = $ & {

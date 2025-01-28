@@ -4,9 +4,25 @@ import { getDataItemLabel } from "../label";
 
 export const $boolParse = <V extends boolean | number | string>({ value, dataItem, fullName, env }: DataItem.ParseProps<DataItem.$bool<any, any> | DataItem.$boolNum<any, any> | DataItem.$boolStr<any, any>>): DataItem.ParseResult<V> => {
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = (dataItem as DataItem.$boolAny).message?.parse;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (Array.isArray(value) && value.length > 1) {
-    return [undefined, { type: "e", code: "multiple", fullName, msg: env.lang("validation.single", { s }) }];
+    return [
+      undefined, {
+        type: "e",
+        code: "multiple",
+        fullName,
+        msg: msgs?.single ?
+          msgs.single({
+            ...msgParams,
+            value,
+          }) :
+          env.lang("validation.single", { s }),
+      }];
   }
 
   if (value == null || equals(value, dataItem.trueValue) || equals(value, dataItem.falseValue)) return [value];
@@ -110,6 +126,15 @@ export const $boolParse = <V extends boolean | number | string>({ value, dataIte
     type: "e",
     code: "parse",
     fullName,
-    msg: env.lang("validation.parseFailed", { s, type: env.lang("common.typeOfBool"), value }),
+    msg: msgs?.typeof ?
+      msgs.typeof({
+        ...msgParams,
+        value,
+      }) :
+      env.lang("validation.parseFailed", {
+        s,
+        type: env.lang("common.typeOfBool"),
+        value,
+      }),
   }];
 };
