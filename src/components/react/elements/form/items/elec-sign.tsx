@@ -82,23 +82,44 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
       }
     },
     validation: ({ dataItem, iterator, env }) => {
-      const funcs: Array<DataItem.Validation<any, any>> = [
-        (p) => {
-          if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
-          if (p.value == null || p.value === "" || p.value === nullValueRef.current) {
-            return {
-              type: "e",
-              code: "required",
-              fullName: p.fullName,
-              msg: env.lang("validation.writeSign", {
-                s: p.dataItem.label || env.lang("form.sign"),
-              }),
-            };
-          }
-          return undefined;
-        },
-        ...dataItem.validations ?? [],
-      ];
+      const funcs: Array<DataItem.Validation<any, any>> = [];
+      if (dataItem.required) {
+        if (typeof dataItem.required === "function") {
+          funcs.push(
+            (p) => {
+              if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
+              if (p.value == null || p.value === "" || p.value === nullValueRef.current) {
+                return {
+                  type: "e",
+                  code: "required",
+                  fullName: p.fullName,
+                  msg: env.lang("validation.writeSign", {
+                    s: p.dataItem.label || env.lang("form.sign"),
+                  }),
+                };
+              }
+              return undefined;
+            }
+          );
+        } else {
+          funcs.push(
+            (p) => {
+              if (p.value == null || p.value === "" || p.value === nullValueRef.current) {
+                return {
+                  type: "e",
+                  code: "required",
+                  fullName: p.fullName,
+                  msg: env.lang("validation.writeSign", {
+                    s: p.dataItem.label || env.lang("form.sign"),
+                  }),
+                };
+              }
+              return undefined;
+            }
+          );
+        }
+      }
+      funcs.push(...dataItem.validations ?? []);
       return (_, p) => iterator(funcs, p);
     },
     focus: focusInput,
