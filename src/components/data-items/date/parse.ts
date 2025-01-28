@@ -3,13 +3,23 @@ import { getDataItemLabel } from "../label";
 
 export const $dateParse = ({ value, dataItem, fullName, env }: DataItem.ParseProps<DataItem.$date | DataItem.$month>): DataItem.ParseResult<Date> => {
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = (dataItem as DataItem.$date).message?.parse;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (Array.isArray(value) && value.length > 1) {
     return [undefined, {
       type: "e",
       code: "multiple",
       fullName,
-      msg: env.lang("validation.single", { s }),
+      msg: msgs?.single ?
+        msgs.single({
+          ...msgParams,
+          value,
+        }) :
+        env.lang("validation.single", { s }),
     }];
   }
   if (value == null || value === "") return [undefined];
@@ -38,11 +48,16 @@ export const $dateParse = ({ value, dataItem, fullName, env }: DataItem.ParsePro
       type: "e",
       code: "parse",
       fullName,
-      msg: env.lang("validation.parseFailed", {
-        s,
-        type: env.lang("common.typeOfDate"),
-        value,
-      }),
+      msg: msgs?.typeof ?
+        msgs.typeof({
+          ...msgParams,
+          value,
+        }) :
+        env.lang("validation.parseFailed", {
+          s,
+          type: env.lang("common.typeOfDate"),
+          value,
+        }),
     }];
   }
 };

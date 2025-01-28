@@ -93,14 +93,13 @@ declare namespace DataItem {
     validations?: Array<Validation<$any<V>>>;
   };
 
-  type $str<V extends string = string> = $ & {
-    type: "str";
-    source?: Source<V>;
-    validations?: Array<Validation<$str<V>>>;
-    length?: number;
-    minLength?: number;
-    maxLength?: number;
-    charType?:
+  type MessageBaseParams<V extends any> = {
+    lang: LangAccessor;
+    subject: string;
+    value: V | null | undefined;
+  };
+
+  type CharType =
     | "int"
     | "h-num"
     | "f-num"
@@ -120,8 +119,32 @@ declare namespace DataItem {
     | "tel"
     | "url"
     ;
+
+  type $str<V extends string = string> = $ & {
+    type: "str";
+    source?: Source<V>;
+    validations?: Array<Validation<$str<V>>>;
+    length?: number;
+    minLength?: number;
+    maxLength?: number;
+    charType?: CharType;
     inputMode?: React.HTMLAttributes<React.HTMLInputElement>["inputMode"];
     inputType?: Extract<React.HTMLInputTypeAttribute, "text" | "email" | "url" | "tel">;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        length?: (params: MessageBaseParams<V> & { length: number; currentLength: number; }) => string;
+        range?: (params: MessageBaseParams<V> & { minLength: number; maxLength: number; currentLength: number; }) => string;
+        minLength?: (params: MessageBaseParams<V> & { minLength: number; currentLength: number; }) => string;
+        maxLength?: (params: MessageBaseParams<V> & { maxLength: number; currentLength: number; }) => string;
+        charType?: (params: MessageBaseParams<V> & { charType: CharType; }) => string;
+        source?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        contain?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
+      };
+    };
   };
 
   type $num<V extends number = number> = $ & {
@@ -133,6 +156,21 @@ declare namespace DataItem {
     maxLength?: number;
     float?: number;
     requiredIsNotZero?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        range?: (params: MessageBaseParams<V> & { min: number; max: number; }) => string;
+        min?: (params: MessageBaseParams<V> & { min: number; }) => string;
+        max?: (params: MessageBaseParams<V> & { max: number; }) => string;
+        float?: (params: MessageBaseParams<V> & { float: number; currentFloat: number; }) => string;
+        source?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+        contain?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
+      };
+    };
   };
 
   type $bool<True extends boolean = true, False extends boolean = false> = $ & {
@@ -142,6 +180,16 @@ declare namespace DataItem {
     source?: Source<True | False>;
     validations?: Array<Validation<$bool<True, False>>>;
     requiredIsTrue?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<True | False> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<True | False> & { trueValue: True; falseValue: False; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $boolNum<True extends number = 1, False extends number = 0> = $ & {
@@ -151,6 +199,16 @@ declare namespace DataItem {
     source?: Source<True | False>;
     validations?: Array<Validation<$boolNum<True, False>>>;
     requiredIsTrue?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<True | False> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<True | False> & { trueValue: True; falseValue: False; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $boolStr<True extends string = "1", False extends string = "0"> = $ & {
@@ -160,6 +218,16 @@ declare namespace DataItem {
     source?: Source<True | False>;
     validations?: Array<Validation<$boolStr<True, False>>>;
     requiredIsTrue?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<True | False> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<True | False> & { trueValue: True; falseValue: False; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $boolAny<True extends any = any, False extends any = any> =
@@ -179,6 +247,21 @@ declare namespace DataItem {
       same?: boolean;
     };
     splitDataNames?: [string, string, string];
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Date>) => string;
+        range?: (params: MessageBaseParams<Date> & { min: Date; max: Date; }) => string;
+        min?: (params: MessageBaseParams<Date> & { min: Date; }) => string;
+        max?: (params: MessageBaseParams<Date> & { max: Date; }) => string;
+        pairBefore?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+        pairAfter?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $month = $ & {
@@ -192,6 +275,21 @@ declare namespace DataItem {
       same?: boolean;
     };
     splitDataNames?: [string, string];
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Date>) => string;
+        range?: (params: MessageBaseParams<Date> & { min: Date; max: Date; }) => string;
+        min?: (params: MessageBaseParams<Date> & { min: Date; }) => string;
+        max?: (params: MessageBaseParams<Date> & { max: Date; }) => string;
+        pairBefore?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+        pairAfter?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $time = $ & {
@@ -208,6 +306,21 @@ declare namespace DataItem {
     hourStep?: number;
     minuteStep?: number;
     secondStep?: number;
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<number>) => string;
+        range?: (params: MessageBaseParams<number> & { min: number; max: number; }) => string;
+        min?: (params: MessageBaseParams<number> & { min: number; }) => string;
+        max?: (params: MessageBaseParams<number> & { max: number; }) => string;
+        pairBefore?: (params: MessageBaseParams<number> & { pairTime: number; }) => string;
+        pairAfter?: (params: MessageBaseParams<number> & { pairTime: number; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $datetime = $ & {
@@ -216,6 +329,16 @@ declare namespace DataItem {
     date: $date;
     time: $time;
     tz?: import("../objects/datetime").TimeZone | number;
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<import("../objects/datetime").DateTime>) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $file = $ & {
@@ -224,6 +347,17 @@ declare namespace DataItem {
     accept?: string;
     fileSize?: number;
     fileName?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<File>) => string;
+        accept?: (params: MessageBaseParams<File> & { accept: string; }) => string;
+        size?: (params: MessageBaseParams<File> & { size: number; sizeText: string; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    }
   };
 
   type $array<T extends $atoms | $array<any> | Array<$object>> = $ & {
@@ -234,12 +368,33 @@ declare namespace DataItem {
     minLength?: number;
     maxLength?: number;
     source?: Source<ValueType<T>>;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Array<$array<T>>>) => string;
+        length?: (params: MessageBaseParams<Array<$array<T>>> & { length: number; currentLength: number; }) => string;
+        range?: (params: MessageBaseParams<Array<$array<T>>> & { minLength: number; maxLength: number; currentLength: number; }) => string;
+        minLength?: (params: MessageBaseParams<Array<$array<T>>> & { minLength: number; currentLength: number; }) => string;
+        maxLength?: (params: MessageBaseParams<Array<$array<T>>> & { maxLength: number; currentLength: number; }) => string;
+        contain?: (params: MessageBaseParams<Array<$array<T>>> & { source: Source<ValueType<T>> }) => string;
+      };
+      parse?: {
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $struct<T extends Array<$object>> = $ & {
     type: "struct";
     item: Readonly<T>;
     validations?: Array<Validation<$struct<T>>>;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Array<$struct<T>>>) => string;
+      };
+      parse?: {
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $atoms =

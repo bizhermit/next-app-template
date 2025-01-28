@@ -7,13 +7,23 @@ import { $timeParse } from "../time/parse";
 
 export const $datetimeParse = ({ value, dataItem, fullName, data, env }: DataItem.ParseProps<DataItem.$datetime>): DataItem.ParseResult<DateTime> => {
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = (dataItem as DataItem.$datetime).message?.parse;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (Array.isArray(value) && value.length > 1) {
     return [undefined, {
       type: "e",
       code: "multiple",
       fullName,
-      msg: env.lang("validation.single", { s }),
+      msg: msgs?.single ?
+        msgs.single({
+          ...msgParams,
+          value,
+        }) :
+        env.lang("validation.single", { s }),
     }];
   }
   if (value == null || value === "") {
@@ -38,11 +48,16 @@ export const $datetimeParse = ({ value, dataItem, fullName, data, env }: DataIte
         type: "e",
         code: "parse",
         fullName,
-        msg: env.lang("validation.parseFailed", {
-          s,
-          type: env.lang("common.typeOfDateTime"),
-          value,
-        }),
+        msg: msgs?.typeof ?
+          msgs.typeof({
+            ...msgParams,
+            value,
+          }) :
+          env.lang("validation.parseFailed", {
+            s,
+            type: env.lang("common.typeOfDateTime"),
+            value,
+          }),
       }];
     }
     const dt = new DateTime().setDateTime({

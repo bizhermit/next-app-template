@@ -1,6 +1,7 @@
 "use client";
 
 import { type HTMLAttributes, useEffect, useRef, useState } from "react";
+import { dynamicRequired } from "../../../../data-items/utilities";
 import { useLang } from "../../../../i18n/react-hook";
 import { equals } from "../../../../objects";
 import { convertBlobToFile, convertFileToBase64 } from "../../../../objects/file";
@@ -82,9 +83,9 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
       }
     },
     validation: ({ dataItem, iterator, env }) => {
-      const funcs: Array<DataItem.Validation<any, any>> = [
-        (p) => {
-          if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+      const funcs: Array<DataItem.Validation<any, any>> = [];
+      if (dataItem.required) {
+        funcs.push(dynamicRequired(dataItem.required, (p) => {
           if (p.value == null || p.value === "" || p.value === nullValueRef.current) {
             return {
               type: "e",
@@ -96,9 +97,9 @@ export const ElecSign = <D extends DataItem.$any | undefined>({
             };
           }
           return undefined;
-        },
-        ...dataItem.validations ?? [],
-      ];
+        }));
+      }
+      funcs.push(...dataItem.validations ?? []);
       return (_, p) => iterator(funcs, p);
     },
     focus: focusInput,

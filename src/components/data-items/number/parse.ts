@@ -3,6 +3,11 @@ import { getDataItemLabel } from "../label";
 
 export const $numParse = <V extends number>({ value, dataItem, fullName, env }: DataItem.ParseProps<DataItem.$num<V> | DataItem.$boolNum<V, V>>, skipRefSource?: boolean): DataItem.ParseResult<V> => {
   const s = getDataItemLabel({ dataItem: dataItem as DataItem.$num, env });
+  const msgs = (dataItem as DataItem.$num<V>).message?.parse;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   try {
     if (Array.isArray(value) && value.length > 1) {
@@ -10,7 +15,12 @@ export const $numParse = <V extends number>({ value, dataItem, fullName, env }: 
         type: "e",
         code: "multiple",
         fullName,
-        msg: env.lang("validation.single", { s }),
+        msg: msgs?.single ?
+          msgs.single({
+            ...msgParams,
+            value,
+          }) :
+          env.lang("validation.single", { s }),
       }];
     }
 
@@ -39,7 +49,13 @@ export const $numParse = <V extends number>({ value, dataItem, fullName, env }: 
             type: env.lang("common.typeOfNumber"),
             before: value,
             after: v,
-          })} / ` : ""}${env.lang("validation.contain", { s })}`,
+          })} / ` : ""}${msgs?.contain ?
+            msgs.contain({
+              ...msgParams,
+              value: v,
+              source: source as DataItem.Source<any>,
+            }) :
+            env.lang("validation.contain", { s })}`,
         }];
       }
     }
@@ -59,11 +75,16 @@ export const $numParse = <V extends number>({ value, dataItem, fullName, env }: 
       type: "e",
       code: "parse",
       fullName,
-      msg: env.lang("validation.parseFailed", {
-        s,
-        type: env.lang("common.typeOfNumber"),
-        value,
-      }),
+      msg: msgs?.typeof ?
+        msgs.typeof({
+          ...msgParams,
+          value,
+        }) :
+        env.lang("validation.parseFailed", {
+          s,
+          type: env.lang("common.typeOfNumber"),
+          value,
+        }),
     }];
   }
 };

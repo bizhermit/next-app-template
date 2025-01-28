@@ -4,6 +4,11 @@ import { getDataItemLabel } from "../label";
 export const $boolValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$boolAny>) => {
   const validations: Array<DataItem.Validation<DataItem.$boolAny>> = [];
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = dataItem.message?.validation;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   validations.push((p) => {
     if (equals(p.value, p.dataItem.trueValue)) return undefined;
@@ -14,7 +19,13 @@ export const $boolValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "required",
           fullName: p.fullName,
-          msg: env.lang("validation.required", { s }),
+          msg: msgs?.required ?
+            msgs.required({
+              ...msgParams,
+              value: p.value,
+              mode: p.dataItem.source ? "select" : "input",
+            }) :
+            env.lang("validation.required", { s }),
         };
       }
       return undefined;
@@ -25,7 +36,13 @@ export const $boolValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "required",
           fullName: p.fullName,
-          msg: env.lang("validation.required", { s }),
+          msg: msgs?.required ?
+            msgs.required({
+              ...msgParams,
+              value: p.value,
+              mode: p.dataItem.source ? "select" : "input",
+            }) :
+            env.lang("validation.required", { s }),
         };
       }
       return undefined;
@@ -34,7 +51,15 @@ export const $boolValidations = ({ dataItem, env }: DataItem.ValidationGenerator
       type: "e",
       code: "required",
       fullName: p.fullName,
-      msg: env.lang("validation.contain", { s }),
+      msg:
+        msgs?.contain ?
+          msgs.contain({
+            ...msgParams,
+            value: p.value,
+            trueValue: p.dataItem.trueValue,
+            falseValue: p.dataItem.falseValue,
+          }) :
+          env.lang("validation.contain", { s }),
     };
   });
 

@@ -1,24 +1,34 @@
 import { formatTime, getTimeUnit, parseMilliseconds, parseTimeAsUnit } from "../../objects/time";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$time>): Array<DataItem.Validation<DataItem.$time>> => {
   const validations: Array<DataItem.Validation<DataItem.$time>> = [];
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = dataItem.message?.validation;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+    validations.push(dynamicRequired(dataItem.required, (p) => {
       if (p.value != null) return undefined;
       return {
         type: "e",
         code: "required",
         fullName: p.fullName,
-        msg: env.lang("validation.required", { s }),
+        msg: msgs?.required ?
+          msgs.required({
+            ...msgParams,
+            value: p.value,
+          }) :
+          env.lang("validation.required", { s }),
       };
-    });
+    }));
   }
 
-  const formatPattern = dataItem.mode === "hms" ? "hh:mm:ss" : dataItem.mode === "ms" ? "mm:ss" : "hh:mm";
+  const formatPattern = dataItem.formatPattern || dataItem.mode === "hms" ? "hh:mm:ss" : dataItem.mode === "ms" ? "mm:ss" : "hh:mm";
   const unit = getTimeUnit(dataItem.mode ?? "hm");
 
   const min = dataItem.min == null ? 0 : parseTimeAsUnit(parseMilliseconds(dataItem.min, unit), unit);
@@ -33,11 +43,18 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
         type: "e",
         code: "range",
         fullName,
-        msg: env.lang("validation.rangeDate", {
-          s,
-          minDate: minStr,
-          maxDate: maxStr,
-        }),
+        msg: msgs?.range ?
+          msgs.range({
+            ...msgParams,
+            value,
+            min: min!,
+            max: max!,
+          }) :
+          env.lang("validation.rangeDate", {
+            s,
+            minDate: minStr,
+            maxDate: maxStr,
+          }),
       };
     });
   } else {
@@ -49,10 +66,16 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "min",
           fullName,
-          msg: env.lang("validation.minDate", {
-            s,
-            minDate: minStr,
-          }),
+          msg: msgs?.min ?
+            msgs.min({
+              ...msgParams,
+              value,
+              min: min!,
+            }) :
+            env.lang("validation.minDate", {
+              s,
+              minDate: minStr,
+            }),
         };
       });
     }
@@ -64,10 +87,16 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "max",
           fullName,
-          msg: env.lang("validation.maxDate", {
-            s,
-            maxDate: maxStr,
-          }),
+          msg: msgs?.max ?
+            msgs.max({
+              ...msgParams,
+              value,
+              max: max!,
+            }) :
+            env.lang("validation.maxDate", {
+              s,
+              maxDate: maxStr,
+            }),
         };
       });
     }
@@ -90,7 +119,15 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "pair-after",
           fullName,
-          msg: pairDataItem?.pair ? "" : env.lang("validation.contextTime", { s }),
+          msg: pairDataItem?.pair ? "" : (
+            msgs?.pairBefore ?
+              msgs.pairBefore({
+                ...msgParams,
+                value,
+                pairTime,
+              }) :
+              env.lang("validation.contextTime", { s })
+          ),
         };
       }
       if (value > pairTime) return undefined;
@@ -98,7 +135,13 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
         type: "e",
         code: "pair-before",
         fullName,
-        msg: env.lang("validation.contextTime", { s }),
+        msg: msgs?.pairAfter ?
+          msgs.pairAfter({
+            ...msgParams,
+            value,
+            pairTime,
+          }) :
+          env.lang("validation.contextTime", { s }),
       };
     });
   }

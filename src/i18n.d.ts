@@ -122,6 +122,10 @@ interface I18N_Langs {
      */
     required: LangValue<{ s?: string; mode?: "input" | "select" | "set"; }>;
     /**
+     * 不足
+     */
+    lack: LangValue<{ s?: string; items?: Array<string>; mode?: "input" | "select" | "set"; }>
+    /**
      * 文字数一致
      */
     length: LangValue<{ s?: string; len: number; cur?: number; }>;

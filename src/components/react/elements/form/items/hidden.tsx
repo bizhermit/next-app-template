@@ -1,9 +1,9 @@
+import { dynamicRequired } from "@/data-items/utilities";
 import { type HTMLAttributes, useEffect } from "react";
 import { $arrayValidations } from "../../../../data-items/array/validation";
 import { $boolValidations } from "../../../../data-items/bool/validation";
 import { $dateValidations } from "../../../../data-items/date/validation";
 import { $fileValidations } from "../../../../data-items/file/validation";
-import { getDataItemLabel } from "../../../../data-items/label";
 import { $numValidations } from "../../../../data-items/number/validation";
 import { $strValidations } from "../../../../data-items/string/validation";
 import { $structValidations } from "../../../../data-items/struct/validation";
@@ -86,7 +86,7 @@ export const Hidden = <V extends any, D extends DataItem.$object | undefined>({
     },
     parse: () => (p) => [p.value],
     effect: () => { },
-    validation: ({ dataItem, env, iterator }) => {
+    validation: ({ dataItem, env, iterator, label }) => {
       const funcs = (() => {
         switch (dataItem.type) {
           case "str": return $strValidations({ dataItem: dataItem as DataItem.$str, env });
@@ -106,11 +106,15 @@ export const Hidden = <V extends any, D extends DataItem.$object | undefined>({
             return (() => {
               const funcs: Array<DataItem.Validation<DataItem.$any, V>> = [];
               if (dataItem.required) {
-                funcs.push((p) => {
-                  if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+                funcs.push(dynamicRequired(dataItem.required, (p) => {
                   if (p.value != null && p.value !== "") return undefined;
-                  return { type: "e", code: "required", fullName: p.fullName, msg: `${getDataItemLabel({ dataItem, env })}を設定してください。` };
-                });
+                  return {
+                    type: "e",
+                    code: "required",
+                    fullName: p.fullName,
+                    msg: env.lang("validation.required", { s: label, mode: "set" }),
+                  };
+                }));
               }
               if (dataItem.validations) funcs.push(...(dataItem as DataItem.$any).validations!);
               return funcs;

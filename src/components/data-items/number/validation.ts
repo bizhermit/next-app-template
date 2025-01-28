@@ -1,111 +1,164 @@
 import { getFloatPosition } from "../../objects/number";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $numValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$num>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$num>> => {
   const validations: Array<DataItem.Validation<DataItem.$num>> = [];
   const s = getDataItemLabel({ dataItem, env });
+  const msgs = dataItem.message?.validation;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
-      if (p.value != null) {
-        if (p.value === 0 && dataItem.requiredIsNotZero) {
+    const hasSource = dataItem.source != null;
+    if (dataItem.requiredIsNotZero) {
+      validations.push(dynamicRequired(dataItem.required, (p) => {
+        if (p.value == null || p.value === 0) {
           return {
             type: "e",
             code: "required",
             fullName: p.fullName,
-            msg: env.lang("validation.required", { s }),
+            msg: msgs?.required ? msgs.required({
+              ...msgParams,
+              value: p.value,
+              mode: hasSource ? "select" : "input",
+            }) : env.lang("validation.required", {
+              s,
+              mode: hasSource ? "select" : "input",
+            }),
           };
         }
         return undefined;
-      }
-      return {
-        type: "e",
-        code: "required",
-        fullName: p.fullName,
-        msg: env.lang("validation.required", {
-          s,
-          mode: dataItem.source ? "select" : "input",
-        }),
-      };
-    });
+      }));
+    } else {
+      validations.push(dynamicRequired(dataItem.required, ({ value, fullName }) => {
+        if (value != null) return undefined;
+        return {
+          type: "e",
+          code: "required",
+          fullName: fullName,
+          msg: msgs?.required ? msgs.required({
+            ...msgParams,
+            value,
+            mode: hasSource ? "select" : "input",
+          }) : env.lang("validation.required", {
+            s,
+            mode: hasSource ? "select" : "input",
+          }),
+        };
+      }));
+    }
   }
 
   if (dataItem.min != null && dataItem.max != null) {
-    validations.push(({ value, fullName }) => {
+    validations.push(({ dataItem: { min, max }, value, fullName }) => {
       if (value == null) return undefined;
-      if (dataItem.min! <= value && value <= dataItem.max!) return undefined;
+      if (min! <= value && value <= max!) return undefined;
       return {
         type: "e",
         code: "range",
         fullName,
-        msg: env.lang("validation.range", {
-          s,
-          min: dataItem.min,
-          max: dataItem.max,
-        }),
+        msg: msgs?.range ?
+          msgs.range({
+            ...msgParams,
+            value,
+            min: min!,
+            max: max!,
+          }) :
+          env.lang("validation.range", {
+            s,
+            min,
+            max,
+          }),
       };
     });
   } else {
     if (dataItem.min != null) {
-      validations.push(({ value, fullName }) => {
+      validations.push(({ dataItem: { min }, value, fullName }) => {
         if (value == null) return undefined;
-        if (dataItem.min! <= value) return undefined;
+        if (min! <= value) return undefined;
         return {
           type: "e",
           code: "min",
           fullName,
-          msg: env.lang("validation.min", {
-            s,
-            min: dataItem.min,
-          }),
+          msg: msgs?.min ?
+            msgs.min({
+              ...msgParams,
+              value,
+              min: min!,
+            }) :
+            env.lang("validation.min", {
+              s,
+              min,
+            }),
         };
       });
     }
     if (dataItem.max != null) {
-      validations.push(({ value, fullName }) => {
+      validations.push(({ dataItem: { max }, value, fullName }) => {
         if (value == null) return undefined;
-        if (value <= dataItem.max!) return undefined;
+        if (value <= max!) return undefined;
         return {
           type: "e",
           code: "max",
           fullName,
-          msg: env.lang("validation.max", {
-            s,
-            max: dataItem.max,
-          }),
+          msg: msgs?.max ?
+            msgs.max({
+              ...msgParams,
+              value,
+              max: max!,
+            }) :
+            env.lang("validation.max", {
+              s,
+              max,
+            }),
         };
       });
     }
   }
 
   if (dataItem.float != null) {
-    validations.push(({ value, fullName }) => {
+    validations.push(({ dataItem: { float }, value, fullName }) => {
       if (value == null) return undefined;
       const cur = getFloatPosition(value);
-      if (cur <= dataItem.float!) return undefined;
+      if (cur <= float!) return undefined;
       return {
         type: "e",
         code: "float",
         fullName,
-        msg: env.lang("validation.float", {
-          s,
-          float: dataItem.float,
-          cur,
-        }),
+        msg: msgs?.float ?
+          msgs.float({
+            ...msgParams,
+            value,
+            float: float!,
+            currentFloat: cur,
+          }) :
+          env.lang("validation.float", {
+            s,
+            float,
+            cur,
+          }),
       };
     });
   }
 
   if (!skipSourceCheck && dataItem.source) {
-    validations.push(({ value, fullName }) => {
+    validations.push(({ dataItem: { source }, value, fullName }) => {
       if (value == null) return undefined;
-      if (dataItem.source!.find(s => s.value === value)) return undefined;
+      if (source!.find(s => s.value === value)) return undefined;
       return {
         type: "e",
         code: "source",
         fullName,
-        msg: env.lang("validation.contain", { s }),
+        msg: msgs?.source ?
+          msgs.source({
+            ...msgParams,
+            value,
+            source: source!,
+          }) :
+          env.lang("validation.contain", { s }),
       };
     });
   }
