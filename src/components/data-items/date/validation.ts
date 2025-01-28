@@ -1,4 +1,4 @@
-import { equalDate, formatDate, getFirstDateAtMonth, getLastDateAtMonth, isAfterDate, isBeforeDate, parseDate } from "../../objects/date";
+import { equalDate, formatDate, getFirstDateAtMonth, getLastDateAtMonth, isAfterDate, isBeforeDate, parseDate, withoutTime } from "../../objects/date";
 import { getDataItemLabel } from "../label";
 import { dynamicRequired } from "../utilities";
 
@@ -35,6 +35,8 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
 
   let min = dataItem.min ? parseDate(typeof dataItem.min === "function" ? dataItem.min() : dataItem.min) : null;
   let max = dataItem.max ? parseDate(typeof dataItem.max === "function" ? dataItem.max() : dataItem.max) : null;
+  if (min) min = withoutTime(min);
+  if (max) max = withoutTime(max);
   if (dataItem.type === "month") {
     if (min) min = getFirstDateAtMonth(min);
     if (max) max = getLastDateAtMonth(max);
