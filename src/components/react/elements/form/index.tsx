@@ -32,6 +32,7 @@ type FormObserveItemProps = {
 
 type FormContextProps = {
   bind: { [v: string]: any };
+  readOnly?: boolean;
   disabled?: boolean;
   process: FormProcessState;
   processing: boolean;
@@ -100,6 +101,7 @@ export const useFormRef = <T extends { [v: string]: any } = { [v: string]: any }
 type FormOptions<T extends { [v: string]: any } = { [v: string]: any }> = {
   ref?: FormRef<T>;
   encType?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain";
+  readOnly?: boolean;
   disabled?: boolean;
   enterSubmit?: boolean;
   bind?: { [v: string | number | symbol]: any };
@@ -121,6 +123,7 @@ type FormProps<T extends { [v: string]: any } = { [v: string]: any }> = Overwrit
 
 export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
   ref,
+  readOnly,
   disabled,
   enterSubmit,
   bind,
@@ -318,6 +321,7 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
     <FormContext.Provider value={{
       method: props.method,
       bind: $bind,
+      readOnly,
       disabled,
       process,
       processing: ["submit", "reset", "init"].includes(process),
