@@ -1,5 +1,6 @@
 import { isAlphabet, isEmpty, isFullWidth, isFWAlphabet, isFWKatakana, isFWNumeric, isHalfWidth, isHiragana, isHWAlphabet, isHWAlphanumeric, isHWAlphanumericAndSymbols, isHWKatakana, isHWNumeric, isInteger, isKatakana, isMailAddress, isNumeric, isPhoneNumber, isUrl, strLength } from "../../objects/string";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$str>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$str>> => {
   const validations: Array<DataItem.Validation<DataItem.$str>> = [];
@@ -11,46 +12,25 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
   };
 
   if (dataItem.required) {
-    if (typeof dataItem.required === "function") {
-      validations.push((p) => {
-        if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
-        if (!isEmpty(p.value)) return undefined;
-        return {
-          type: "e",
-          code: "required",
-          fullName: p.fullName,
-          msg: msgs?.required ?
-            msgs.required({
-              ...msgParams,
-              value: p.value,
-              mode: p.dataItem.source ? "select" : "input",
-            }) :
-            env.lang("validation.required", {
-              s,
-              mode: p.dataItem.source ? "select" : "input",
-            }),
-        };
-      });
-    } else {
-      validations.push((p) => {
-        if (!isEmpty(p.value)) return undefined;
-        return {
-          type: "e",
-          code: "required",
-          fullName: p.fullName,
-          msg: msgs?.required ?
-            msgs.required({
-              ...msgParams,
-              value: p.value,
-              mode: p.dataItem.source ? "select" : "input",
-            }) :
-            env.lang("validation.required", {
-              s,
-              mode: p.dataItem.source ? "select" : "input",
-            }),
-        };
-      });
-    }
+    const hasSource = dataItem.source != null;
+    validations.push(dynamicRequired(dataItem.required, ({ value, fullName }) => {
+      if (!isEmpty(value)) return undefined;
+      return {
+        type: "e",
+        code: "required",
+        fullName: fullName,
+        msg: msgs?.required ?
+          msgs.required({
+            ...msgParams,
+            value,
+            mode: hasSource ? "select" : "input",
+          }) :
+          env.lang("validation.required", {
+            s,
+            mode: hasSource ? "select" : "input",
+          }),
+      };
+    }));
   }
 
   if (dataItem.length != null) {

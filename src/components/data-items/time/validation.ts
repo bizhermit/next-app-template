@@ -1,5 +1,6 @@
 import { formatTime, getTimeUnit, parseMilliseconds, parseTimeAsUnit } from "../../objects/time";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$time>): Array<DataItem.Validation<DataItem.$time>> => {
   const validations: Array<DataItem.Validation<DataItem.$time>> = [];
@@ -11,8 +12,7 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
   };
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+    validations.push(dynamicRequired(dataItem.required, (p) => {
       if (p.value != null) return undefined;
       return {
         type: "e",
@@ -25,7 +25,7 @@ export const $timeValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           }) :
           env.lang("validation.required", { s }),
       };
-    });
+    }));
   }
 
   const formatPattern = dataItem.formatPattern || dataItem.mode === "hms" ? "hh:mm:ss" : dataItem.mode === "ms" ? "mm:ss" : "hh:mm";

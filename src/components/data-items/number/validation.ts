@@ -1,5 +1,6 @@
 import { getFloatPosition } from "../../objects/number";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $numValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$num>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$num>> => {
   const validations: Array<DataItem.Validation<DataItem.$num>> = [];
@@ -11,31 +12,10 @@ export const $numValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
   };
 
   if (dataItem.required) {
-    if (typeof dataItem.required === "function") {
-      if (dataItem.requiredIsNotZero) {
-        validations.push((p) => {
-          if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
-          if (p.value == null || p.value === 0) {
-            return {
-              type: "e",
-              code: "required",
-              fullName: p.fullName,
-              msg: msgs?.required ? msgs.required({
-                ...msgParams,
-                value: p.value,
-                mode: p.dataItem.source ? "select" : "input",
-              }) : env.lang("validation.required", {
-                s,
-                mode: p.dataItem.source ? "select" : "input",
-              }),
-            };
-          }
-          return undefined;
-        });
-      } else {
-        validations.push((p) => {
-          if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
-          if (p.value != null) return undefined;
+    const hasSource = dataItem.source != null;
+    if (dataItem.requiredIsNotZero) {
+      validations.push(dynamicRequired(dataItem.required, (p) => {
+        if (p.value == null || p.value === 0) {
           return {
             type: "e",
             code: "required",
@@ -43,52 +23,32 @@ export const $numValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             msg: msgs?.required ? msgs.required({
               ...msgParams,
               value: p.value,
-              mode: p.dataItem.source ? "select" : "input",
+              mode: hasSource ? "select" : "input",
             }) : env.lang("validation.required", {
               s,
-              mode: p.dataItem.source ? "select" : "input",
+              mode: hasSource ? "select" : "input",
             }),
           };
-        });
-      }
+        }
+        return undefined;
+      }));
     } else {
-      if (dataItem.requiredIsNotZero) {
-        validations.push(({ dataItem: { source }, value, fullName }) => {
-          if (value == null || value === 0) {
-            return {
-              type: "e",
-              code: "required",
-              fullName: fullName,
-              msg: msgs?.required ? msgs.required({
-                ...msgParams,
-                value: value,
-                mode: source ? "select" : "input",
-              }) : env.lang("validation.required", {
-                s,
-                mode: source ? "select" : "input",
-              }),
-            };
-          }
-          return undefined;
-        });
-      } else {
-        validations.push(({ dataItem: { source }, value, fullName }) => {
-          if (value != null) return undefined;
-          return {
-            type: "e",
-            code: "required",
-            fullName: fullName,
-            msg: msgs?.required ? msgs.required({
-              ...msgParams,
-              value,
-              mode: source ? "select" : "input",
-            }) : env.lang("validation.required", {
-              s,
-              mode: source ? "select" : "input",
-            }),
-          };
-        });
-      }
+      validations.push(dynamicRequired(dataItem.required, ({ value, fullName }) => {
+        if (value != null) return undefined;
+        return {
+          type: "e",
+          code: "required",
+          fullName: fullName,
+          msg: msgs?.required ? msgs.required({
+            ...msgParams,
+            value,
+            mode: hasSource ? "select" : "input",
+          }) : env.lang("validation.required", {
+            s,
+            mode: hasSource ? "select" : "input",
+          }),
+        };
+      }));
     }
   }
 

@@ -1,5 +1,6 @@
 import { equalDate, formatDate, getFirstDateAtMonth, getLastDateAtMonth, isAfterDate, isBeforeDate, parseDate } from "../../objects/date";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 type Options = {
   skipRequired?: boolean;
@@ -16,38 +17,20 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
   const dateFormatPattern = dataItem.formatPattern || (dataItem.type === "month" ? "yyyy/MM" : "yyyy/MM/dd");
 
   if (dataItem.required && !opts?.skipRequired) {
-    if (typeof dataItem.required === "function") {
-      validations.push((p) => {
-        if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
-        if (p.value != null) return undefined;
-        return {
-          type: "e",
-          code: "required",
-          fullName: p.fullName,
-          msg: msgs?.required ?
-            msgs.required({
-              ...msgParams,
-              value: p.value,
-            }) :
-            env.lang("validation.required", { s }),
-        };
-      });
-    } else {
-      validations.push((p) => {
-        if (p.value != null) return undefined;
-        return {
-          type: "e",
-          code: "required",
-          fullName: p.fullName,
-          msg: msgs?.required ?
-            msgs.required({
-              ...msgParams,
-              value: p.value,
-            }) :
-            env.lang("validation.required", { s }),
-        };
-      });
-    }
+    validations.push(dynamicRequired(dataItem.required, (p) => {
+      if (p.value != null) return undefined;
+      return {
+        type: "e",
+        code: "required",
+        fullName: p.fullName,
+        msg: msgs?.required ?
+          msgs.required({
+            ...msgParams,
+            value: p.value,
+          }) :
+          env.lang("validation.required", { s }),
+      };
+    }));
   }
 
   let min = dataItem.min ? parseDate(typeof dataItem.min === "function" ? dataItem.min() : dataItem.min) : null;

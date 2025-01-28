@@ -1,5 +1,6 @@
 import { getAccept, getSizeText } from "../../objects/file";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$file>): Array<DataItem.Validation<DataItem.$file>> => {
   const validations: Array<DataItem.Validation<DataItem.$file>> = [];
@@ -31,8 +32,7 @@ export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGenerator
   });
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+    validations.push(dynamicRequired(dataItem.required, (p) => {
       if (p.value != null) return undefined;
       return {
         type: "e",
@@ -45,7 +45,7 @@ export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           }) :
           env.lang("validation.required", { s, mode: "set" }),
       };
-    });
+    }));
   }
 
   const { accept, items } = getAccept(dataItem.accept);

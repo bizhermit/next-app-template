@@ -395,15 +395,15 @@ export default function Home() {
               // name="text"
               labelAsIs="テキスト"
               // // defaultValue="hoge"
-              // required={(p) => {
-              //   // console.log((p.data?.slider ?? 0) > 50);
-              //   return (p.data?.slider ?? 0) > 50;
-              // }}
-              // refs={["slider"]}
+              required={(p) => {
+                // console.log((p.data?.slider ?? 0) > 50);
+                return (p.data?.slider ?? 0) > 50;
+              }}
+              refs={["slider"]}
               disabled={disabled.value}
               readOnly={readOnly.value}
               dataItem={sample_text}
-              required={false}
+              // required={false}
               charType="h-alpha-num"
             // hook={formItem}
             />
@@ -459,7 +459,7 @@ export default function Home() {
               disabled={disabled.value}
               readOnly={readOnly.value}
               // float={1}
-              // requiredIsNotZero
+              requiredIsNotZero
               defaultValue={3000}
             />
           </FormItemWrap>
@@ -634,7 +634,7 @@ export default function Home() {
               disabled={disabled.value}
               readOnly={readOnly.value}
               splitDataNames={["date-select-y", "date-select-m", "date-select-d"]}
-              allowMissing
+              // allowMissing
               // preventCollectForm
               editTextChangeTrigger="change"
               onEdit={(v) => {

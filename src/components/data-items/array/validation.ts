@@ -1,5 +1,6 @@
 import { equals, getObjectType } from "../../objects";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $arrayValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$array<any>>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$array<any>>> => {
   const validations: Array<DataItem.Validation<DataItem.$array<any>>> = [];
@@ -31,8 +32,7 @@ export const $arrayValidations = ({ dataItem, env }: DataItem.ValidationGenerato
   });
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+    validations.push(dynamicRequired(dataItem.required, (p) => {
       if (p.value != null) return undefined;
       return {
         type: "e",
@@ -45,7 +45,7 @@ export const $arrayValidations = ({ dataItem, env }: DataItem.ValidationGenerato
           }) :
           env.lang("validation.required", { s, mode: "set" }),
       };
-    });
+    }));
   }
 
   if (dataItem.length != null) {

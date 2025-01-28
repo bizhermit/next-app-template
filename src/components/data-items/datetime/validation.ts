@@ -1,5 +1,6 @@
 import { DateTime } from "../../objects/datetime";
 import { getDataItemLabel } from "../label";
+import { dynamicRequired } from "../utilities";
 
 export const $datetimeValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$datetime>): Array<DataItem.Validation<DataItem.$datetime>> => {
   const validations: Array<DataItem.Validation<DataItem.$datetime, DateTime>> = [];
@@ -11,8 +12,7 @@ export const $datetimeValidations = ({ dataItem, env }: DataItem.ValidationGener
   };
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
+    validations.push(dynamicRequired(dataItem.required, (p) => {
       if (p.value != null) return undefined;
       return {
         type: "e",
@@ -25,7 +25,7 @@ export const $datetimeValidations = ({ dataItem, env }: DataItem.ValidationGener
           }) :
           env.lang("validation.required", { s }),
       };
-    });
+    }));
   }
 
   if (dataItem.validations) {

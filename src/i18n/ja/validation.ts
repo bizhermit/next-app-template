@@ -16,6 +16,7 @@ const Langs = {
   parseFailed: ({ s, type, ...p }) => `${sub(s, s => `${s}を`)}${type}に変換できませんでした${writeHas(p, "value", v => ` [${v}]`)}`,
   typeOf: ({ s, type, mode }) => `${sub(s, s => `${s}は`)}${type}を${mode === "set" ? "設定" : "入力"}してください`,
   required: ({ s, mode }) => `${sub(s, s => `${s}を`)}${mode === "select" ? "選択" : mode === "set" ? "設定" : "入力"}してください`,
+  lack: ({ s, items, mode }) => `${sub(s, s => `${s}に`)}${sub(items?.join("と") || undefined, s => `${s}を`)}${mode === "select" ? "選択" : mode === "set" ? "設定" : "入力"}してください`,
   length: ({ s, len, ...p }) => `${sub(s, s => `${s}は`)}${len}文字で入力してください${writeHas(p, "cur", cur => `（現在：${cur}）`)}`,
   minLength: ({ s, minLen, ...p }) => `${sub(s, s => `${s}は`)}${minLen}文字以上で入力してください${writeHas(p, "cur", cur => `（現在：${cur}）`)}`,
   maxLength: ({ s, maxLen, ...p }) => `${sub(s, s => `${s}は`)}${maxLen}文字以内で入力してください${writeHas(p, "cur", cur => `（現在：${cur}）`)}`,

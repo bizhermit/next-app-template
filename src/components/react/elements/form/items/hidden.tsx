@@ -1,3 +1,4 @@
+import { dynamicRequired } from "@/data-items/utilities";
 import { type HTMLAttributes, useEffect } from "react";
 import { $arrayValidations } from "../../../../data-items/array/validation";
 import { $boolValidations } from "../../../../data-items/bool/validation";
@@ -105,28 +106,15 @@ export const Hidden = <V extends any, D extends DataItem.$object | undefined>({
             return (() => {
               const funcs: Array<DataItem.Validation<DataItem.$any, V>> = [];
               if (dataItem.required) {
-                if (typeof dataItem.required === "function") {
-                  funcs.push((p) => {
-                    if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
-                    if (p.value != null && p.value !== "") return undefined;
-                    return {
-                      type: "e",
-                      code: "required",
-                      fullName: p.fullName,
-                      msg: env.lang("validation.required", { s: label, mode: "set" }),
-                    };
-                  });
-                } else {
-                  funcs.push((p) => {
-                    if (p.value != null && p.value !== "") return undefined;
-                    return {
-                      type: "e",
-                      code: "required",
-                      fullName: p.fullName,
-                      msg: env.lang("validation.required", { s: label, mode: "set" }),
-                    };
-                  });
-                }
+                funcs.push(dynamicRequired(dataItem.required, (p) => {
+                  if (p.value != null && p.value !== "") return undefined;
+                  return {
+                    type: "e",
+                    code: "required",
+                    fullName: p.fullName,
+                    msg: env.lang("validation.required", { s: label, mode: "set" }),
+                  };
+                }));
               }
               if (dataItem.validations) funcs.push(...(dataItem as DataItem.$any).validations!);
               return funcs;
