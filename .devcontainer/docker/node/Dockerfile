@@ -1,12 +1,15 @@
 FROM node:22-bookworm
 
 WORKDIR /workspace
+COPY .devcontainer/fonts.conf /etc/fonts/local.conf
 
 RUN apt-get update -y \
   && apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
   sudo \
   # 日本語フォント
+  fonts-noto-cjk \
+  fonts-mplus \
   fonts-ipafont-gothic \
   fonts-ipafont-mincho \
   # chromium
@@ -54,6 +57,7 @@ RUN apt-get update -y \
   && apt-get -y clean \
   && rm -rf /var/lib/apt/lists/* \
   && echo 'node:node' | chpasswd \
-  && gpasswd -a node sudo
+  && gpasswd -a node sudo \
+  && fc-cache -f -v
 
 USER node

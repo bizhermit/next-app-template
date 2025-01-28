@@ -1,7 +1,6 @@
-import { UrlPath } from "@/objects/url";
 import { type ReactNode } from "react";
 import { get } from "../../../objects/struct";
-import Link from "../link";
+import Link, { type NextLinkOptions } from "../link";
 import { type ListGridColumn } from "./grid";
 
 type BaseProps<D extends ListData> = {
@@ -19,7 +18,7 @@ type CustomProps<D extends ListData> = {
     index: number;
   }) => {
     text?: string;
-    href: UrlPath | null | undefined;
+    href: NextLinkOptions["href"] | null | undefined;
     target?: HTMLAnchorElement["target"];
     disabled?: boolean;
   };

@@ -1,7 +1,7 @@
 import { type ListViewColumn } from ".";
 import { DomElement } from "../../../dom/element";
 import { get } from "../../../objects/struct";
-import { type UrlPath } from "../../../objects/url";
+import { type NextLinkOptions } from "../../../react/elements/link";
 import "../../../styles/elements/button.scss";
 
 export const listViewLinkColumn = <D extends ListData>(props: Partial<Omit<ListViewColumn<D>, "initializeCell" | "cell">> & {
@@ -14,7 +14,7 @@ export const listViewLinkColumn = <D extends ListData>(props: Partial<Omit<ListV
     index: number;
   }) => {
     text?: string;
-    href: UrlPath | null | undefined;
+    href: NextLinkOptions["href"] | null | undefined;
     target?: HTMLAnchorElement["target"];
     disabled?: boolean;
   };

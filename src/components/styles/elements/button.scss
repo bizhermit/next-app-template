@@ -28,19 +28,11 @@
     transition: opacity .2s;
     font-weight: 500;
 
-    &[data-color="secondary"] {
-      ---btn-bg: var(--c-secondary, var(--c-primary));
-      ---btn-fg: var(--c-secondary_, var(--c-primary_));
-    }
-
-    &[data-color="danger"] {
-      ---btn-bg: var(--c-danger, var(--c-primary));
-      ---btn-fg: var(--c-danger_, var(--c-primary_));
-    }
-
-    &[data-color="subdued"] {
-      ---btn-bg: var(--c-subdued, var(--c-primary));
-      ---btn-fg: var(--c-subdued_, var(--c-primary_));
+    @each $color in mixins.$colors {
+      &[data-color="#{$color}"] {
+        ---btn-bg: var(--c-#{$color}, var(--c-primary));
+        ---btn-fg: var(--c-#{$color}_, var(--c-primary_));
+      }
     }
 
     &[data-outline="true"] {
