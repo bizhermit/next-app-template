@@ -70,7 +70,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
   const id = useId();
   const form = use(FormContext);
   const $disabled = disabled || form.disabled;
-  const $readOnly = readOnly || form.processing;
+  const $readOnly = readOnly || form.processing || form.readOnly;
 
   const { dataItem, $label } = useMemo(() => {
     const $name = name || $dataItem?.name;
