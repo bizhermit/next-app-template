@@ -8,19 +8,46 @@ type Options = {
 export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$date | DataItem.$month>, opts?: Options): Array<DataItem.Validation<DataItem.$date | DataItem.$month, Date>> => {
   const validations: Array<DataItem.Validation<DataItem.$date | DataItem.$month, Date>> = [];
   const s = getDataItemLabel({ dataItem, env });
-  const dateFormatPattern = dataItem.type === "month" ? "yyyy/MM" : "yyyy/MM/dd";
+  const msgs = dataItem.message?.validation;
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
+    lang: env.lang,
+    subject: s,
+  };
+  const dateFormatPattern = dataItem.formatPattern || (dataItem.type === "month" ? "yyyy/MM" : "yyyy/MM/dd");
 
   if (dataItem.required && !opts?.skipRequired) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
-      if (p.value != null) return undefined;
-      return {
-        type: "e",
-        code: "required",
-        fullName: p.fullName,
-        msg: env.lang("validation.required", { s }),
-      };
-    });
+    if (typeof dataItem.required === "function") {
+      validations.push((p) => {
+        if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
+        if (p.value != null) return undefined;
+        return {
+          type: "e",
+          code: "required",
+          fullName: p.fullName,
+          msg: msgs?.required ?
+            msgs.required({
+              ...msgParams,
+              value: p.value,
+            }) :
+            env.lang("validation.required", { s }),
+        };
+      });
+    } else {
+      validations.push((p) => {
+        if (p.value != null) return undefined;
+        return {
+          type: "e",
+          code: "required",
+          fullName: p.fullName,
+          msg: msgs?.required ?
+            msgs.required({
+              ...msgParams,
+              value: p.value,
+            }) :
+            env.lang("validation.required", { s }),
+        };
+      });
+    }
   }
 
   let min = dataItem.min ? parseDate(typeof dataItem.min === "function" ? dataItem.min() : dataItem.min) : null;
@@ -40,7 +67,18 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
         type: "e",
         code: "range",
         fullName,
-        msg: env.lang("validation.rangeDate", { s, minDate: minStr, maxDate: maxStr }),
+        msg: msgs?.range ?
+          msgs.range({
+            ...msgParams,
+            value,
+            min: min!,
+            max: max!,
+          }) :
+          env.lang("validation.rangeDate", {
+            s,
+            minDate: minStr,
+            maxDate: maxStr,
+          }),
       };
     });
   } else {
@@ -52,7 +90,13 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "min",
           fullName,
-          msg: env.lang("validation.minDate", { s, minDate: minStr }),
+          msg: msgs?.min ?
+            msgs.min({
+              ...msgParams,
+              value,
+              min: min!,
+            }) :
+            env.lang("validation.minDate", { s, minDate: minStr }),
         };
       });
     }
@@ -64,7 +108,13 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "max",
           fullName,
-          msg: env.lang("validation.maxDate", { s, maxDate: maxStr }),
+          msg: msgs?.max ?
+            msgs.max({
+              ...msgParams,
+              value,
+              max: max!,
+            }) :
+            env.lang("validation.maxDate", { s, maxDate: maxStr }),
         };
       });
     }
@@ -87,7 +137,15 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
           type: "e",
           code: "pair-before",
           fullName,
-          msg: pairDataItem?.pair ? "" : env.lang("validation.contextDate", { s }),
+          msg: pairDataItem?.pair ?
+            "" : (msgs?.pairBefore ?
+              msgs.pairBefore({
+                ...msgParams,
+                value,
+                pairDate,
+              }) :
+              env.lang("validation.contextDate", { s })
+            ),
         };
       }
       if (isAfterDate(value, pairDate)) return undefined;
@@ -95,7 +153,13 @@ export const $dateValidations = ({ dataItem, env }: DataItem.ValidationGenerator
         type: "e",
         code: "pair-after",
         fullName,
-        msg: env.lang("validation.contextDate", { s }),
+        msg: msgs?.pairAfter ?
+          msgs.pairAfter({
+            ...msgParams,
+            value,
+            pairDate,
+          }) :
+          env.lang("validation.contextDate", { s }),
       };
     });
   }

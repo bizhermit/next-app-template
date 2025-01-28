@@ -182,8 +182,8 @@ declare namespace DataItem {
     requiredIsTrue?: boolean;
     message?: {
       validation?: {
-        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
-        contain?: (params: MessageBaseParams<V> & { trueValue: True; falseValue: False; }) => string;
+        required?: (params: MessageBaseParams<True | False> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<True | False> & { trueValue: True; falseValue: False; }) => string;
       };
       parse?: {
         single?: (params: MessageBaseParams<Array<any>>) => string;
@@ -201,8 +201,8 @@ declare namespace DataItem {
     requiredIsTrue?: boolean;
     message?: {
       validation?: {
-        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
-        contain?: (params: MessageBaseParams<V> & { trueValue: True; falseValue: False; }) => string;
+        required?: (params: MessageBaseParams<True | False> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<True | False> & { trueValue: True; falseValue: False; }) => string;
       };
       parse?: {
         single?: (params: MessageBaseParams<Array<any>>) => string;
@@ -220,8 +220,8 @@ declare namespace DataItem {
     requiredIsTrue?: boolean;
     message?: {
       validation?: {
-        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
-        contain?: (params: MessageBaseParams<V> & { trueValue: True; falseValue: False; }) => string;
+        required?: (params: MessageBaseParams<True | False> & { mode: "input" | "select" | "set"; }) => string;
+        contain?: (params: MessageBaseParams<True | False> & { trueValue: True; falseValue: False; }) => string;
       };
       parse?: {
         single?: (params: MessageBaseParams<Array<any>>) => string;
@@ -247,18 +247,21 @@ declare namespace DataItem {
       same?: boolean;
     };
     splitDataNames?: [string, string, string];
+    formatPattern?: string;
     message?: {
       validation?: {
-        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
-        range?: (params: MessageBaseParams<V> & { min: number; max: number; }) => string;
-        min?: (params: MessageBaseParams<V> & { min: number; }) => string;
-        max?: (params: MessageBaseParams<V> & { max: number; }) => string;
+        required?: (params: MessageBaseParams<Date>) => string;
+        range?: (params: MessageBaseParams<Date> & { min: Date; max: Date; }) => string;
+        min?: (params: MessageBaseParams<Date> & { min: Date; }) => string;
+        max?: (params: MessageBaseParams<Date> & { max: Date; }) => string;
+        pairBefore?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+        pairAfter?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
       };
       parse?: {
         single?: (params: MessageBaseParams<Array<any>>) => string;
         typeof?: (params: MessageBaseParams<any>) => string;
       };
-    }
+    };
   };
 
   type $month = $ & {
@@ -272,6 +275,21 @@ declare namespace DataItem {
       same?: boolean;
     };
     splitDataNames?: [string, string];
+    formatPattern?: string;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Date>) => string;
+        range?: (params: MessageBaseParams<Date> & { min: Date; max: Date; }) => string;
+        min?: (params: MessageBaseParams<Date> & { min: Date; }) => string;
+        max?: (params: MessageBaseParams<Date> & { max: Date; }) => string;
+        pairBefore?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+        pairAfter?: (params: MessageBaseParams<Date> & { pairDate: Date; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $time = $ & {
