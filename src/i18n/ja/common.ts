@@ -16,6 +16,7 @@ const Langs = {
   typeOfDateTime: "日付型",
   typeOfTime: "時間型",
   typeOfFile: "ファイル型",
+  typeOfImage: "画像",
   ok: "OK",
   close: "閉じる",
   cancel: "キャンセル",

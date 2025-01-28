@@ -1,6 +1,6 @@
 import { isAlphabet, isEmpty, isFullWidth, isFWAlphabet, isFWKatakana, isFWNumeric, isHalfWidth, isHiragana, isHWAlphabet, isHWAlphanumeric, isHWAlphanumericAndSymbols, isHWKatakana, isHWNumeric, isInteger, isKatakana, isMailAddress, isNumeric, isPhoneNumber, isUrl, strLength } from "../../objects/string";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$str>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$str>> => {
   const validations: Array<DataItem.Validation<DataItem.$str>> = [];

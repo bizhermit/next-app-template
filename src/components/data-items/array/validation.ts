@@ -1,6 +1,6 @@
 import { equals, getObjectType } from "../../objects";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $arrayValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$array<any>>, skipSourceCheck?: boolean): Array<DataItem.Validation<DataItem.$array<any>>> => {
   const validations: Array<DataItem.Validation<DataItem.$array<any>>> = [];

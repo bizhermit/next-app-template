@@ -1,6 +1,6 @@
 import { DateTime } from "../../objects/datetime";
+import { dynamicRequired } from "../dynamic-required";
 import { getDataItemLabel } from "../label";
-import { dynamicRequired } from "../utilities";
 
 export const $datetimeValidations = ({ dataItem, env }: DataItem.ValidationGeneratorProps<DataItem.$datetime>): Array<DataItem.Validation<DataItem.$datetime>> => {
   const validations: Array<DataItem.Validation<DataItem.$datetime, DateTime>> = [];
