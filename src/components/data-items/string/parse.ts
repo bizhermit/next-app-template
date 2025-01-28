@@ -4,7 +4,7 @@ import { getDataItemLabel } from "../label";
 export const $strParse = <V extends string>({ value, dataItem, fullName, env }: DataItem.ParseProps<DataItem.$object>, skipRefSource?: boolean): DataItem.ParseResult<V> => {
   const s = getDataItemLabel({ dataItem, env });
   const msgs = (dataItem as DataItem.$str<V>).message?.parse;
-  const msgParams: DataItem.MessageBaseParams = {
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
     lang: env.lang,
     subject: s,
   };
@@ -15,7 +15,10 @@ export const $strParse = <V extends string>({ value, dataItem, fullName, env }: 
       code: "multiple",
       fullName,
       msg: msgs?.single ?
-        msgs.single(msgParams) :
+        msgs.single({
+          ...msgParams,
+          value,
+        }) :
         env.lang("validation.single", { s }),
     }];
   }
@@ -31,6 +34,7 @@ export const $strParse = <V extends string>({ value, dataItem, fullName, env }: 
         msg: msgs?.contain ?
           msgs?.contain({
             ...msgParams,
+            value: v,
             source: source as DataItem.Source<any>,
           }) :
           env.lang("validation.contain", { s }),

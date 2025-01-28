@@ -93,9 +93,10 @@ declare namespace DataItem {
     validations?: Array<Validation<$any<V>>>;
   };
 
-  type MessageBaseParams = {
+  type MessageBaseParams<V extends any> = {
     lang: LangAccessor;
     subject: string;
+    value: V | null | undefined;
   };
 
   type CharType =
@@ -131,17 +132,17 @@ declare namespace DataItem {
     inputType?: Extract<React.HTMLInputTypeAttribute, "text" | "email" | "url" | "tel">;
     message?: {
       validation?: {
-        required?: (params: MessageBaseParams & { mode: "input" | "select" | "set"; }) => string;
-        length?: (params: MessageBaseParams & { length: number; currentLength: number; }) => string;
-        range?: (params: MessageBaseParams & { minLength: number; maxLength: number; currentLength: number; }) => string;
-        minLength?: (params: MessageBaseParams & { minLength: number; currentLength: number; }) => string;
-        maxLength?: (params: MessageBaseParams & { maxLength: number; currentLength: number; }) => string;
-        charType?: (params: MessageBaseParams & { charType: CharType; }) => string;
-        source?: (params: MessageBaseParams & { source: Source<V>; }) => string;
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        length?: (params: MessageBaseParams<V> & { length: number; currentLength: number; }) => string;
+        range?: (params: MessageBaseParams<V> & { minLength: number; maxLength: number; currentLength: number; }) => string;
+        minLength?: (params: MessageBaseParams<V> & { minLength: number; currentLength: number; }) => string;
+        maxLength?: (params: MessageBaseParams<V> & { maxLength: number; currentLength: number; }) => string;
+        charType?: (params: MessageBaseParams<V> & { charType: CharType; }) => string;
+        source?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
       };
       parse?: {
-        single?: (params: MessageBaseParams) => string;
-        contain?: (params: MessageBaseParams & { source: Source<V>; }) => string;
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        contain?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
       };
     };
   };
@@ -155,6 +156,21 @@ declare namespace DataItem {
     maxLength?: number;
     float?: number;
     requiredIsNotZero?: boolean;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+        range?: (params: MessageBaseParams<V> & { min: number; max: number; }) => string;
+        min?: (params: MessageBaseParams<V> & { min: number; }) => string;
+        max?: (params: MessageBaseParams<V> & { max: number; }) => string;
+        float?: (params: MessageBaseParams<V> & { float: number; currentFloat: number; }) => string;
+        source?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
+      };
+      parse?: {
+        single?: (params: MessageBaseParams<Array<any>>) => string;
+        typeof?: (params: MessageBaseParams<any>) => string;
+        contain?: (params: MessageBaseParams<V> & { source: Source<V>; }) => string;
+      };
+    };
   };
 
   type $bool<True extends boolean = true, False extends boolean = false> = $ & {

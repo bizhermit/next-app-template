@@ -5,28 +5,52 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
   const validations: Array<DataItem.Validation<DataItem.$str>> = [];
   const s = getDataItemLabel({ dataItem, env });
   const msgs = dataItem.message?.validation;
-  const msgParams: DataItem.MessageBaseParams = {
+  const msgParams: Omit<DataItem.MessageBaseParams<any>, "value"> = {
     lang: env.lang,
     subject: s,
   };
 
   if (dataItem.required) {
-    validations.push((p) => {
-      if (typeof p.dataItem.required === "function" && !p.dataItem.required(p)) return undefined;
-      if (!isEmpty(p.value)) return undefined;
-      return {
-        type: "e",
-        code: "required",
-        fullName: p.fullName,
-        msg: msgs?.required ? msgs.required({
-          ...msgParams,
-          mode: p.dataItem.source ? "select" : "input",
-        }) : env.lang("validation.required", {
-          s,
-          mode: p.dataItem.source ? "select" : "input",
-        }),
-      };
-    });
+    if (typeof dataItem.required === "function") {
+      validations.push((p) => {
+        if (!(p.dataItem.required as ((params: DataItem.ValidationProps<any>) => boolean))(p)) return undefined;
+        if (!isEmpty(p.value)) return undefined;
+        return {
+          type: "e",
+          code: "required",
+          fullName: p.fullName,
+          msg: msgs?.required ?
+            msgs.required({
+              ...msgParams,
+              value: p.value,
+              mode: p.dataItem.source ? "select" : "input",
+            }) :
+            env.lang("validation.required", {
+              s,
+              mode: p.dataItem.source ? "select" : "input",
+            }),
+        };
+      });
+    } else {
+      validations.push((p) => {
+        if (!isEmpty(p.value)) return undefined;
+        return {
+          type: "e",
+          code: "required",
+          fullName: p.fullName,
+          msg: msgs?.required ?
+            msgs.required({
+              ...msgParams,
+              value: p.value,
+              mode: p.dataItem.source ? "select" : "input",
+            }) :
+            env.lang("validation.required", {
+              s,
+              mode: p.dataItem.source ? "select" : "input",
+            }),
+        };
+      });
+    }
   }
 
   if (dataItem.length != null) {
@@ -38,15 +62,18 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
         type: "e",
         code: "length",
         fullName,
-        msg: msgs?.length ? msgs.length({
-          ...msgParams,
-          length: length!,
-          currentLength: cur,
-        }) : env.lang("validation.length", {
-          s,
-          len: length,
-          cur,
-        }),
+        msg: msgs?.length ?
+          msgs.length({
+            ...msgParams,
+            value,
+            length: length!,
+            currentLength: cur,
+          }) :
+          env.lang("validation.length", {
+            s,
+            len: length,
+            cur,
+          }),
       };
     });
   } else {
@@ -59,17 +86,20 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
           type: "e",
           code: "range",
           fullName,
-          msg: msgs?.range ? msgs.range({
-            ...msgParams,
-            minLength: minLength!,
-            maxLength: maxLength!,
-            currentLength: cur,
-          }) : env.lang("validation.rangeLength", {
-            s,
-            minLen: minLength,
-            maxLen: maxLength,
-            cur,
-          }),
+          msg: msgs?.range ?
+            msgs.range({
+              ...msgParams,
+              value,
+              minLength: minLength!,
+              maxLength: maxLength!,
+              currentLength: cur,
+            }) :
+            env.lang("validation.rangeLength", {
+              s,
+              minLen: minLength,
+              maxLen: maxLength,
+              cur,
+            }),
         };
       });
     } else {
@@ -82,15 +112,18 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "minLength",
             fullName,
-            msg: msgs?.minLength ? msgs.minLength({
-              ...msgParams,
-              minLength: minLength!,
-              currentLength: cur,
-            }) : env.lang("validation.minLength", {
-              s,
-              minLen: minLength,
-              cur,
-            }),
+            msg: msgs?.minLength ?
+              msgs.minLength({
+                ...msgParams,
+                value,
+                minLength: minLength!,
+                currentLength: cur,
+              }) :
+              env.lang("validation.minLength", {
+                s,
+                minLen: minLength,
+                cur,
+              }),
           };
         });
       }
@@ -103,15 +136,18 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "maxLength",
             fullName,
-            msg: msgs?.maxLength ? msgs.maxLength({
-              ...msgParams,
-              maxLength: maxLength!,
-              currentLength: cur,
-            }) : env.lang("validation.maxLength", {
-              s,
-              maxLen: maxLength,
-              cur,
-            }),
+            msg: msgs?.maxLength ?
+              msgs.maxLength({
+                ...msgParams,
+                value,
+                maxLength: maxLength!,
+                currentLength: cur,
+              }) :
+              env.lang("validation.maxLength", {
+                s,
+                maxLen: maxLength,
+                cur,
+              }),
           };
         });
       }
@@ -128,10 +164,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "int",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -143,10 +182,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "h-num",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -158,10 +200,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "f-num",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -173,10 +218,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "num",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -188,10 +236,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "h-alpha",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -203,10 +254,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "f-alpha",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -218,10 +272,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "alpha",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -233,10 +290,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "h-alpha-num",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -248,10 +308,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "h-alpha-num-syn",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -263,10 +326,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "h-katakana",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -278,10 +344,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "f-katakana",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -293,10 +362,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "katakana",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -308,10 +380,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "hiragana",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -323,10 +398,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "half",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -338,10 +416,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "full",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -353,10 +434,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "email",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -368,10 +452,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "tel",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -383,10 +470,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
             type: "e",
             code: "url",
             fullName,
-            msg: msgs?.charType ? msgs.charType({
-              ...msgParams,
-              charType: dataItem.charType!,
-            }) : env.lang("validation.int", { s }),
+            msg: msgs?.charType ?
+              msgs.charType({
+                ...msgParams,
+                value,
+                charType: dataItem.charType!,
+              }) :
+              env.lang("validation.int", { s }),
           };
         });
         break;
@@ -403,10 +493,13 @@ export const $strValidations = ({ dataItem, env }: DataItem.ValidationGeneratorP
         type: "e",
         code: "source",
         fullName,
-        msg: msgs?.source ? msgs.source({
-          ...msgParams,
-          source: source!,
-        }) : env.lang("validation.contain", { s }),
+        msg: msgs?.source ?
+          msgs.source({
+            ...msgParams,
+            value,
+            source: source!,
+          }) :
+          env.lang("validation.contain", { s }),
       };
     });
   }
