@@ -387,6 +387,14 @@ declare namespace DataItem {
     type: "struct";
     item: Readonly<T>;
     validations?: Array<Validation<$struct<T>>>;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<Array<$struct<T>>>) => string;
+      };
+      parse?: {
+        typeof?: (params: MessageBaseParams<any>) => string;
+      };
+    };
   };
 
   type $atoms =
