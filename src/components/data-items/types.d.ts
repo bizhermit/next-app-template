@@ -91,6 +91,11 @@ declare namespace DataItem {
     type: "any";
     source?: Source<V>;
     validations?: Array<Validation<$any<V>>>;
+    message?: {
+      validation?: {
+        required?: (params: MessageBaseParams<V> & { mode: "input" | "select" | "set"; }) => string;
+      };
+    } & { [section: string]: { [key: string]: (params: MessageBaseParams & { [v: string]: any }) => string } };
   };
 
   type MessageBaseParams<V extends any> = {

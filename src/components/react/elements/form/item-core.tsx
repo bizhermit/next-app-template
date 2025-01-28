@@ -90,6 +90,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
         labelAsIs: $label,
         refs: $refs,
         validations: $dataItem?.validations,
+        message: $dataItem?.message,
         ...cp.getDataItem({
           name,
           label: l,
