@@ -513,7 +513,6 @@ const ListItem = ({
       type="button"
       role="listitem"
       tabIndex={-1}
-      autoFocus={selected}
       aria-current={selected}
       onClick={onSelect}
       onKeyDown={keydown}
