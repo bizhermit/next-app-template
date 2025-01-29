@@ -119,7 +119,7 @@ export default function Home() {
         <button disabled>button</button>
         <button onClick={() => {
           // alert("hogehogehoge");
-          confirm("hogehoge\nhopge");
+          // confirm("hogehoge\nhopge");
         }}>ボタン</button>
         <Button
           onClick={() => {
