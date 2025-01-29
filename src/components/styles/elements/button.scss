@@ -29,9 +29,11 @@
     font-weight: 500;
 
     @each $color in mixins.$colors {
-      &[data-color="#{$color}"] {
-        ---btn-bg: var(--c-#{$color}, var(--c-primary));
-        ---btn-fg: var(--c-#{$color}_, var(--c-primary_));
+      @if $color !="primary" {
+        &[data-color="#{$color}"] {
+          ---btn-bg: var(--c-#{$color}, var(--c-primary));
+          ---btn-fg: var(--c-#{$color}_, var(--c-primary_));
+        }
       }
     }
 
