@@ -420,6 +420,9 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
                 onEscape={() => {
                   closeDialog(true);
                 }}
+                onKeyDown={() => {
+                  iref.current?.focus();
+                }}
               >
                 {$emptyItem?.[ldn]}
               </ListItem>
@@ -440,6 +443,9 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
                 onEscape={() => {
                   closeDialog(true);
                 }}
+                onKeyDown={() => {
+                  iref.current?.focus();
+                }}
               >
                 {item[ldn]}
               </ListItem>
@@ -455,6 +461,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
 type ListItemProps = {
   onSelect: () => void;
   onEscape: () => void;
+  onKeyDown: (e: KeyboardEvent<HTMLButtonElement>) => void;
   value: any;
   currentValue: any;
   initFocusValue: any;
@@ -466,6 +473,7 @@ type ListItemProps = {
 const ListItem = ({
   onSelect,
   onEscape,
+  onKeyDown,
   value,
   currentValue,
   initFocusValue,
@@ -503,6 +511,7 @@ const ListItem = ({
         }
         break;
       default:
+        onKeyDown(e);
         break;
     }
   };
