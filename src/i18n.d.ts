@@ -125,7 +125,7 @@ interface I18N_Langs {
     /**
      * 不足
      */
-    lack: LangValue<{ s?: string; items?: Array<string>; mode?: "input" | "select" | "set"; }>
+    lack: LangValue<{ s?: string; items: Array<string>; mode?: "input" | "select" | "set"; }>
     /**
      * 文字数一致
      */
