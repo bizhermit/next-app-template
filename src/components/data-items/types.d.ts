@@ -100,7 +100,7 @@ declare namespace DataItem {
 
   type MessageBaseParams<V extends any> = {
     lang: LangAccessor;
-    subject: string;
+    subject: string | null | undefined;
     value: V | null | undefined;
   };
 
