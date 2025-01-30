@@ -70,7 +70,7 @@ export default function Home() {
   const formRef = useFormRef();
 
   return (
-    <div>
+    <div className={css.wrap}>
       {/* <LoadingBar
       // mask
       /> */}

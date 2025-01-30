@@ -1,6 +1,12 @@
+.wrap {
+  width: 100%;
+}
+
 .row {
   display: flex;
   flex-flow: row wrap;
   gap: 8px;
   padding: 8px;
+  max-width: 100%;
+  min-width: 0;
 }
