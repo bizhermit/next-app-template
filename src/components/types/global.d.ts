@@ -7,3 +7,4 @@ type SwitchProps<T extends { [v: string | number | symbol]: any }, U extends { [
 );
 type EscapeNull<T, U = any> = T extends null | undefined ? U : (T extends any ? T : U);
 type Readonlyable<T> = T | Readonly<T>;
+type ValueOf<T extends { [key: string | number | symbol]: any }> = T[keyof T];
