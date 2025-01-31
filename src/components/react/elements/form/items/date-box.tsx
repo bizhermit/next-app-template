@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactElement, useEffect, useMemo, useReducer, useRef, type WheelEvent } from "react";
+import { type ChangeEvent, type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactElement, use, useEffect, useMemo, useReducer, useRef, type WheelEvent } from "react";
 import { $dateParse } from "../../../../data-items/date/parse";
 import { $dateValidations } from "../../../../data-items/date/validation";
 import { blurToOuter } from "../../../../dom/outer-event";
@@ -11,6 +11,7 @@ import { DateTime, Month, Week } from "../../../../objects/datetime";
 import { isEmpty } from "../../../../objects/string";
 import { set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
+import { LayoutContext } from "../../../hooks/layout";
 import { Dialog, useDialogRef } from "../../dialog";
 import { CalendarIcon, CrossIcon, LeftIcon, RightIcon, TodayIcon, UndoIcon } from "../../icon";
 import { joinClassNames } from "../../utilities";
@@ -54,6 +55,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
   const dref = useRef<HTMLInputElement>(null!);
   const cache = useRef<{ y: number | undefined; m: number | undefined; d: number | undefined; }>({ y: undefined, m: undefined, d: undefined });
   const dialog = useDialogRef(true);
+  const layout = use(LayoutContext);
   const changeTrigger = editTextChangeTrigger || "blur";
 
   const focusInput = (target?: "y" | "m" | "d") => {
@@ -385,7 +387,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
           data-name={`${fi.name}_y`}
           placeholder={fi.editable ? placeholder?.[0] : ""}
           disabled={fi.disabled}
-          readOnly={fi.readOnly || preventEditText}
+          readOnly={fi.readOnly || preventEditText || layout.mobile}
           tabIndex={fi.tabIndex}
           autoFocus={fi.autoFocus}
           maxLength={4}
@@ -412,7 +414,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
           data-name={`${fi.name}_m`}
           placeholder={fi.editable ? placeholder?.[1] : ""}
           disabled={fi.disabled}
-          readOnly={fi.readOnly || preventEditText}
+          readOnly={fi.readOnly || preventEditText || layout.mobile}
           tabIndex={fi.tabIndex}
           maxLength={4}
           autoComplete="off"
@@ -445,7 +447,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
               data-name={`${fi.name}_d`}
               placeholder={fi.editable ? placeholder?.[2] : ""}
               disabled={fi.disabled}
-              readOnly={fi.readOnly || preventEditText}
+              readOnly={fi.readOnly || preventEditText || layout.mobile}
               tabIndex={fi.tabIndex}
               maxLength={4}
               autoComplete="off"

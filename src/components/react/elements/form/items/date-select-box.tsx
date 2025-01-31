@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactElement, type ReactNode, useMemo, useRef } from "react";
+import { type ChangeEvent, type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactElement, type ReactNode, use, useMemo, useRef } from "react";
 import { $dateParse } from "../../../../data-items/date/parse";
 import { $dateValidations } from "../../../../data-items/date/validation";
 import { blurToOuter } from "../../../../dom/outer-event";
@@ -11,6 +11,7 @@ import { parseNum } from "../../../../objects/number";
 import { isEmpty } from "../../../../objects/string";
 import { get, set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
+import { LayoutContext } from "../../../hooks/layout";
 import { Dialog, useDialogRef } from "../../dialog";
 import { DownFillIcon } from "../../icon";
 import { joinClassNames } from "../../utilities";
@@ -80,6 +81,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
       default: return yDialog;
     }
   };
+  const layout = use(LayoutContext);
   const changeTrigger = editTextChangeTrigger || "blur";
 
   const focusInput = (target?: Target) => {
@@ -692,7 +694,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
             data-name={`${fi.name}_y`}
             placeholder={fi.editable ? placeholder?.[0] : ""}
             disabled={fi.disabled}
-            readOnly={fi.readOnly || preventEditText}
+            readOnly={fi.readOnly || preventEditText || layout.mobile}
             tabIndex={fi.tabIndex}
             autoFocus={fi.autoFocus}
             maxLength={4}
@@ -748,7 +750,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
             data-name={`${fi.name}_m`}
             placeholder={fi.editable ? placeholder?.[1] : ""}
             disabled={fi.disabled}
-            readOnly={fi.readOnly || preventEditText}
+            readOnly={fi.readOnly || preventEditText || layout.mobile}
             tabIndex={fi.tabIndex}
             maxLength={2}
             autoComplete="off"
@@ -809,7 +811,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
                 data-name={`${fi.name}_d`}
                 placeholder={fi.editable ? placeholder?.[2] : ""}
                 disabled={fi.disabled}
-                readOnly={fi.readOnly || preventEditText}
+                readOnly={fi.readOnly || preventEditText || layout.mobile}
                 tabIndex={fi.tabIndex}
                 maxLength={2}
                 autoComplete="off"
