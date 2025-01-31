@@ -111,15 +111,15 @@ export const PasswordBox = <D extends DataItem.$str | undefined>({
           {...fi.iptAria}
         />
         {!hideToggleButton && fi.showButtons &&
-          <button
+          <div
             className="ipt-btn"
-            type="button"
+            role="button"
             tabIndex={-1}
-            disabled={!fi.editable}
+            data-disabled={!fi.editable}
             onClick={toggle}
           >
             {type === "text" ? <CircleFillIcon /> : <CircleIcon />}
-          </button>
+          </div>
         }
         {fi.clearButton(empty ? undefined : clear)}
       </div>

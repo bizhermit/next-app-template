@@ -72,6 +72,10 @@
     .dialog[data-mobile] {
       inset: 0 !important;
       margin: auto;
+
+      &::backdrop {
+        display: unset;
+      }
     }
   }
 

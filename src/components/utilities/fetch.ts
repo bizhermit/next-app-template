@@ -111,14 +111,21 @@ const convertToRequestInit = (params?: any, opts?: FetchOptions, noBody?: boolea
   };
 };
 
+const switchOrigin = <U extends ApiPath>(url: U) => {
+  if (typeof window === "undefined") {
+    return `${process.env.API_URL || `http://localhost:${process.env.FRONTEND_PORT || "3000"}`}${url}` as U;
+  }
+  return url;
+};
+
 const update = <U extends ApiPath, M extends Api.Methods>(url: U, method: M, params: any = undefined, options?: FetchOptions) => {
-  const ctx = getDynamicPathnameContext(url, params);
+  const ctx = getDynamicPathnameContext(switchOrigin(url), params);
   return impl<Api.Response<U, M>>(ctx.pathname, { method, ...convertToRequestInit(ctx.data, options) });
 };
 
 const $fetch = {
   get: <U extends ApiPath>(url: U, params?: Api.Request<U, "get"> | FormData | null, options?: FetchOptions) => {
-    const ctx = getDynamicPathnameContext(url, params as any, { appendQuery: true });
+    const ctx = getDynamicPathnameContext(switchOrigin(url), params as any, { appendQuery: true });
     return impl<Api.Response<U, "get">>(ctx.pathname, { method: "get", ...convertToRequestInit(ctx.data, options, true) });
   },
   put: <U extends ApiPath>(url: U, params?: Api.Request<U, "put"> | FormData | null, options?: FetchOptions) => {

@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactElement, useEffect, useMemo, useReducer, useRef, useState } from "react";
+import { type ChangeEvent, type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactElement, use, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { $timeParse } from "../../../../data-items/time/parse";
 import { $timeValidations } from "../../../../data-items/time/validation";
 import { blurToOuter } from "../../../../dom/outer-event";
@@ -9,6 +9,7 @@ import { isEmpty } from "../../../../objects/string";
 import { set } from "../../../../objects/struct";
 import { getTimeUnit, parseTimeAsUnit, roundTime, Time, TimeRadix } from "../../../../objects/time";
 import "../../../../styles/elements/form/item.scss";
+import { LayoutContext } from "../../../hooks/layout";
 import { Dialog, useDialogRef } from "../../dialog";
 import { ClockIcon, CrossIcon } from "../../icon";
 import { joinClassNames } from "../../utilities";
@@ -30,6 +31,7 @@ type TimeBoxOptions<D extends DataItem.$time | undefined> =
     minuteTimePickerStep?: number;
     secondTimePickerStep?: number;
     initFocusTime?: number | Date | string | DateTime;
+    preventEditText?: boolean;
   };
 
 type TimeBoxProps<D extends DataItem.$time | undefined> = OverwriteAttrs<HTMLAttributes<HTMLDivElement>, TimeBoxOptions<D>>;
@@ -54,6 +56,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
   hourTimePickerStep,
   minuteTimePickerStep,
   secondTimePickerStep,
+  preventEditText,
   ...props
 }: TimeBoxProps<D>) => {
   const href = useRef<HTMLInputElement>(null!);
@@ -61,6 +64,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
   const sref = useRef<HTMLInputElement>(null!);
   const cache = useRef<{ h: number | undefined; m: number | undefined; s: number | undefined; }>({ h: undefined, m: undefined, s: undefined });
   const dialog = useDialogRef(true);
+  const layout = use(LayoutContext);
   const [showed, setShowed] = useState(false);
 
   const focusInput = (target?: "h" | "m" | "s") => {
@@ -383,6 +387,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
   };
 
   const clickPull = () => {
+    if (!fi.editable || dialog.showed) return;
     showDialog();
   };
 
@@ -409,7 +414,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
               className="ipt-txt ipt-time-h"
               data-name={`${fi.name}_h`}
               disabled={fi.disabled}
-              readOnly={fi.readOnly}
+              readOnly={fi.readOnly || preventEditText || layout.mobile}
               tabIndex={fi.tabIndex}
               autoFocus={fi.autoFocus}
               maxLength={2}
@@ -437,7 +442,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
           className="ipt-txt ipt-time-m"
           data-name={`${fi.name}_m`}
           disabled={fi.disabled}
-          readOnly={fi.readOnly}
+          readOnly={fi.readOnly || preventEditText || layout.mobile}
           tabIndex={fi.tabIndex}
           autoFocus={fi.dataItem.mode === "ms" && fi.autoFocus}
           maxLength={2}
@@ -469,7 +474,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
               className="ipt-txt ipt-time-s"
               data-name={`${fi.name}_s`}
               disabled={fi.disabled}
-              readOnly={fi.readOnly}
+              readOnly={fi.readOnly || preventEditText || layout.mobile}
               tabIndex={fi.tabIndex}
               maxLength={2}
               autoComplete="off"
@@ -497,17 +502,17 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
           />
         }
         {fi.showButtons &&
-          <button
+          <div
             className="ipt-btn"
-            type="button"
-            disabled={!fi.editable || dialog.showed}
-            onClick={clickPull}
+            role="button"
             tabIndex={-1}
+            data-disabled={!fi.editable || dialog.showed}
+            onClick={clickPull}
             aria-haspopup="dialog"
             aria-expanded={dialog.showed}
           >
             <ClockIcon />
-          </button>
+          </div>
         }
         {fi.clearButton(empty ? undefined : clear)}
         <Dialog

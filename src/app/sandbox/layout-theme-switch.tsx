@@ -18,8 +18,12 @@ export const LayoutThemeSwitch = () => {
       <SelectBox
         source={source}
         onEdit={(v) => {
-          if (v?.value) layout.setTheme(v.value);
-          else layout.setTheme("auto");
+          if (v?.value) {
+            layout.setTheme(v.value);
+            return;
+          }
+          layout.setTheme("auto");
+          window.location.reload();
         }}
         defaultValue={layout.theme}
       />

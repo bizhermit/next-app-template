@@ -1,6 +1,7 @@
 "use client";
 
-import { type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { LayoutContext } from "@/react/hooks/layout";
+import { type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactNode, use, useEffect, useMemo, useRef, useState } from "react";
 import { $boolParse } from "../../../../data-items/bool/parse";
 import { $boolValidations } from "../../../../data-items/bool/validation";
 import { $numParse } from "../../../../data-items/number/parse";
@@ -59,6 +60,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   const iref = useRef<HTMLInputElement>(null!);
   const focusInput = () => iref.current?.focus();
   const dialog = useDialogRef(true);
+  const layout = use(LayoutContext);
 
   const vdn = valueDataName ?? "value";
   const ldn = labelDataName ?? "label";
@@ -313,6 +315,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   };
 
   const clickPull = () => {
+    if (!fi.editable || loading) return;
     showDialog();
   };
 
@@ -349,7 +352,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
           type="text"
           placeholder={fi.editable ? placeholder : ""}
           disabled={fi.disabled}
-          readOnly={fi.readOnly || loading || preventEditText}
+          readOnly={fi.readOnly || loading || preventEditText || layout.mobile}
           tabIndex={fi.tabIndex}
           autoFocus={fi.autoFocus}
           autoComplete="off"
@@ -382,17 +385,17 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
           </>
         }
         {fi.showButtons &&
-          <button
+          <div
             className="ipt-btn ipt-pull"
-            type="button"
-            disabled={!fi.editable || loading}
-            onClick={clickPull}
+            role="button"
             tabIndex={-1}
+            data-disabled={!fi.editable || loading}
+            onClick={clickPull}
             aria-haspopup="listbox"
             aria-expanded={dialog.showed}
           >
             <DownFillIcon />
-          </button>
+          </div>
         }
         {fi.clearButton(empty || loading ? undefined : clear)}
         <Dialog
@@ -420,6 +423,9 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
                 onEscape={() => {
                   closeDialog(true);
                 }}
+                onKeyDown={() => {
+                  iref.current?.focus();
+                }}
               >
                 {$emptyItem?.[ldn]}
               </ListItem>
@@ -440,6 +446,9 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
                 onEscape={() => {
                   closeDialog(true);
                 }}
+                onKeyDown={() => {
+                  iref.current?.focus();
+                }}
               >
                 {item[ldn]}
               </ListItem>
@@ -455,6 +464,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
 type ListItemProps = {
   onSelect: () => void;
   onEscape: () => void;
+  onKeyDown: (e: KeyboardEvent<HTMLButtonElement>) => void;
   value: any;
   currentValue: any;
   initFocusValue: any;
@@ -466,6 +476,7 @@ type ListItemProps = {
 const ListItem = ({
   onSelect,
   onEscape,
+  onKeyDown,
   value,
   currentValue,
   initFocusValue,
@@ -503,6 +514,7 @@ const ListItem = ({
         }
         break;
       default:
+        onKeyDown(e);
         break;
     }
   };
@@ -513,7 +525,6 @@ const ListItem = ({
       type="button"
       role="listitem"
       tabIndex={-1}
-      autoFocus={selected}
       aria-current={selected}
       onClick={onSelect}
       onKeyDown={keydown}
