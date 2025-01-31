@@ -180,6 +180,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
   };
 
   const click = (target?: "y" | "m" | "d") => {
+    if (!fi.editable || dialog.showed) return;
     showDialog({ focusTarget: target });
   };
 
@@ -362,6 +363,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
   };
 
   const clickPull = () => {
+    if (!fi.editable || dialog.showed) return;
     showDialog();
   };
 
@@ -472,17 +474,16 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
           />
         }
         {fi.showButtons &&
-          <button
+          <div
             className="ipt-btn"
-            type="button"
-            disabled={!fi.editable || dialog.showed}
+            role="button"
+            data-disabled={!fi.editable || dialog.showed}
             onClick={clickPull}
-            tabIndex={-1}
             aria-haspopup="dialog"
             aria-expanded={dialog.showed}
           >
             <CalendarIcon />
-          </button>
+          </div>
         }
         {fi.clearButton(empty ? undefined : clear)}
         <Dialog

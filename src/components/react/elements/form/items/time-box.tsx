@@ -387,6 +387,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
   };
 
   const clickPull = () => {
+    if (!fi.editable || dialog.showed) return;
     showDialog();
   };
 
@@ -501,17 +502,17 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
           />
         }
         {fi.showButtons &&
-          <button
+          <div
             className="ipt-btn"
-            type="button"
-            disabled={!fi.editable || dialog.showed}
-            onClick={clickPull}
+            role="button"
             tabIndex={-1}
+            data-disabled={!fi.editable || dialog.showed}
+            onClick={clickPull}
             aria-haspopup="dialog"
             aria-expanded={dialog.showed}
           >
             <ClockIcon />
-          </button>
+          </div>
         }
         {fi.clearButton(empty ? undefined : clear)}
         <Dialog

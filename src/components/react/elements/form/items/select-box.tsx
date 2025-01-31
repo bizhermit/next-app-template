@@ -315,6 +315,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   };
 
   const clickPull = () => {
+    if (!fi.editable || loading) return;
     showDialog();
   };
 
@@ -384,17 +385,17 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
           </>
         }
         {fi.showButtons &&
-          <button
+          <div
             className="ipt-btn ipt-pull"
-            type="button"
-            disabled={!fi.editable || loading}
-            onClick={clickPull}
+            role="button"
             tabIndex={-1}
+            data-disabled={!fi.editable || loading}
+            onClick={clickPull}
             aria-haspopup="listbox"
             aria-expanded={dialog.showed}
           >
             <DownFillIcon />
-          </button>
+          </div>
         }
         {fi.clearButton(empty || loading ? undefined : clear)}
         <Dialog

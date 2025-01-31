@@ -708,17 +708,17 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
             aria-haspopup="listbox"
           />
           {fi.showButtons &&
-            <button
+            <div
               className="ipt-btn ipt-pull"
-              type="button"
-              disabled={!fi.editable || yDialog.showed}
+              role="button"
               tabIndex={-1}
+              data-disabled={!fi.editable || yDialog.showed}
               aria-haspopup="listbox"
               aria-expanded={yDialog.showed}
               data-slim
             >
               <DownFillIcon />
-            </button>
+            </div>
           }
           <Dialog
             modeless
@@ -767,17 +767,17 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
             aria-haspopup="listbox"
           />
           {fi.showButtons &&
-            <button
+            <div
               className="ipt-btn ipt-pull"
-              type="button"
-              disabled={!fi.editable || mDialog.showed}
+              role="button"
               tabIndex={-1}
+              data-disabled={!fi.editable || mDialog.showed}
               aria-haspopup="listbox"
               aria-expanded={mDialog.showed}
               data-slim
             >
               <DownFillIcon />
-            </button>
+            </div>
           }
           <Dialog
             modeless
@@ -824,17 +824,17 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
                 aria-haspopup="listbox"
               />
               {fi.showButtons &&
-                <button
+                <div
                   className="ipt-btn ipt-pull"
-                  type="button"
-                  disabled={!fi.editable || dDialog.showed}
+                  role="button"
                   tabIndex={-1}
+                  data-disabled={!fi.editable || dDialog.showed}
                   aria-haspopup="listbox"
                   aria-expanded={dDialog.showed}
                   data-slim
                 >
                   <DownFillIcon />
-                </button>
+                </div>
               }
               <Dialog
                 modeless
