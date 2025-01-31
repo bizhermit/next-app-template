@@ -1,6 +1,7 @@
 "use client";
 
-import { type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { LayoutContext } from "@/react/hooks/layout";
+import { type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactNode, use, useEffect, useMemo, useRef, useState } from "react";
 import { $boolParse } from "../../../../data-items/bool/parse";
 import { $boolValidations } from "../../../../data-items/bool/validation";
 import { $numParse } from "../../../../data-items/number/parse";
@@ -59,6 +60,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   const iref = useRef<HTMLInputElement>(null!);
   const focusInput = () => iref.current?.focus();
   const dialog = useDialogRef(true);
+  const layout = use(LayoutContext);
 
   const vdn = valueDataName ?? "value";
   const ldn = labelDataName ?? "label";
@@ -349,7 +351,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
           type="text"
           placeholder={fi.editable ? placeholder : ""}
           disabled={fi.disabled}
-          readOnly={fi.readOnly || loading || preventEditText}
+          readOnly={fi.readOnly || loading || preventEditText || layout.mobile}
           tabIndex={fi.tabIndex}
           autoFocus={fi.autoFocus}
           autoComplete="off"
