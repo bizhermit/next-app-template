@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useLayoutEffect, useMemo, useRef, type FormEvent, type FormHTMLAttributes, type KeyboardEvent } from "react";
+import { createContext, useEffect, useLayoutEffect, useMemo, useRef, type FormEvent, type FormHTMLAttributes, type KeyboardEvent } from "react";
 import { clone } from "../../../objects";
 import { get, set } from "../../../objects/struct";
 import { useRefState } from "../../hooks/ref-state";
@@ -32,6 +32,7 @@ type FormObserveItemProps = {
 
 type FormContextProps = {
   bind: { [v: string]: any };
+  searchParams: { [v: string | number | symbol]: any } | null | undefined;
   readOnly?: boolean;
   disabled?: boolean;
   process: FormProcessState;
@@ -53,6 +54,7 @@ type FormContextProps = {
 
 export const FormContext = createContext<FormContextProps>({
   bind: {},
+  searchParams: null,
   disabled: false,
   process: "nothing",
   processing: false,
@@ -105,6 +107,7 @@ type FormOptions<T extends { [v: string]: any } = { [v: string]: any }> = {
   disabled?: boolean;
   enterSubmit?: boolean;
   bind?: { [v: string | number | symbol]: any };
+  searchParams?: { [v: string | number | symbol]: any };
   onSubmit?: ((props: {
     event: FormEvent<HTMLFormElement>;
     hasError: boolean;
@@ -117,6 +120,10 @@ type FormOptions<T extends { [v: string]: any } = { [v: string]: any }> = {
     getFormData: () => FormData;
     getBindData: (options?: GetBindDataOptions) => T;
   }) => (void | boolean | Promise<void | boolean>)) | boolean;
+  onReady?: (props: {
+    getFormData: () => FormData;
+    getBindData: (options?: GetBindDataOptions) => T;
+  }) => void;
 };
 
 type FormProps<T extends { [v: string]: any } = { [v: string]: any }> = OverwriteAttrs<FormHTMLAttributes<HTMLFormElement>, FormOptions<T>>;
@@ -127,8 +134,10 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
   disabled,
   enterSubmit,
   bind,
+  searchParams,
   onSubmit,
   onReset,
+  onReady,
   ...props
 }: FormProps<T>) => {
   const $ref = useRef<HTMLFormElement>(null);
@@ -317,10 +326,24 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
     };
   }, []);
 
+  useEffect(() => {
+    let unmount = false;
+    setTimeout(() => {
+      onReady?.({
+        getFormData,
+        getBindData,
+      });
+    });
+    return () => {
+      unmount = true;
+    };
+  }, []);
+
   return (
     <FormContext.Provider value={{
       method: props.method,
       bind: $bind,
+      searchParams,
       readOnly,
       disabled,
       process,

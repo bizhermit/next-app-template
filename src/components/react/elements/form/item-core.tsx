@@ -151,6 +151,11 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
         if (has) return v;
       }
       def = true;
+      const [v, has] = get(form.searchParams, dataItem.name);
+      if (has && v !== "") {
+        set(form.bind, dataItem.name, v);
+        return v;
+      }
       return defaultValue;
     })();
     const [val, parseRes] = parseVal({
