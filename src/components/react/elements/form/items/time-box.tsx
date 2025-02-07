@@ -822,7 +822,7 @@ export const TimePicker = (props: TimePickerProps) => {
           <button
             className="ipt-btn"
             type="button"
-            data-disabled={!inRange}
+            disabled={!inRange}
             onClick={() => {
               if (!inRange) return;
               props.onSelect!({
