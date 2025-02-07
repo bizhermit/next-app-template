@@ -195,11 +195,11 @@ $loadingBar2Width: 15%;
       width: calc(var(--ipt-size) * 0.8);
     }
 
-    &:disabled {
+    &[aria-disabled="true"] {
       opacity: .6;
     }
 
-    &:not(:disabled) {
+    &:not([aria-disabled="true"]) {
       cursor: pointer;
 
       @include mixins.hover {
@@ -218,7 +218,7 @@ $loadingBar2Width: 15%;
         transition: background-color 0.1s, transform 0.2s;
       }
 
-      &:not(:disabled) {
+      &:not([aria-disabled="true"]) {
         @include mixins.hover {
 
           &::before,

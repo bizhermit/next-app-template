@@ -463,7 +463,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
         className="ipt-btn ipt-clear"
         role="button"
         tabIndex={-1}
-        data-disabled={!editable || !clear}
+        aria-disabled={!editable || !clear}
         onClick={!editable || !clear ? undefined : clear}
       >
         <CrossIcon />
