@@ -186,8 +186,9 @@ $loadingBar2Width: 15%;
     transition: opacity 0.1s, background-color 0.1s, color 0.1s;
 
     .icon {
-      width: 40%;
-      height: 40%;
+      width: calc(var(--ipt-size) * 0.4);
+      height: calc(var(--ipt-size) * 0.4);
+      overflow: visible;
       transition: transform 0.2s;
     }
 
