@@ -213,7 +213,7 @@ export const NumberBox = <D extends DataItem.$num | undefined>({
                 className="ipt-btn ipt-num-spin-inc"
                 role="button"
                 tabIndex={-1}
-                data-disabled={!fi.editable}
+                aria-disabled={!fi.editable}
                 onMouseDown={() => mousedown("up")}
               >
                 <UpFillIcon />
@@ -222,7 +222,7 @@ export const NumberBox = <D extends DataItem.$num | undefined>({
                 className="ipt-btn ipt-num-spin-dec"
                 role="button"
                 tabIndex={-1}
-                data-disabled={!fi.editable}
+                aria-disabled={!fi.editable}
                 onMouseDown={() => mousedown("down")}
               >
                 <DownFillIcon />
