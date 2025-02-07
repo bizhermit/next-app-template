@@ -477,7 +477,7 @@ export const DateBox = <D extends DataItem.$date | DataItem.$month | undefined>(
           <div
             className="ipt-btn"
             role="button"
-            data-disabled={!fi.editable || dialog.showed}
+            aria-disabled={!fi.editable || dialog.showed}
             onClick={clickPull}
             aria-haspopup="dialog"
             aria-expanded={dialog.showed}

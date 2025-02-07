@@ -712,7 +712,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
               className="ipt-btn ipt-pull"
               role="button"
               tabIndex={-1}
-              data-disabled={!fi.editable || yDialog.showed}
+              aria-disabled={!fi.editable || yDialog.showed}
               aria-haspopup="listbox"
               aria-expanded={yDialog.showed}
               data-slim
@@ -771,7 +771,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
               className="ipt-btn ipt-pull"
               role="button"
               tabIndex={-1}
-              data-disabled={!fi.editable || mDialog.showed}
+              aria-disabled={!fi.editable || mDialog.showed}
               aria-haspopup="listbox"
               aria-expanded={mDialog.showed}
               data-slim
@@ -828,7 +828,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
                   className="ipt-btn ipt-pull"
                   role="button"
                   tabIndex={-1}
-                  data-disabled={!fi.editable || dDialog.showed}
+                  aria-disabled={!fi.editable || dDialog.showed}
                   aria-haspopup="listbox"
                   aria-expanded={dDialog.showed}
                   data-slim
