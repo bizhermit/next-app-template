@@ -215,7 +215,7 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
           );
         })}
       </div>
-      {fi.messageComponent}
+      {!loading && fi.messageComponent}
     </>
   );
 };

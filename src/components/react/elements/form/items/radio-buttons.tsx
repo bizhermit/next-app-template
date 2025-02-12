@@ -210,7 +210,7 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
           </>
         }
       </div>
-      {fi.messageComponent}
+      {!loading && fi.messageComponent}
     </>
   );
 };

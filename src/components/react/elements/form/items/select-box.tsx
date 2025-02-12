@@ -456,7 +456,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
           </div>
         </Dialog>
       </div>
-      {fi.messageComponent}
+      {!loading && fi.messageComponent}
     </>
   );
 };
