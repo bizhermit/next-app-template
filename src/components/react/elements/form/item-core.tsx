@@ -144,19 +144,22 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
   };
 
   const init = useMemo(() => {
-    let def = false;
+    let isDefault = false;
     const v = (() => {
       if (dataItem.name && form.process !== "nothing") {
         const [v, has] = get(form.bind, dataItem.name);
         if (has) return v;
       }
-      def = true;
       const [v, has] = get(form.searchParams, dataItem.name);
       if (has && v !== "") {
-        set(form.bind, dataItem.name, v);
+        isDefault = true;
         return v;
       }
-      return defaultValue;
+      if (defaultValue != null) {
+        isDefault = true;
+        return defaultValue;
+      }
+      return undefined;
     })();
     const [val, parseRes] = parseVal({
       value: v,
@@ -168,7 +171,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
     return {
       val,
       msg: (parseRes?.type === "e" ? undefined : doValidation(val)) ?? parseRes,
-      default: def && defaultValue != null && defaultValue !== "",
+      default: isDefault,
       mount: 0,
     };
   }, []);
