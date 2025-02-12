@@ -135,7 +135,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
   const doValidation = (v: IV | null | undefined) => {
     return validation(v, {
       value: (cp.revert ? cp.revert(v) : v) as DataItem.ValueType<SD>,
-      data: form.bind,
+      data: form.bind.current,
       dataItem,
       siblings: getSiblings(),
       fullName: dataItem.name || "",
@@ -147,7 +147,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
     let isDefault = false;
     const v = (() => {
       if (dataItem.name && form.process !== "nothing") {
-        const [v, has] = get(form.bind, dataItem.name);
+        const [v, has] = get(form.bind.current, dataItem.name);
         if (has) return v;
       }
       const [v, has] = get(form.searchParams, dataItem.name);
@@ -165,7 +165,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
       value: v,
       dataItem,
       fullName: dataItem.name || "",
-      data: form.bind,
+      data: form.bind.current,
       env,
     }, { bind: true });
     return {
@@ -184,7 +184,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
     if (typeof dataItem.required !== "function") return false;
     return dataItem.required({
       value: valRef.current,
-      data: form.bind,
+      data: form.bind.current,
       dataItem,
       fullName: dataItem.name || "",
       siblings: getSiblings(),
@@ -205,11 +205,11 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
           cp.setBind({
             value: v,
             name: dataItem.name,
-            data: form.bind,
+            data: form.bind.current,
             dataItem,
           });
         } else {
-          if (dataItem.name) set(form.bind, dataItem.name, v);
+          if (dataItem.name) set(form.bind.current, dataItem.name, v);
         }
       }
       setVal(v);
@@ -234,7 +234,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
         value,
         dataItem,
         fullName: dataItem.name || "",
-        data: form.bind,
+        data: form.bind.current,
         env,
       }, { bind: bind ?? false });
       v = val;
@@ -297,7 +297,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
     getTieInNames?: typeof cp["getTieInNames"];
     ref: ReturnType<FormItemRefConnector<any>> | null;
     hasChanged: typeof hasChanged;
-    bind: typeof form.bind;
+    bind: typeof form.bind.current;
   }>({
     cache: init.default ? undefined : init.val,
   } as any);
@@ -347,7 +347,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
   useEffect(() => {
     if (init.mount === 0) {
       init.mount++;
-      $.current.bind = form.bind;
+      $.current.bind = form.bind.current;
       cp.effect({
         dataItem,
         effect: true,
@@ -356,11 +356,11 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
       });
       return;
     }
-    if ($.current.bind === form.bind) return;
-    $.current.bind = form.bind;
+    if ($.current.bind === form.bind.current) return;
+    $.current.bind = form.bind.current;
     // setInputted(false);
     if (dataItem.name && form.process !== "nothing") {
-      const [v, has] = get(form.bind, dataItem.name);
+      const [v, has] = get(form.bind.current, dataItem.name);
       if (has) {
         setValue({
           value: v,
@@ -379,7 +379,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
       init: (defaultValue == null || defaultValue === "") ? true : "default",
       bind: true,
     });
-  }, [form.bind]);
+  }, [form.bind.current]);
 
   useEffect(() => {
     if (init.mount === 1) {

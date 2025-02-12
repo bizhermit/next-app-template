@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, useEffect, useLayoutEffect, useMemo, useRef, type FormEvent, type FormHTMLAttributes, type KeyboardEvent } from "react";
-import { clone } from "../../../objects";
+import { createContext, useEffect, useLayoutEffect, useMemo, useRef, type FormEvent, type FormHTMLAttributes, type KeyboardEvent, type RefObject } from "react";
+import { clone, equals } from "../../../objects";
 import { get, set } from "../../../objects/struct";
 import { useRefState } from "../../hooks/ref-state";
 import { LoadingBar } from "../loading";
@@ -16,7 +16,7 @@ type FormItemMountProps = {
   set: (arg: FormItemSetArg<any>) => void;
   reset: (edit: boolean) => void;
   getState: () => (DataItem.ValidationResult | null | undefined);
-  changeRefs: (item: FormItemMountProps) => void;
+  changeRefs: (item: FormItemMountProps | null | undefined) => void;
   hasChanged: () => boolean;
   dataItem: PickPartial<DataItem.$object, DataItem.OmitableProps>;
   preventCollectForm: boolean | undefined;
@@ -31,7 +31,7 @@ type FormObserveItemProps = {
 };
 
 type FormContextProps = {
-  bind: { [v: string]: any };
+  bind: RefObject<{ [v: string]: any }>;
   searchParams: { [v: string | number | symbol]: any } | null | undefined;
   readOnly?: boolean;
   disabled?: boolean;
@@ -53,7 +53,7 @@ type FormContextProps = {
 };
 
 export const FormContext = createContext<FormContextProps>({
-  bind: {},
+  bind: { current: {} },
   searchParams: null,
   disabled: false,
   process: "nothing",
@@ -141,7 +141,8 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
   ...props
 }: FormProps<T>) => {
   const $ref = useRef<HTMLFormElement>(null);
-  const $bind = useMemo(() => {
+  const $bind = useRef({});
+  $bind.current = useMemo(() => {
     if (bind == null) return {};
     return bind;
   }, [bind]);
@@ -167,24 +168,50 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
   const getFormData = () => new FormData($ref.current!);
 
   const getBindData = (opts?: GetBindDataOptions) => {
-    if (opts?.pure) return clone($bind);
+    if (opts?.pure) return clone($bind.current);
     const ret = {};
     Object.keys(items.current).forEach(id => {
       const { name, tieInNames, hasChanged, preventCollectForm, noInput } = items.current[id];
       if (preventCollectForm || noInput) return;
       if (!name && (tieInNames ?? []).length === 0) return;
       if (!opts?.appendNotChanged && !hasChanged()) return;
-      if (name) set(ret, name, clone(get($bind, name)[0]));
+      if (name) set(ret, name, clone(get($bind.current, name)[0]));
       tieInNames?.forEach(n => {
-        set(ret, n, clone(get($bind, n)[0]));
+        set(ret, n, clone(get($bind.current, n)[0]));
       });
     });
     return ret as any;
   };
 
-  const getValue = (name: string) => findItem(name)?.get<any>();
+  const changeEffect = (params: { id?: string; name?: string; }) => {
+    const self = params.id ? items.current[params.id] : null;
+    const n = self?.name || params.name;
+    if (n) {
+      const refs = [n, ...(self?.dataItem.refs ?? [])];
+      Object.keys(items.current).forEach(iid => {
+        if (iid === params.id) return;
+        const item = items.current[iid];
+        if (!item.dataItem.refs?.some(ref => refs.some(r => ref === r))) return;
+        item.changeRefs(self);
+      });
+    }
+    Object.keys(observers.current).forEach(oid => {
+      observers.current[oid].changeValue?.({ name: self?.name });
+    });
+  };
 
-  const setValue = (name: string, value: any, edit?: boolean) => findItem(name)?.set({ value, edit: edit ?? false, parse: true });
+  const getValue = (name: string) => get($bind.current, name)[0];
+
+  const setValue = (name: string, value: any, edit?: boolean) => {
+    const item = findItem(name);
+    if (item) {
+      item.set({ value, edit: edit ?? false, parse: true });
+      return;
+    }
+    if (equals(get($bind.current, name), value)) return;
+    set($bind.current, name, value);
+    changeEffect({ name });
+  };
 
   const focus = (name?: string) => {
     ((name ? findItem(name) : undefined) ?? items.current[(() => {
@@ -329,6 +356,7 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
   useEffect(() => {
     let unmount = false;
     setTimeout(() => {
+      if (unmount) return;
       onReady?.({
         getFormData,
         getBindData,
@@ -340,7 +368,7 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
   }, []);
 
   return (
-    <FormContext.Provider value={{
+    <FormContext value={{
       method: props.method,
       bind: $bind,
       searchParams,
@@ -350,19 +378,7 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
       processing: ["submit", "reset", "init"].includes(process),
       hasError,
       change: (id) => {
-        const self = items.current[id];
-        if (self.name) {
-          const refs = [self.name, ...(self?.dataItem.refs ?? [])];
-          Object.keys(items.current).forEach(iid => {
-            if (iid === id) return;
-            const item = items.current[iid];
-            if (!item.dataItem.refs?.some(ref => refs.some(r => ref === r))) return;
-            item.changeRefs(self);
-          });
-        }
-        Object.keys(observers.current).forEach(oid => {
-          observers.current[oid].changeValue?.({ name: self.name });
-        });
+        changeEffect({ id });
       },
       mount: (p) => {
         items.current[p.id] = p;
@@ -393,6 +409,6 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
         onReset={reset}
         onKeyDown={keydown}
       />
-    </FormContext.Provider>
+    </FormContext>
   );
 };
