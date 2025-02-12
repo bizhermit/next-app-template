@@ -74,7 +74,7 @@ export const apiMethodHandler = <
 
           const p = {
             ...queryParams,
-            ...params,
+            ...(await params),
             ...bodyParams,
           };
 
@@ -126,7 +126,7 @@ export const apiMethodHandler = <
       }, { status: status ?? 500 });
     }
   }) as {
-    (req: NextRequest, arg: { params: { [v: string]: string | Array<string> } }): Promise<NextResponse<any>>;
+    (req: NextRequest, arg: { params: Promise<{ [v: string]: string | Array<string> }> }): Promise<NextResponse<any>>;
     req: DataItem.Props<Req>;
     res: Res;
   };
