@@ -85,7 +85,7 @@ export const $fileValidations = ({ dataItem, env }: DataItem.ValidationGenerator
     const sizeText = getSizeText(dataItem.fileSize);
     validations.push(({ dataItem: { fileSize }, value, fullName }) => {
       if (value == null) return undefined;
-      if (value.size >= dataItem.fileSize!) return undefined;
+      if (value.size <= dataItem.fileSize!) return undefined;
       return {
         type: "e",
         code: "size",
