@@ -31,6 +31,10 @@
     font-size: var(--font-size);
   }
 
+  img {
+    object-fit: contain;
+  }
+
   h1,
   h2,
   h3,
