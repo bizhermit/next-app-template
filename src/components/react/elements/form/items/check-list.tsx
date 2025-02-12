@@ -99,9 +99,9 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
         }
       })();
       return (p) => {
-        if (p.value == null || !Array.isArray(p.value)) return [undefined];
+        if (p.value == null) return [undefined];
         const results: Array<DataItem.ValidationResult> = [];
-        const arr = p.value.map(val => {
+        const arr = (Array.isArray(p.value) ? p.value : [p.value]).map(val => {
           const [v, r] = parseData(itemParse({ ...p, value: val }), p);
           if (r) results.push(r);
           return v;
