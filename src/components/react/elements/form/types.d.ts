@@ -39,7 +39,7 @@ type FormItemOptions<
   hideClearButton?: boolean;
   hideMessage?: boolean;
   tabIndex?: number;
-  defaultValue?: V | DV | DataItem.NullValue;
+  defaultValue?: ((V | DV) extends infer _V ? _V : any) | DataItem.NullValue;
   dataItem?: D;
   preventCollectForm?: boolean;
   autoFocus?: boolean;
