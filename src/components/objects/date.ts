@@ -122,12 +122,16 @@ export const addDay = (date: Date, num: number) => {
 };
 
 export const addMonth = (date: Date, num: number) => {
+  const d = date.getDate();
   date.setMonth(date.getMonth() + num);
+  if (d !== date.getDate()) date.setDate(0);
   return date;
 };
 
 export const addYear = (date: Date, num: number) => {
+  const d = date.getDate();
   date.setFullYear(date.getFullYear() + num);
+  if (d !== date.getDate()) date.setDate(0);
   return date;
 };
 

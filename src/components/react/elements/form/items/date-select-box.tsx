@@ -412,11 +412,13 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
 
   const updown = (y = 0, m = 0, d = 0) => {
     if (!fi.editable) return;
+    const nd = cache.current.d == null ? $initFocusDate.getDate() : cache.current.d + d;
     const newDate = new Date(
       cache.current.y == null ? $initFocusDate.getFullYear() : cache.current.y + y,
       (cache.current.m == null ? $initFocusDate.getMonth() + 1 : cache.current.m + m) - 1,
-      cache.current.d == null ? $initFocusDate.getDate() : cache.current.d + d
+      nd
     );
+    if (d === 0 && nd !== newDate.getDate()) newDate.setDate(0);
     let year = newDate.getFullYear();
     let month = newDate.getMonth() + 1;
     let day = newDate.getDate();
