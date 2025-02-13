@@ -7,8 +7,9 @@ import { $numParse } from "../../../../data-items/number/parse";
 import { $numValidations } from "../../../../data-items/number/validation";
 import { $strParse } from "../../../../data-items/string/parse";
 import { $strValidations } from "../../../../data-items/string/validation";
-import { equals } from "../../../../objects";
-import { set } from "../../../../objects/struct";
+import { useLang } from "../../../../i18n/react-hook";
+import { equals, getObjectType } from "../../../../objects";
+import { parseIgnoreName, set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
 import { type LoadableArray, useLoadableArray } from "../../../hooks/loadable-array";
 import { joinClassNames } from "../../utilities";
@@ -43,6 +44,7 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
   ...props
 }: RadioButtonsProps<D, S>) => {
   const ref = useRef<HTMLDivElement>(null!);
+  const lang = useLang();
   const vdn = valueDataName ?? "value";
   const ldn = labelDataName ?? "label";
   const sdn = stateDataName ?? "state";
@@ -53,8 +55,18 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
       if (props.dataItem.source) return props.dataItem.source;
       if ("trueValue" in props.dataItem) {
         return [
-          { [vdn]: props.dataItem.trueValue, [ldn]: String(props.dataItem.trueValue) },
-          { [vdn]: props.dataItem.falseValue, [ldn]: String(props.dataItem.falseValue) },
+          {
+            [vdn]: props.dataItem.trueValue,
+            [ldn]: props.dataItem.trueLabelAsIs
+              || (props.dataItem.trueLabel ? lang(props.dataItem.trueLabel) : "")
+              || String(props.dataItem.trueValue),
+          },
+          {
+            [vdn]: props.dataItem.falseValue,
+            [ldn]: props.dataItem.falseLabelAsIs
+              || (props.dataItem.falseLabel ? lang(props.dataItem.falseLabel) : "")
+              || String(props.dataItem.falseValue),
+          },
         ];
       }
     }
@@ -67,10 +79,19 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
     dataItemDeps: [vdn, ldn, origin],
     getDataItem: ({ dataItem }) => {
       return {
-        type: dataItem?.type!,
+        ...dataItem,
+        type: (() => {
+          if (dataItem) return dataItem.type;
+          switch (getObjectType(origin[origin.length - 1]?.[vdn])) {
+            case "Number": return "num";
+            case "Boolean": return "bool";
+            default: return "str";
+          }
+        })(),
         source: origin as DataItem.Source<any>,
       };
     },
+    getTieInNames: () => tieInNames,
     parse: ({ dataItem, env, label }) => {
       const parseData = ([v, r]: DataItem.ParseResult<any>, p: DataItem.ParseProps<any>): DataItem.ParseResult<any> => {
         if (loading) {
@@ -128,9 +149,12 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
       })();
       return (v, p) => iterator(funcs, { ...p, value: v?.[vdn] });
     },
-    setBind: ({ data, name, value }) => {
-      if (name) set(data, name, value?.[vdn]);
-      tieInNames?.forEach(({ dataName, hiddenName }) => {
+    setBind: ({ data, name, value, getTieInNames }) => {
+      if (name) {
+        set(data, name, value?.[vdn]);
+        set(data, parseIgnoreName(name), value);
+      }
+      getTieInNames()?.forEach(({ dataName, hiddenName }) => {
         const v = value?.[dataName];
         set(data, hiddenName ?? dataName, v);
       });
@@ -210,7 +234,7 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
           </>
         }
       </div>
-      {fi.messageComponent}
+      {!loading && fi.messageComponent}
     </>
   );
 };

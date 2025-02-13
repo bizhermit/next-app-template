@@ -1,6 +1,5 @@
 "use client";
 
-import { LayoutContext } from "@/react/hooks/layout";
 import { type FocusEvent, type HTMLAttributes, type KeyboardEvent, type ReactNode, use, useEffect, useMemo, useRef, useState } from "react";
 import { $boolParse } from "../../../../data-items/bool/parse";
 import { $boolValidations } from "../../../../data-items/bool/validation";
@@ -9,10 +8,12 @@ import { $numValidations } from "../../../../data-items/number/validation";
 import { $strParse } from "../../../../data-items/string/parse";
 import { $strValidations } from "../../../../data-items/string/validation";
 import { blurToOuter } from "../../../../dom/outer-event";
-import { equals } from "../../../../objects";
+import { useLang } from "../../../../i18n/react-hook";
+import { equals, getObjectType } from "../../../../objects";
 import { isEmpty } from "../../../../objects/string";
-import { set } from "../../../../objects/struct";
+import { parseIgnoreName, set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
+import { LayoutContext } from "../../../hooks/layout";
 import { type LoadableArray, useLoadableArray } from "../../../hooks/loadable-array";
 import { Dialog, useDialogRef } from "../../dialog";
 import { DownFillIcon } from "../../icon";
@@ -61,6 +62,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   const focusInput = () => iref.current?.focus();
   const dialog = useDialogRef(true);
   const layout = use(LayoutContext);
+  const lang = useLang();
 
   const vdn = valueDataName ?? "value";
   const ldn = labelDataName ?? "label";
@@ -83,8 +85,18 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
       if (props.dataItem.source) return props.dataItem.source;
       if ("trueValue" in props.dataItem) {
         return [
-          { [vdn]: props.dataItem.trueValue, [ldn]: String(props.dataItem.trueValue) },
-          { [vdn]: props.dataItem.falseValue, [ldn]: String(props.dataItem.falseValue) },
+          {
+            [vdn]: props.dataItem.trueValue,
+            [ldn]: props.dataItem.trueLabelAsIs
+              || (props.dataItem.trueLabel ? lang(props.dataItem.trueLabel) : "")
+              || String(props.dataItem.trueValue),
+          },
+          {
+            [vdn]: props.dataItem.falseValue,
+            [ldn]: props.dataItem.falseLabelAsIs
+              || (props.dataItem.falseLabel ? lang(props.dataItem.falseLabel) : "")
+              || String(props.dataItem.falseValue),
+          },
         ];
       }
     }
@@ -108,15 +120,23 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   };
 
   const fi = useFormItemCore<DataItem.$str | DataItem.$num | DataItem.$boolAny, D, string | number | boolean, { [P in typeof vdn]: string | number | boolean; } & { [P in typeof ldn]: any }>(props, {
-    dataItemDeps: [textAlign, vdn, ldn, origin, ...(tieInNames ?? [])],
+    dataItemDeps: [textAlign, vdn, ldn, origin],
     getDataItem: ({ dataItem }) => {
       return {
-        type: dataItem?.type!,
+        ...dataItem,
+        type: (() => {
+          if (dataItem) return dataItem.type;
+          switch (getObjectType(origin[origin.length - 1]?.[vdn])) {
+            case "Number": return "num";
+            case "Boolean": return "bool";
+            default: return "str";
+          }
+        })(),
         textAlign: textAlign ?? dataItem?.textAlign,
         source: origin as DataItem.Source<any>,
       };
     },
-    getTieInNames: () => tieInNames?.map(item => item.hiddenName || item.dataName),
+    getTieInNames: () => tieInNames,
     parse: ({ dataItem, env, label }) => {
       const parseData = ([v, r]: DataItem.ParseResult<any>, p: DataItem.ParseProps<any>): DataItem.ParseResult<any> => {
         if (loading) {
@@ -177,9 +197,12 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
       })();
       return (v, p) => iterator(funcs, { ...p, value: v?.[vdn] });
     },
-    setBind: ({ data, name, value }) => {
-      if (name) set(data, name, value?.[vdn]);
-      tieInNames?.forEach(({ dataName, hiddenName }) => {
+    setBind: ({ data, name, value, getTieInNames }) => {
+      if (name) {
+        set(data, name, value?.[vdn]);
+        set(data, parseIgnoreName(name), value);
+      }
+      getTieInNames()?.forEach(({ dataName, hiddenName }) => {
         const v = value?.[dataName];
         set(data, hiddenName ?? dataName, v);
       });
@@ -389,7 +412,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
             className="ipt-btn ipt-pull"
             role="button"
             tabIndex={-1}
-            data-disabled={!fi.editable || loading}
+            aria-disabled={!fi.editable || loading}
             onClick={clickPull}
             aria-haspopup="listbox"
             aria-expanded={dialog.showed}
@@ -456,7 +479,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
           </div>
         </Dialog>
       </div>
-      {fi.messageComponent}
+      {!loading && fi.messageComponent}
     </>
   );
 };

@@ -121,7 +121,7 @@ export const FileButton = <D extends DataItem.$file | undefined>({
         />
         {!hideFileName && !empty &&
           <span className="ipt-file-name">
-            {empty ? undefined : (fi.value?.name || ((!fileName || fi.form.bind == null) ? "" : fi.form.bind?.[fileName]))}
+            {empty ? undefined : (fi.value?.name || (!fileName ? "" : fi.form.getValue(fileName)))}
           </span>
         }
         {!empty && fi.clearButton(clear)}

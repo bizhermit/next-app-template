@@ -128,7 +128,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         splitDataNames: splitDataNames ?? dataItem?.splitDataNames,
       };
     },
-    getTieInNames: ({ dataItem }) => dataItem.splitDataNames,
+    getTieInNames: ({ dataItem }) => dataItem.splitDataNames?.map(dataName => ({ dataName })),
     parse: () => {
       return (p, { bind }) => {
         const [d, r] = $dateParse(p);
@@ -412,11 +412,13 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
 
   const updown = (y = 0, m = 0, d = 0) => {
     if (!fi.editable) return;
+    const nd = cache.current.d == null ? $initFocusDate.getDate() : cache.current.d + d;
     const newDate = new Date(
       cache.current.y == null ? $initFocusDate.getFullYear() : cache.current.y + y,
       (cache.current.m == null ? $initFocusDate.getMonth() + 1 : cache.current.m + m) - 1,
-      cache.current.d == null ? $initFocusDate.getDate() : cache.current.d + d
+      nd
     );
+    if (d === 0 && nd !== newDate.getDate()) newDate.setDate(0);
     let year = newDate.getFullYear();
     let month = newDate.getMonth() + 1;
     let day = newDate.getDate();
@@ -712,7 +714,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
               className="ipt-btn ipt-pull"
               role="button"
               tabIndex={-1}
-              data-disabled={!fi.editable || yDialog.showed}
+              aria-disabled={!fi.editable || yDialog.showed}
               aria-haspopup="listbox"
               aria-expanded={yDialog.showed}
               data-slim
@@ -771,7 +773,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
               className="ipt-btn ipt-pull"
               role="button"
               tabIndex={-1}
-              data-disabled={!fi.editable || mDialog.showed}
+              aria-disabled={!fi.editable || mDialog.showed}
               aria-haspopup="listbox"
               aria-expanded={mDialog.showed}
               data-slim
@@ -828,7 +830,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
                   className="ipt-btn ipt-pull"
                   role="button"
                   tabIndex={-1}
-                  data-disabled={!fi.editable || dDialog.showed}
+                  aria-disabled={!fi.editable || dDialog.showed}
                   aria-haspopup="listbox"
                   aria-expanded={dDialog.showed}
                   data-slim

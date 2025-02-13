@@ -115,7 +115,7 @@ export const PasswordBox = <D extends DataItem.$str | undefined>({
             className="ipt-btn"
             role="button"
             tabIndex={-1}
-            data-disabled={!fi.editable}
+            aria-disabled={!fi.editable}
             onClick={toggle}
           >
             {type === "text" ? <CircleFillIcon /> : <CircleIcon />}

@@ -506,7 +506,7 @@ export const TimeBox = <D extends DataItem.$time | undefined>({
             className="ipt-btn"
             role="button"
             tabIndex={-1}
-            data-disabled={!fi.editable || dialog.showed}
+            aria-disabled={!fi.editable || dialog.showed}
             onClick={clickPull}
             aria-haspopup="dialog"
             aria-expanded={dialog.showed}
@@ -822,7 +822,7 @@ export const TimePicker = (props: TimePickerProps) => {
           <button
             className="ipt-btn"
             type="button"
-            data-disabled={!inRange}
+            disabled={!inRange}
             onClick={() => {
               if (!inRange) return;
               props.onSelect!({

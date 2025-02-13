@@ -69,8 +69,8 @@ export const NumberBox = <D extends DataItem.$num | undefined>({
   const minmax = (num: number | null | undefined) => {
     if (num == null) return num;
     let ret = num;
-    if (fi.dataItem.min != null) ret = Math.max(fi.dataItem.min, num);
-    if (fi.dataItem.max != null) ret = Math.min(fi.dataItem.max, num);
+    if (fi.dataItem.min != null) ret = Math.max(fi.dataItem.min, ret);
+    if (fi.dataItem.max != null) ret = Math.min(fi.dataItem.max, ret);
     return ret;
   };
 
@@ -213,7 +213,7 @@ export const NumberBox = <D extends DataItem.$num | undefined>({
                 className="ipt-btn ipt-num-spin-inc"
                 role="button"
                 tabIndex={-1}
-                data-disabled={!fi.editable}
+                aria-disabled={!fi.editable}
                 onMouseDown={() => mousedown("up")}
               >
                 <UpFillIcon />
@@ -222,7 +222,7 @@ export const NumberBox = <D extends DataItem.$num | undefined>({
                 className="ipt-btn ipt-num-spin-dec"
                 role="button"
                 tabIndex={-1}
-                data-disabled={!fi.editable}
+                aria-disabled={!fi.editable}
                 onMouseDown={() => mousedown("down")}
               >
                 <DownFillIcon />
