@@ -11,7 +11,7 @@ import { blurToOuter } from "../../../../dom/outer-event";
 import { useLang } from "../../../../i18n/react-hook";
 import { equals, getObjectType } from "../../../../objects";
 import { isEmpty } from "../../../../objects/string";
-import { set } from "../../../../objects/struct";
+import { parseIgnoreName, set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
 import { LayoutContext } from "../../../hooks/layout";
 import { type LoadableArray, useLoadableArray } from "../../../hooks/loadable-array";
@@ -120,7 +120,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
   };
 
   const fi = useFormItemCore<DataItem.$str | DataItem.$num | DataItem.$boolAny, D, string | number | boolean, { [P in typeof vdn]: string | number | boolean; } & { [P in typeof ldn]: any }>(props, {
-    dataItemDeps: [textAlign, vdn, ldn, origin, ...(tieInNames ?? [])],
+    dataItemDeps: [textAlign, vdn, ldn, origin],
     getDataItem: ({ dataItem }) => {
       return {
         ...dataItem,
@@ -136,7 +136,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
         source: origin as DataItem.Source<any>,
       };
     },
-    getTieInNames: () => tieInNames?.map(item => item.hiddenName || item.dataName),
+    getTieInNames: () => tieInNames,
     parse: ({ dataItem, env, label }) => {
       const parseData = ([v, r]: DataItem.ParseResult<any>, p: DataItem.ParseProps<any>): DataItem.ParseResult<any> => {
         if (loading) {
@@ -197,9 +197,12 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
       })();
       return (v, p) => iterator(funcs, { ...p, value: v?.[vdn] });
     },
-    setBind: ({ data, name, value }) => {
-      if (name) set(data, name, value?.[vdn]);
-      tieInNames?.forEach(({ dataName, hiddenName }) => {
+    setBind: ({ data, name, value, getTieInNames }) => {
+      if (name) {
+        set(data, name, value?.[vdn]);
+        set(data, parseIgnoreName(name), value);
+      }
+      getTieInNames()?.forEach(({ dataName, hiddenName }) => {
         const v = value?.[dataName];
         set(data, hiddenName ?? dataName, v);
       });

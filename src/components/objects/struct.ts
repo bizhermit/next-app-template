@@ -13,6 +13,14 @@ const split = (str: string) => {
   return str.split(/\.|(\[\d*\])/).filter(s => s);
 };
 
+export const isIgnoreName = (str: string) => {
+  return /^\_|\._|]_/.test(str);
+};
+
+export const parseIgnoreName = (str: string) => {
+  return str.replace(/(\.|\[\d*\]|^)(?=[^.(\[\d*\])]*$)/, "$1_");
+};
+
 const isPush = (idxOrName: string | number) => {
   return typeof idxOrName === "number" && isNaN(idxOrName);
 };
@@ -31,9 +39,10 @@ export const get = <U = any>(data: { [v: string | number | symbol]: any } | null
   return [v as U, has];
 };
 
-export const set = <U = any>(data: { [v: string | number | symbol]: any } | null | undefined, name: string, value: U) => {
+export const set = <U = any>(data: { [v: string | number | symbol]: any } | null | undefined, name: string, value: U, opts?: { ignoreFlag?: boolean; }) => {
   if (data == null) return value;
   const names = split(name);
+  if (opts?.ignoreFlag && isIgnoreName(name)) return value;
   let o = data;
   for (let i = 0, il = names.length - 1; i < il; i++) {
     const n = getArrIdxOrName(names[i]);

@@ -4,7 +4,7 @@ import { use, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } fro
 import { FormContext } from ".";
 import { useLang } from "../../../i18n/react-hook";
 import { equals } from "../../../objects";
-import { get, set } from "../../../objects/struct";
+import { get, isIgnoreName, set } from "../../../objects/struct";
 import { useRefState } from "../../hooks/ref-state";
 import { CrossIcon } from "../icon";
 
@@ -18,7 +18,7 @@ type FormItemCoreArgs<
   getDataItem: (props: PickPartial<DataItem.$, DataItem.OmitableProps> & {
     dataItem: D | undefined;
   }, label: string | undefined) => DataItem.ArgObject<SD>;
-  getTieInNames?: (params: { dataItem: SD; }) => (Array<string> | undefined);
+  getTieInNames?: (params: { dataItem: SD; }) => (Array<{ dataName: string; hiddenName?: string }> | undefined);
   parse: (params: { dataItem: SD; env: DataItem.Env; label: string | undefined; }) => (props: DataItem.ParseProps<SD>, args: { bind: boolean; }) => DataItem.ParseResult<IV>;
   revert?: (v: IV | null | undefined) => (V | null | undefined);
   equals?: (v1: IV | null | undefined, v2: IV | null | undefined, params: { dataItem: DataItem.ArgObject<SD>; }) => boolean;
@@ -33,6 +33,7 @@ type FormItemCoreArgs<
     name: string | undefined;
     data: { [v: string]: any };
     dataItem: DataItem.ArgObject<SD>;
+    getTieInNames: () => (Array<{ dataName: string; hiddenName?: string }> | undefined);
   }) => void;
   effect: (props: FormItemSetArg<IV> & {
     origin: any | null | undefined;
@@ -57,7 +58,6 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
   tabIndex,
   defaultValue,
   dataItem: $dataItem,
-  preventCollectForm,
   autoFocus,
   onChange,
   onEdit,
@@ -72,7 +72,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
   const $disabled = disabled || form.disabled;
   const $readOnly = readOnly || form.processing || form.readOnly;
 
-  const { dataItem, $label } = useMemo(() => {
+  const { dataItem, $label, preventCollectForm } = useMemo(() => {
     const $name = name || $dataItem?.name;
     const $required = required ?? $dataItem?.required;
     const l = label ?? $dataItem?.label;
@@ -100,6 +100,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
         }, $label),
       } as unknown as SD,
       $label,
+      preventCollectForm: !$name || isIgnoreName($name),
     };
   }, [
     name,
@@ -207,6 +208,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
             name: dataItem.name,
             data: form.bind.current,
             dataItem,
+            getTieInNames: () => $.current.getTieInNames?.({ dataItem }),
           });
         } else {
           if (dataItem.name) set(form.bind.current, dataItem.name, v);
@@ -323,7 +325,6 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
     const { unmount } = form.mount({
       id,
       name: dataItem.name,
-      tieInNames: $.current.getTieInNames?.({ dataItem }),
       get: () => valRef.current as any,
       set: (...args) => $.current.set(...args),
       reset: (...args) => $.current.reset(...args),
@@ -334,7 +335,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
         setDyanmicRequired($.current.getDynamicRequired());
       },
       dataItem,
-      preventCollectForm,
+      getTieInNames: () => $.current.getTieInNames?.({ dataItem }),
       autoFocus,
       focus: cp.focus,
     });
@@ -342,7 +343,7 @@ export const useFormItemCore = <SD extends DataItem.$object, D extends SD | unde
       unmount();
       if (ref) (ref as unknown as FormItemRefConnector<any>)(null!);
     };
-  }, [dataItem, preventCollectForm]);
+  }, [dataItem]);
 
   useEffect(() => {
     if (init.mount === 0) {

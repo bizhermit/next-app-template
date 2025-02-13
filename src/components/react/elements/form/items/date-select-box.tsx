@@ -128,7 +128,7 @@ export const DateSelectBox = <D extends DataItem.$date | DataItem.$month | undef
         splitDataNames: splitDataNames ?? dataItem?.splitDataNames,
       };
     },
-    getTieInNames: ({ dataItem }) => dataItem.splitDataNames,
+    getTieInNames: ({ dataItem }) => dataItem.splitDataNames?.map(dataName => ({ dataName })),
     parse: () => {
       return (p, { bind }) => {
         const [d, r] = $dateParse(p);

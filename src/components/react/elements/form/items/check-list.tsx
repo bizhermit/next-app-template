@@ -7,7 +7,7 @@ import { $numParse } from "../../../../data-items/number/parse";
 import { $strParse } from "../../../../data-items/string/parse";
 import { useLang } from "../../../../i18n/react-hook";
 import { equals, getObjectType } from "../../../../objects";
-import { set } from "../../../../objects/struct";
+import { parseIgnoreName, set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
 import { type LoadableArray, useLoadableArray } from "../../../hooks/loadable-array";
 import { joinClassNames } from "../../utilities";
@@ -78,7 +78,7 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
   const [origin, loading] = useLoadableArray($source, { preventMemorize: preventSourceMemorize });
 
   const fi = useFormItemCore<DataItem.$array<DataItem.$str | DataItem.$num | DataItem.$boolAny>, D, Array<any>, Array<{ [P in typeof vdn]: any; } & { [P in typeof ldn]: any }>>(props, {
-    dataItemDeps: [vdn, ldn, origin, length, minLength, maxLength, ...(tieInNames ?? [])],
+    dataItemDeps: [vdn, ldn, origin, length, minLength, maxLength],
     getDataItem: ({ dataItem }) => {
       return {
         type: "array",
@@ -96,7 +96,7 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
         maxLength: maxLength ?? dataItem?.maxLength,
       };
     },
-    getTieInNames: () => tieInNames?.map(item => item.hiddenName || item.dataName),
+    getTieInNames: () => tieInNames,
     parse: ({ dataItem, env, label }) => {
       const parseData = ([v, r]: DataItem.ParseResult<any>, p: DataItem.ParseProps<any>): DataItem.ParseResult<any> => {
         if (loading) {
@@ -152,15 +152,21 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
       const funcs = $arrayValidations({ dataItem, env }, true);
       return (_, p) => iterator(funcs, p);
     },
-    setBind: ({ data, name, value }) => {
+    setBind: ({ data, name, value, getTieInNames }) => {
       if (value == null) {
-        if (name) set(data, name, undefined);
-        tieInNames?.forEach(({ dataName, hiddenName }) => {
+        if (name) {
+          set(data, name, undefined);
+          set(data, parseIgnoreName(name), undefined);
+        }
+        getTieInNames()?.forEach(({ dataName, hiddenName }) => {
           set(data, hiddenName ?? dataName, undefined);
         });
       }
-      if (name) set(data, name, value?.map(v => v[vdn]));
-      tieInNames?.forEach(({ dataName, hiddenName }) => {
+      if (name) {
+        set(data, name, value?.map(v => v[vdn]));
+        set(data, parseIgnoreName(name), value);
+      }
+      getTieInNames()?.forEach(({ dataName, hiddenName }) => {
         set(data, hiddenName ?? dataName, value?.map(v => v[dataName]));
       });
     },

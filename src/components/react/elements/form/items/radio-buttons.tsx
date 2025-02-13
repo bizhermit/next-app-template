@@ -9,7 +9,7 @@ import { $strParse } from "../../../../data-items/string/parse";
 import { $strValidations } from "../../../../data-items/string/validation";
 import { useLang } from "../../../../i18n/react-hook";
 import { equals, getObjectType } from "../../../../objects";
-import { set } from "../../../../objects/struct";
+import { parseIgnoreName, set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
 import { type LoadableArray, useLoadableArray } from "../../../hooks/loadable-array";
 import { joinClassNames } from "../../utilities";
@@ -91,6 +91,7 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
         source: origin as DataItem.Source<any>,
       };
     },
+    getTieInNames: () => tieInNames,
     parse: ({ dataItem, env, label }) => {
       const parseData = ([v, r]: DataItem.ParseResult<any>, p: DataItem.ParseProps<any>): DataItem.ParseResult<any> => {
         if (loading) {
@@ -148,9 +149,12 @@ export const RadioButtons = <D extends DataItem.$str | DataItem.$num | DataItem.
       })();
       return (v, p) => iterator(funcs, { ...p, value: v?.[vdn] });
     },
-    setBind: ({ data, name, value }) => {
-      if (name) set(data, name, value?.[vdn]);
-      tieInNames?.forEach(({ dataName, hiddenName }) => {
+    setBind: ({ data, name, value, getTieInNames }) => {
+      if (name) {
+        set(data, name, value?.[vdn]);
+        set(data, parseIgnoreName(name), value);
+      }
+      getTieInNames()?.forEach(({ dataName, hiddenName }) => {
         const v = value?.[dataName];
         set(data, hiddenName ?? dataName, v);
       });

@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useLayoutEffect, useMemo, useRef, type FormEvent, type FormHTMLAttributes, type KeyboardEvent, type RefObject } from "react";
 import { clone, equals } from "../../../objects";
-import { get, set } from "../../../objects/struct";
+import { get, isIgnoreName, set } from "../../../objects/struct";
 import { useRefState } from "../../hooks/ref-state";
 import { LoadingBar } from "../loading";
 
@@ -11,7 +11,6 @@ type FormProcessState = "init" | "submit" | "reset" | "" | "nothing";
 type FormItemMountProps = {
   id: string;
   name: string | undefined;
-  tieInNames?: Array<string>;
   get: <T>() => T;
   set: (arg: FormItemSetArg<any>) => void;
   reset: (edit: boolean) => void;
@@ -19,7 +18,7 @@ type FormItemMountProps = {
   changeRefs: (item: FormItemMountProps | null | undefined) => void;
   hasChanged: () => boolean;
   dataItem: PickPartial<DataItem.$object, DataItem.OmitableProps>;
-  preventCollectForm: boolean | undefined;
+  getTieInNames?: () => (Array<{ dataName: string; hiddenName?: string }> | undefined);
   noInput?: boolean;
   autoFocus?: boolean;
   focus: () => void;
@@ -171,12 +170,13 @@ export const Form = <T extends { [v: string]: any } = { [v: string]: any }>({
     if (opts?.pure) return clone($bind.current);
     const ret = {};
     Object.keys(items.current).forEach(id => {
-      const { name, tieInNames, hasChanged, preventCollectForm, noInput } = items.current[id];
-      if (preventCollectForm || noInput) return;
-      if (!name && (tieInNames ?? []).length === 0) return;
+      const { name, getTieInNames, hasChanged, noInput } = items.current[id];
+      if (noInput) return;
       if (!opts?.appendNotChanged && !hasChanged()) return;
-      if (name) set(ret, name, clone(get($bind.current, name)[0]));
-      tieInNames?.forEach(n => {
+      if (name && !isIgnoreName(name)) set(ret, name, clone(get($bind.current, name)[0]));
+      getTieInNames?.()?.forEach(({ dataName, hiddenName }) => {
+        const n = hiddenName || dataName;
+        if (isIgnoreName(n)) return;
         set(ret, n, clone(get($bind.current, n)[0]));
       });
     });

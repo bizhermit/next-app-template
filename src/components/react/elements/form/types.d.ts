@@ -41,7 +41,6 @@ type FormItemOptions<
   tabIndex?: number;
   defaultValue?: ((V | DV) extends infer _V ? _V : any) | DataItem.NullValue;
   dataItem?: D;
-  preventCollectForm?: boolean;
   autoFocus?: boolean;
   onChange?: (value: IV | DataItem.NullValue, params: {
     before: IV | DataItem.NullValue;
