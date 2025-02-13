@@ -182,6 +182,10 @@ declare namespace DataItem {
     type: "bool";
     trueValue: True;
     falseValue: False;
+    trueLabel?: LangKey;
+    trueLabelAsIs?: string;
+    falseLabel?: LangKey;
+    falseLabelAsIs?: string;
     source?: Source<True | False>;
     validations?: Array<Validation<$bool<True, False>>>;
     requiredIsTrue?: boolean;
@@ -201,6 +205,10 @@ declare namespace DataItem {
     type: "b-num";
     trueValue: True;
     falseValue: False;
+    trueLabel?: LangKey;
+    trueLabelAsIs?: string;
+    falseLabel?: LangKey;
+    falseLabelAsIs?: string;
     source?: Source<True | False>;
     validations?: Array<Validation<$boolNum<True, False>>>;
     requiredIsTrue?: boolean;
@@ -220,6 +228,10 @@ declare namespace DataItem {
     type: "b-str";
     trueValue: True;
     falseValue: False;
+    trueLabel?: LangKey;
+    trueLabelAsIs?: string;
+    falseLabel?: LangKey;
+    falseLabelAsIs?: string;
     source?: Source<True | False>;
     validations?: Array<Validation<$boolStr<True, False>>>;
     requiredIsTrue?: boolean;

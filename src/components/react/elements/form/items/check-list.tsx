@@ -5,7 +5,8 @@ import { $arrayValidations } from "../../../../data-items/array/validation";
 import { $boolParse } from "../../../../data-items/bool/parse";
 import { $numParse } from "../../../../data-items/number/parse";
 import { $strParse } from "../../../../data-items/string/parse";
-import { equals } from "../../../../objects";
+import { useLang } from "../../../../i18n/react-hook";
+import { equals, getObjectType } from "../../../../objects";
 import { set } from "../../../../objects/struct";
 import "../../../../styles/elements/form/item.scss";
 import { type LoadableArray, useLoadableArray } from "../../../hooks/loadable-array";
@@ -44,12 +45,34 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
   ...props
 }: CheckListProps<D, S>) => {
   const ref = useRef<HTMLDivElement>(null!);
+  const lang = useLang();
   const vdn = valueDataName ?? "value";
   const ldn = labelDataName ?? "label";
   const sdn = stateDataName ?? "state";
 
   const $source = useMemo(() => {
-    return source ?? props.dataItem?.source ?? props.dataItem?.item.source ?? [];
+    if (source) return source;
+    if (!props.dataItem) return [];
+    if (props.dataItem.source) return props.dataItem.source;
+    if (props.dataItem.item?.source) return props.dataItem.item.source;
+    if (props.dataItem.item && "trueValue" in props.dataItem.item) {
+      const di = props.dataItem.item as never as DataItem.$boolAny;
+      return [
+        {
+          [vdn]: di.trueValue,
+          [ldn]: di.trueLabelAsIs
+            || (di.trueLabel ? lang(di.trueLabel) : "")
+            || String(di.trueValue),
+        },
+        {
+          [vdn]: di.falseValue,
+          [ldn]: di.falseLabelAsIs
+            || (di.falseLabel ? lang(di.falseLabel) : "")
+            || String(di.falseValue),
+        },
+      ];
+    }
+    return [];
   }, [preventSourceMemorize ? source : ""]);
 
   const [origin, loading] = useLoadableArray($source, { preventMemorize: preventSourceMemorize });
@@ -59,7 +82,15 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
     getDataItem: ({ dataItem }) => {
       return {
         type: "array",
-        item: dataItem?.item ?? { type: "any" },
+        item: dataItem?.item ?? {
+          type: (() => {
+            switch (getObjectType(origin[origin.length - 1][vdn])) {
+              case "Number": return "num";
+              case "Boolean": return "bool";
+              default: return "str";
+            }
+          })()
+        },
         length: length ?? dataItem?.length,
         minLength: minLength ?? dataItem?.minLength,
         maxLength: maxLength ?? dataItem?.maxLength,
