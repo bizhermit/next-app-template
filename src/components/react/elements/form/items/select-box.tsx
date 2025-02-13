@@ -126,7 +126,7 @@ export const SelectBox = <D extends DataItem.$str | DataItem.$num | DataItem.$bo
         ...dataItem,
         type: (() => {
           if (dataItem) return dataItem.type;
-          switch (getObjectType(origin[origin.length - 1][vdn])) {
+          switch (getObjectType(origin[origin.length - 1]?.[vdn])) {
             case "Number": return "num";
             case "Boolean": return "bool";
             default: return "str";

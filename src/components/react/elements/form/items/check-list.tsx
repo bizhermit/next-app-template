@@ -84,7 +84,7 @@ export const CheckList = <D extends DataItem.$array<DataItem.$str | DataItem.$nu
         type: "array",
         item: dataItem?.item ?? {
           type: (() => {
-            switch (getObjectType(origin[origin.length - 1][vdn])) {
+            switch (getObjectType(origin[origin.length - 1]?.[vdn])) {
               case "Number": return "num";
               case "Boolean": return "bool";
               default: return "str";
